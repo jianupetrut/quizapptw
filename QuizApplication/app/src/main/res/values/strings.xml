@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">cOdin Quiz Application</string>
+    <string name="username">Username</string>
+    <string name="codinlogo">cOdinLogo</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="myProfile">My Profile</string>
+    <string name="newAssignment">New Assignment</string>
+    <string name="professor">Professor</string>
+    <string name="name_surname">Name Surname</string>
 </resources>
