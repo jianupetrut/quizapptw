@@ -9,4 +9,8 @@
     <string name="newAssignment">New Assignment</string>
     <string name="professor">Professor</string>
     <string name="name_surname">Name Surname</string>
+    <string name="sw_shuffle">Shuffle questions and answers</string>
+    <string name="sw_feedback">Question feedback</string>
+    <string name="sw_result">Show test result</string>
+    <string name="configure_test_title">Configure test options</string>
 </resources>
