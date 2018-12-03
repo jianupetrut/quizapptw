@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">cOdin Quiz Application</string>
+    <string name="username">Username</string>
+    <string name="codinlogo">cOdinLogo</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="myProfile">My Profile</string>
+    <string name="newAssignment">New Assignment</string>
+    <string name="professor">Professor</string>
+    <string name="name_surname">Name Surname</string>
+    <string name="sw_shuffle">Shuffle questions and answers</string>
+    <string name="sw_feedback">Question feedback</string>
+    <string name="sw_result">Show test result</string>
+    <string name="configure_test_title">Configure test options</string>
+    <string name="title_activity_student_main">StudentMain</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+</resources>
