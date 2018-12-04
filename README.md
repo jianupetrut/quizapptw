@@ -23,15 +23,15 @@ George:
 
 *Refactoring:*
 
-*Am sters activitatile pe nefolositoare/deprecated: teacher activity main, student activity main
+* Am sters activitatile pe nefolositoare/deprecated: teacher activity main, student activity main
 
-*Am sters xml nefolositoare/deprecated: old nav_header, old main_student_content etc
+* Am sters xml nefolositoare/deprecated: old nav_header, old main_student_content etc
 
-*Am creat doua noi activitati: feedback student, feedback profesor
+* Am creat doua noi activitati: feedback student, feedback profesor
 
-*Am recreat activitatile existente cu nav drawer: generate code, test options, teacher configure test
+* Am recreat activitatile existente cu nav drawer: generate code, test options, teacher configure test
 
-*Am creat meniurile pentru profesori si studenti (se pot gasi in res/layout/menu/..._drawer.xml). Mai e de lucrat la routing la fiecare meniu
+* Am creat meniurile pentru profesori si studenti (se pot gasi in res/layout/menu/..._drawer.xml). Mai e de lucrat la routing la fiecare meniu
 
 *Pasi pentru a crea o noua activitate cu nav drawer:*
 
@@ -43,4 +43,4 @@ George:
 6.Editezi meniul in layout/menu/numeActivitate_drawer.xml
 7.Faci routing pentru meniu in numeActivitate.java
 
-*Toate activitatile in afara de login sunt in acest moment facute cu navigation drawer, iar meniurile trebuie doar copiate. Am incercat sa fac un singur xml de meniu, dar nu se poate (trebuie facut cate un meniu pentru fiecare activitate)
+* Toate activitatile in afara de login sunt in acest moment facute cu navigation drawer, iar meniurile trebuie doar copiate. Am incercat sa fac un singur xml de meniu, dar nu se poate (trebuie facut cate un meniu pentru fiecare activitate)
