@@ -16,16 +16,15 @@ import android.view.MenuItem;
 
 import ro.ase.codinquiz.quizapplication.R;
 
-public class StudentMain extends AppCompatActivity
+public class StudentFeedbackActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_main2);
+        setContentView(R.layout.activity_student_feedback);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -51,7 +50,7 @@ public class StudentMain extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.student_main, menu);
+        getMenuInflater().inflate(R.menu.student_feedback, menu);
         return true;
     }
 
@@ -70,8 +69,8 @@ public class StudentMain extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    public void joinTest(View view){
-        Intent intent = new Intent(this, JoinTestActivity.class);
+    public void goToFeedback(){
+        Intent intent = new Intent(this, StudentFeedbackActivity.class);
         startActivity(intent);
     }
 
@@ -86,7 +85,7 @@ public class StudentMain extends AppCompatActivity
         } else if (id == R.id.nav_new_assignment) {
 
         } else if (id == R.id.nav_leave_feedback) {
-
+            goToFeedback();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

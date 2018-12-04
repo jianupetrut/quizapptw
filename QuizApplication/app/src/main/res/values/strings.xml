@@ -24,4 +24,18 @@
     <string name="test_id">Test ID</string>
     <string name="available_for">Available for</string>
     <string name="test_options">Test Options</string>
+    <string name="create_new_test">Create new test</string>
+    <string name="existing_tests">Existing tests</string>
+    <string name="create_a_new_question">Create a new question</string>
+    <string name="existing_questions">Existing questions</string>
+    <string name="assignment_history">Assignment history</string>
+    <string name="feedback">Feedback</string>
+    <string name="leave_feedback">Leave feedback</string>
+    <string name="my_profile">My Profile</string>
+    <string name="new_assignment">New assignment</string>
+    <string name="title_activity_student_feedback">StudentFeedbackActivity</string>
+    <string name="title_activity_teacher_generate_code">TeacherGenerateCode</string>
+    <string name="title_activity_teacher_create_test">TeacherCreateTest</string>
+    <string name="title_activity_teacher_test_options">TeacherTestOptions</string>
+    <string name="title_activity_teacher_feedback">TeacherFeedbackActivity</string>
 </resources>

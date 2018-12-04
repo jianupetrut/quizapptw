@@ -1,6 +1,5 @@
-package ro.ase.codinquiz.quizapplication.Main.Student;
+package ro.ase.codinquiz.quizapplication.Main.Teacher;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,13 +15,13 @@ import android.view.MenuItem;
 
 import ro.ase.codinquiz.quizapplication.R;
 
-public class StudentMain extends AppCompatActivity
+public class TeacherCreateTest extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_student_main2);
+        setContentView(R.layout.activity_teacher_create_test);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -51,7 +50,7 @@ public class StudentMain extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.student_main, menu);
+        getMenuInflater().inflate(R.menu.teacher_create_test, menu);
         return true;
     }
 
@@ -70,18 +69,19 @@ public class StudentMain extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    public void joinTest(View view){
-        Intent intent = new Intent(this, JoinTestActivity.class);
-        startActivity(intent);
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_my_profile) {
+        if (id == R.id.nav_create_new_test) {
+            // Handle the camera action
+        } else if (id == R.id.nav_existing_tests) {
+
+        } else if (id == R.id.nav_create_new_question) {
+
+        } else if (id == R.id.nav_existing_questions) {
 
         } else if (id == R.id.nav_new_assignment) {
 
