@@ -11,4 +11,10 @@ Doinita:
 
 * Nu am sters StudentMainActivity in cazul in cae ne hotaram sa il folosim pe ala
 
+4 decembrie
 
+Andreea:
+
+* Am creat activity_generate_code pe care am legat-o la butonul Get Code din activitatea de configurat teste pentru profesori
+
+* Am creat activity_test_options catre care nu putem naviga momentan, trebuie legata la activitatea pentru selectarea unui test pe care nu am facut-o inca
