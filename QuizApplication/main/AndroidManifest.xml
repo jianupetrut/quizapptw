@@ -10,10 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".Main.Student.StudentMainActivity" />
-        <activity
-            android:name=".Main.Student.JoinTestActivity"
-            android:parentActivityName=".Main.Login.LoginActivity"></activity>
-        <activity android:name=".Main.Teacher.TeacherActivityMain" />
+        <activity android:name=".Main.Student.JoinTestActivity" />
+        <activity android:name=".Main.Teacher.TeacherActivityMain"></activity>
         <activity android:name=".Main.Login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,16 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main.Teacher.TeacherConfigureTestActivity" />
-        <activity
-            android:name=".Main.Student.StudentMain"
-            android:label="@string/title_activity_student_main"
-            android:parentActivityName=".Main.Login.LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="ro.ase.codinquiz.quizapplication.Main.Login.LoginActivity" />
-        </activity>
+        <activity android:name=".Main.Teacher.TeacherConfigureTestActivity"></activity>
     </application>
 
 </manifest>

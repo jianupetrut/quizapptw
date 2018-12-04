@@ -2,7 +2,6 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/emailTextView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Main.Login.LoginActivity"
@@ -24,52 +23,42 @@
         android:id="@+id/inputPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="312dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="320dp"
+        android:layout_marginEnd="52dp"
         android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/inputEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="236dp"
+        android:layout_marginEnd="52dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/inputPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="244dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="328dp"
         android:text="@string/e_mail"
-        app:layout_constraintEnd_toStartOf="@+id/inputEmail"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="332dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="308dp"
         android:text="@string/password"
-        app:layout_constraintEnd_toStartOf="@+id/inputPassword"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -77,31 +66,10 @@
         android:layout_width="99dp"
         android:layout_height="46dp"
         android:layout_marginStart="140dp"
-        android:layout_marginTop="380dp"
+        android:layout_marginTop="424dp"
         android:layout_marginEnd="140dp"
-        android:onClick="openStudentActivity"
         android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/takeTestNowBtn"
-        style="@android:style/Widget.Holo.Light.Button.Toggle"
-        android:layout_width="214dp"
-        android:layout_height="69dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="joinTest"
-        android:text="or take a test with a code"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
-        app:layout_constraintVertical_bias="0.321" />
-
 </android.support.constraint.ConstraintLayout>
