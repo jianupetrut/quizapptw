@@ -12,11 +12,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Spinner;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import ro.ase.codinquiz.quizapplication.Main.Teacher.Adapters.SpinnerHintAdapter;
 import ro.ase.codinquiz.quizapplication.R;
 
 public class TeacherCreateQuestion extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    Spinner QuestionCategorySpinner = (Spinner) findViewById(R.id.spQuestionCategory2);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +40,19 @@ public class TeacherCreateQuestion extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //Display hint text "Question categories" for spinner
+        List<String> objects = new ArrayList<String>();
+        objects.add("Category 1");
+        objects.add("Category 2");
+        objects.add("Category 3");
+        objects.add("Question Category");  // add hint as last item
+
+        SpinnerHintAdapter adapter = new SpinnerHintAdapter(this, objects, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        QuestionCategorySpinner.setAdapter(adapter);
+        QuestionCategorySpinner.setSelection(adapter.getCount()); // show hint
     }
 
     @Override
