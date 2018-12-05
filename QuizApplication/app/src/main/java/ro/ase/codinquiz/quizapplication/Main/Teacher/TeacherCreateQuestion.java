@@ -12,27 +12,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Spinner;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import ro.ase.codinquiz.quizapplication.Main.Teacher.Adapters.SpinnerHintAdapter;
 import ro.ase.codinquiz.quizapplication.R;
 
-public class TeacherCreateTest extends AppCompatActivity
+public class TeacherCreateQuestion extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-    Spinner QuestionCategorySpinner = (Spinner) findViewById(R.id.spQuestionCategory);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_teacher_create_test);
+        setContentView(R.layout.activity_teacher_create_question);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -42,19 +33,6 @@ public class TeacherCreateTest extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        //Display hint text "Question categories" for spinner
-        List<String> objects = new ArrayList<String>();
-        objects.add("Category 1");
-        objects.add("Category 2");
-        objects.add("Category 3");
-        objects.add("Question Category");  // add hint as last item
-
-        SpinnerHintAdapter adapter = new SpinnerHintAdapter(this, objects, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        QuestionCategorySpinner.setAdapter(adapter);
-        QuestionCategorySpinner.setSelection(adapter.getCount()); // show hint
     }
 
     @Override
@@ -70,7 +48,7 @@ public class TeacherCreateTest extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.teacher_create_test, menu);
+        getMenuInflater().inflate(R.menu.teacher_create_question, menu);
         return true;
     }
 
@@ -95,17 +73,17 @@ public class TeacherCreateTest extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_create_new_test) {
+        if (id == R.id.nav_camera) {
             // Handle the camera action
-        } else if (id == R.id.nav_existing_tests) {
+        } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_create_new_question) {
+        } else if (id == R.id.nav_slideshow) {
 
-        } else if (id == R.id.nav_existing_questions) {
+        } else if (id == R.id.nav_manage) {
 
-        } else if (id == R.id.nav_new_assignment) {
+        } else if (id == R.id.nav_share) {
 
-        } else if (id == R.id.nav_leave_feedback) {
+        } else if (id == R.id.nav_send) {
 
         }
 
