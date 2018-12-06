@@ -49,4 +49,4 @@ George:
 
 * Fix buguri  nav_menu ------ cand creati o activitate noua cu drawer sa modificati si numele itemelor din drawer menu!
 * Adaugat activitati
-* 
+* Fix placeholder bug -- cand vreti sa folositi un placeholder pentru textview folositi optiunea de hint, nu de text( de ex. Enter test code)
