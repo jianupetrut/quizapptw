@@ -13,6 +13,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import ro.ase.codinquiz.quizapplication.R;
+
 public class TeacherSeeStatistics extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -23,14 +25,7 @@ public class TeacherSeeStatistics extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -80,17 +75,18 @@ public class TeacherSeeStatistics extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+
+        if (id == R.id.nav_create_new_test) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_existing_tests) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_create_new_question) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_existing_questions) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_new_assignment) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_leave_feedback) {
 
         }
 

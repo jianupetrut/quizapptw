@@ -74,17 +74,18 @@ public class TeacherSeeHistory extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+
+        if (id == R.id.nav_create_new_test) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_existing_tests) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_create_new_question) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_existing_questions) {
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_new_assignment) {
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_leave_feedback) {
 
         }
 
