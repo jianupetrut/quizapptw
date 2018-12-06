@@ -3,6 +3,8 @@ package ro.ase.codinquiz.quizapplication.Main.Student;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import ro.ase.codinquiz.quizapplication.R;
+
 public class StudentTestActivity extends AppCompatActivity {
 
     @Override

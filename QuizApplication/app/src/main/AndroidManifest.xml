@@ -71,7 +71,9 @@
         <activity
             android:name=".Main.Teacher.TeacherExistingTests"
             android:label="@string/title_activity_teacher_existing_tests"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".Main.Student.StudentTestActivity" />
+        <activity android:name=".Main.Student.StudentStartTestActivity"></activity>
     </application>
 
 </manifest>
