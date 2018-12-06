@@ -51,6 +51,10 @@
         <activity
             android:name=".Main.Teacher.TeacherCreateQuestion"
             android:label="@string/title_activity_teacher_create_question"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Main.Teacher.TeacherExistingQuestions"
+            android:label="@string/title_activity_teacher_existing_questions"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 

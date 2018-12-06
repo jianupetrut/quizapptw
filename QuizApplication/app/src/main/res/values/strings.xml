@@ -39,4 +39,5 @@
     <string name="title_activity_teacher_test_options">TeacherTestOptions</string>
     <string name="title_activity_teacher_feedback">TeacherFeedbackActivity</string>
     <string name="title_activity_teacher_create_question">TeacherCreateQuestion</string>
+    <string name="title_activity_teacher_existing_questions">TeacherExistingQuestions</string>
 </resources>
