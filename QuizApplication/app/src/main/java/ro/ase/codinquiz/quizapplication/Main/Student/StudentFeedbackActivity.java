@@ -81,9 +81,12 @@ public class StudentFeedbackActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_my_profile) {
-
+            Intent intent =new Intent(this,StudentMain.class);
+            startActivity(intent);
         } else if (id == R.id.nav_new_assignment) {
 
+            Intent intent =new Intent(this,JoinTestActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_leave_feedback) {
             goToFeedback();
         }

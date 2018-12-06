@@ -1,5 +1,6 @@
 package ro.ase.codinquiz.quizapplication.Main.Teacher;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -76,19 +77,23 @@ public class TeacherTestOptions extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_create_new_test) {
-            // Handle the camera action
+            Intent intent =new Intent(this,TeacherCreateTest.class);
+            startActivity(intent);
         } else if (id == R.id.nav_existing_tests) {
 
         } else if (id == R.id.nav_create_new_question) {
-
+            Intent intent =new Intent(this,TeacherCreateQuestion.class);
+            startActivity(intent);
         } else if (id == R.id.nav_existing_questions) {
-
-        } else if (id == R.id.nav_new_assignment) {
-
+            Intent intent =new Intent(this,TeacherExistingQuestions.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_assignment_history) {
+            Intent intent =new Intent(this,TeacherSeeHistory.class);
+            startActivity(intent);
         } else if (id == R.id.nav_leave_feedback) {
-
+            Intent intent =new Intent(this,TeacherFeedbackActivity.class);
+            startActivity(intent);
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

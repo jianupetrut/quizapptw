@@ -1,5 +1,6 @@
 package ro.ase.codinquiz.quizapplication.Main.Teacher;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -25,7 +26,7 @@ import ro.ase.codinquiz.quizapplication.R;
 public class TeacherCreateTest extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    Spinner QuestionCategorySpinner = (Spinner) findViewById(R.id.spQuestionCategory);
+//    Spinner QuestionCategorySpinner = (Spinner) findViewById(R.id.spQuestionCategory);
     private ArrayList<Question> questionsList; // pe care il populam din baza de date in functie de id-ul autorului si drepturile pe care le are pentru intrebarile altor autori
 
     @Override
@@ -56,8 +57,8 @@ public class TeacherCreateTest extends AppCompatActivity
         SpinnerHintAdapter adapter = new SpinnerHintAdapter(this, objects, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        QuestionCategorySpinner.setAdapter(adapter);
-        QuestionCategorySpinner.setSelection(adapter.getCount()); // show hint
+       // QuestionCategorySpinner.setAdapter(adapter);
+      //  QuestionCategorySpinner.setSelection(adapter.getCount()); // show hint
 
         ListView questionsListView = (ListView)findViewById(R.id.lvQuestions);
 
@@ -102,17 +103,22 @@ public class TeacherCreateTest extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_create_new_test) {
-            // Handle the camera action
+            Intent intent =new Intent(this,TeacherCreateTest.class);
+            startActivity(intent);
         } else if (id == R.id.nav_existing_tests) {
 
         } else if (id == R.id.nav_create_new_question) {
-
+            Intent intent =new Intent(this,TeacherCreateQuestion.class);
+            startActivity(intent);
         } else if (id == R.id.nav_existing_questions) {
-
-        } else if (id == R.id.nav_new_assignment) {
-
+            Intent intent =new Intent(this,TeacherExistingQuestions.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_assignment_history) {
+            Intent intent =new Intent(this,TeacherSeeHistory.class);
+            startActivity(intent);
         } else if (id == R.id.nav_leave_feedback) {
-
+            Intent intent =new Intent(this,TeacherFeedbackActivity.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
