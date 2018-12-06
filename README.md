@@ -50,3 +50,7 @@ George:
 * Fix buguri  nav_menu ------ cand creati o activitate noua cu drawer sa modificati si numele itemelor din drawer menu!
 * Adaugat activitati
 * Fix placeholder bug -- cand vreti sa folositi un placeholder pentru textview folositi optiunea de hint, nu de text( de ex. Enter test code)
+
+ Doinita:
+ 
+ Am adaugat activitatea de test si o activitate intermediara intre JoinTest (cum e si in schema). Am incercat sa afisez intrebarile in test cu un fragment ca de fiecare data cand apare o intrebare noua sa se schimbe doar fragmentul si nu intreaga actvitate (o sa o fac sa mearga in curand).
