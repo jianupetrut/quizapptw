@@ -44,3 +44,8 @@ George:
 7. Faci routing pentru meniu in numeActivitate.java
 
 * Toate activitatile in afara de login sunt in acest moment facute cu navigation drawer, iar meniurile trebuie doar copiate. Am incercat sa fac un singur xml de meniu, dar nu se poate (trebuie facut cate un meniu pentru fiecare activitate)
+
+6 Decembrie
+
+*Fix create_question nav_menu
+*Adaugat activitatea existing_questions
