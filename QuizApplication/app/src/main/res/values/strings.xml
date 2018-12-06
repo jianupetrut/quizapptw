@@ -43,4 +43,5 @@
     <string name="title_activity_teacher_see_history">TeacherSeeHistory</string>
     <string name="title_activity_teacher_share_test">TeacherShareTest</string>
     <string name="title_activity_teacher_see_statistics">TeacherSeeStatistics</string>
+    <string name="title_activity_teacher_existing_tests">Select one of the existing tests: </string>
 </resources>
