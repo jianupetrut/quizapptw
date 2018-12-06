@@ -55,6 +55,18 @@
         <activity
             android:name=".Main.Teacher.TeacherExistingQuestions"
             android:label="@string/title_activity_teacher_existing_questions"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Main.Teacher.TeacherSeeHistory"
+            android:label="@string/title_activity_teacher_see_history"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Main.Teacher.TeacherShareTest"
+            android:label="@string/title_activity_teacher_share_test"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".Main.Teacher.TeacherSeeStatistics"
+            android:label="@string/title_activity_teacher_see_statistics"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 

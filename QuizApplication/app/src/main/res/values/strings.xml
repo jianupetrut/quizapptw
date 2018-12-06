@@ -40,4 +40,7 @@
     <string name="title_activity_teacher_feedback">TeacherFeedbackActivity</string>
     <string name="title_activity_teacher_create_question">TeacherCreateQuestion</string>
     <string name="title_activity_teacher_existing_questions">TeacherExistingQuestions</string>
+    <string name="title_activity_teacher_see_history">TeacherSeeHistory</string>
+    <string name="title_activity_teacher_share_test">TeacherShareTest</string>
+    <string name="title_activity_teacher_see_statistics">TeacherSeeStatistics</string>
 </resources>
