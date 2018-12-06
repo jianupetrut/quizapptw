@@ -44,4 +44,14 @@
     <string name="title_activity_teacher_share_test">TeacherShareTest</string>
     <string name="title_activity_teacher_see_statistics">TeacherSeeStatistics</string>
     <string name="title_activity_teacher_existing_tests">Select one of the existing tests: </string>
+    <string name="downloadStudents">Download List of Students</string>
+    <string name="rateAppText">Rate the application</string>
+    <string name="rate1">How easy it is to use the app?</string>
+    <string name="rating2">Are you satisfied with the functionalities?</string>
+    <string name="rating3">Do you consider that this app is useful?</string>
+    <string name="sendRatings">Send Ratings</string>
+    <string name="calendarText">See current school week</string>
+    <string name="mailContact">Do you have further questions? Do not hesitate to contact us via email !</string>
+    <string name="goToGmail">Go to Gmail</string>
+    <string name="gmail">Gmail</string>
 </resources>

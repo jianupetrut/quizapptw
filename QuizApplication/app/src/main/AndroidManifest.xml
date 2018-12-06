@@ -73,7 +73,11 @@
             android:label="@string/title_activity_teacher_existing_tests"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".Main.Student.StudentTestActivity" />
-        <activity android:name=".Main.Student.StudentStartTestActivity"></activity>
+        <activity android:name=".Main.Student.StudentStartTestActivity" />
+        <activity android:name=".Main.OtherActivities.ToDoActivity1" />
+        <activity android:name=".Main.OtherActivities.ToDoActivity2" />
+        <activity android:name=".Main.OtherActivities.ToDoActivity3" />
+        <activity android:name=".Main.OtherActivities.ToDoActivity4"></activity>
     </application>
 
 </manifest>
