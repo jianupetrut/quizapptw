@@ -1,0 +1,19 @@
+.test-informations{
+    margin: auto;
+    text-align: center;
+    .ui.fluid.dropdown{
+        max-width: 74vw;
+        min-width: 15vw;
+        margin-bottom: 2em;
+    }
+
+    .ui.checkbox{
+        display: block;
+        margin-top: 1.5em;
+    }
+
+    .ui.labeled.input{
+        display: block;
+        margin-top: 1.5em;
+    }
+}
