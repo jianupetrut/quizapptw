@@ -1,34 +1,64 @@
 import React, { Component } from 'react';
-import './Login.css';
-import { Button, Checkbox, Form } from 'semantic-ui-react'
+import './Login.scss';
+import { Button, Form, Select, Image, Icon } from 'semantic-ui-react'
+import myImage from '../images/logo.jpeg';
 
 
-class Login extends Component{
-    render(){
-        return(
-            <p>Salutare!!</p>
-        )
+const Options = [
+    { key: 't', text: 'Teacher', value: 'teacher' },
+    { key: 's', text: 'Student', value: 'student' },
+  ]
+
+
+
+
+  class LoginForm extends Component{
+    
+    role = '';
+
+    navigate = function(role){
+        if(role == 'student'){
+            this.props.history.push('/student/profile');
+        }
+        else if(role == 'teacher'){
+            this.props.history.push('/teacher/profile')
+        }
+        
     }
-}
 
-const FormExampleForm = () => (
-    <div>
-        <Login></Login>
-        <Form>
-        <Form.Field>
-            <label className='labelRed'>First Name</label>
-            <input placeholder='First Name' />
-        </Form.Field>
-        <Form.Field>
-            <label>Last Name</label>
-            <input placeholder='Last Name' />
-        </Form.Field>
-        <Form.Field>
-            <Checkbox label='I agree to the Terms and Conditions' />
-        </Form.Field>
-        <Button type='submit'>Submit</Button>
-        </Form>
-    </div>
-  )
+      render(){
+          return(
+            <div className="component-login">
+                <Form>
+                <Image src={ myImage } size='small' />
+                <Form.Field>
+                    <label className='labelRed'>Username</label>
+                    <input placeholder='Username' />
+                </Form.Field>
+                <Form.Field>
+                    <label>Password</label>
+                    <input placeholder='Password' type='password' />
+                </Form.Field>
+                <Form.Field
+                control={Select}
+                options={Options}
+                label='Role'
+                placeholder='Role'
+                onChange={(e, { value }) => {this.role = value;}}
+                />
+                    
+
+                <Button icon labelPosition='right' type="submit" onClick = {() => this.navigate(this.role)}>
+                Log In
+                <Icon name='right arrow' />
+                </Button>
+
+
+    
+                </Form>
+            </div>
+          )
+      }
+  }
   
-  export default FormExampleForm;
+  export default LoginForm;
