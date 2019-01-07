@@ -29,4 +29,14 @@ Am facut un login super basic pentru a testa. Voi lucra la pagina de login soon 
 
 Am mai citit chestii despre Redux si cum ca ar fi folositor pentru routing (majoritatea proiectelor React folosesc si Redux). Mai trebuie sa ne documentam despre asta.
 
+07.01.2019 
+George 
+
+* Am implementat o parte din user storyul pentru Student cu valori hardcodate (lipseste partea de test efectiv) 
+* Am facut navbar (va fi similar si la teacher) si routing cu react-router 
+* Am facut pagina de login care va duce la teacher sau la student in functie de alegerea din dropdown 
+* Stylingul il lasam mai pe la final ca sa nu pierdem timpul si sa avem un MVP
+
+LE: Am terminat routingul pt toata aplicatia, am facut navbarul pt teacher, am facut partea de UI fara prea mult styling (e decent) la 
+teacher: profile + create test.
 
