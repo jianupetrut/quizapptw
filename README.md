@@ -40,3 +40,9 @@ George
 LE: Am terminat routingul pt toata aplicatia, am facut navbarul pt teacher, am facut partea de UI fara prea mult styling (e decent) la 
 teacher: profile + create test.
 
+08.01.2019
+George
+
+* Am terminat UI (cu exceptia quizzului in sine care va fi format din modale succesive) + styling refinements la final
+* Probabil ca voi face niste date mockuite pe https://getsandbox.com/ pana reusim sa facem backendul
+* Left to do: Backend + DB
