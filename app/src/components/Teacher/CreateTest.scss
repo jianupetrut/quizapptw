@@ -1,6 +1,11 @@
 .test-informations{
+
     margin: auto;
+    padding: 3em;
+    padding-left: 15rem !important;
     text-align: center;
+
+
     .ui.fluid.dropdown{
         max-width: 74vw;
         min-width: 15vw;
@@ -15,5 +20,10 @@
     .ui.labeled.input{
         display: block;
         margin-top: 1.5em;
+    }
+    max-width: 70vw;
+
+    button{
+        margin-top: 2em !important;
     }
 }

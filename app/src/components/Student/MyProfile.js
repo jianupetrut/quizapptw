@@ -1,9 +1,9 @@
 import _ from 'lodash'
 import React, { Component } from 'react';
-import './MyProfile.css';
+import './MyProfile.scss';
 import StudentNavBar from './StudentNavBar'
 import myImage from '../../images/image.png'
-import { Segment, Image, Grid, Table } from 'semantic-ui-react'
+import { Image, Grid, Table } from 'semantic-ui-react'
 
 
 const tableData = [
@@ -93,13 +93,13 @@ const tableData = [
 class ProfileInfo extends Component{
     render(){
         return(
-            <Segment>
+            <div className = "myprofile-selector">
                 <Image src={ myImage } size='small' centered circular />
                 <h2>Name: John Doe</h2>
                 <h4>Role: Student</h4>
                 <h4>Group: 1077</h4>
                 <SummaryTable></SummaryTable>
-            </Segment>
+            </div>
         )
     }
 }

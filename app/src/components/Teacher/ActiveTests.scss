@@ -1,18 +1,10 @@
-.existing-tests{
+.active-t{
     margin: auto;
     padding: 3em;
     padding-left: 15rem !important;
     text-align: center;
 
-    div.header{
-        margin-top: 0.45em !important;
-    }
-
-    .ui.list{
-        text-align: center;
-    }
-
-    .ui.card{
+    .ui.inverted.segment{
         display: inline-block;
         margin-left: 1em;
         margin-right: 1em;

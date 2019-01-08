@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
-import './StudentNavBar.css'
+import './StudentNavBar.scss'
 import { NavLink } from 'react-router-dom';
 
 class StudentNavBar extends Component {
@@ -10,6 +10,7 @@ class StudentNavBar extends Component {
     const { activeItem } = this.state || {}
 
     return (
+      <div className="student-navbar">
       <Menu vertical>
         <Menu.Item>
           <Menu.Header>General</Menu.Header>
@@ -39,6 +40,7 @@ class StudentNavBar extends Component {
         <Menu.Item>
         </Menu.Item>
       </Menu>
+      </div>
     )
   }
 }

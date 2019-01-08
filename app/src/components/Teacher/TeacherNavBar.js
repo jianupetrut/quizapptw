@@ -10,6 +10,7 @@ class TeacherNavBar extends Component {
     const { activeItem } = this.state || {}
 
     return (
+      <div className="teacher-navbar">
       <Menu vertical>
         <Menu.Item>
           <Menu.Header>General</Menu.Header>
@@ -28,6 +29,12 @@ class TeacherNavBar extends Component {
           <Menu.Header>Tests</Menu.Header>
 
           <Menu.Menu>
+          <Menu.Item
+              name='Active tests'
+              active={activeItem === 'activetest'}
+              onClick={this.handleItemClick}
+              as={NavLink} exact to="/teacher/active-tests"
+            />
             <Menu.Item
               name='Create a new test'
               active={activeItem === 'newtest'}
@@ -78,6 +85,7 @@ class TeacherNavBar extends Component {
         <Menu.Item>
         </Menu.Item>
       </Menu>
+      </div>
     )
   }
 }

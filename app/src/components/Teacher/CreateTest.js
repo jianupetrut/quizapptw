@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Dropdown, Grid, Checkbox, Input } from 'semantic-ui-react'
+import { Dropdown, Grid, Checkbox, Input, Icon, Button } from 'semantic-ui-react'
 import TeacherNavBar from './TeacherNavBar';
 
 import './CreateTest.scss';
@@ -55,6 +55,13 @@ const DigitInput = (props) => (
     />
   )
 
+const ButtonAnimated = ()=>    <Button animated>
+                                    <Button.Content visible>Create</Button.Content>
+                                    <Button.Content hidden>
+                                    <Icon name='magic' />
+                                    </Button.Content>
+                                </Button>
+
 class TestInfo extends Component{
 
     render(){
@@ -68,7 +75,7 @@ class TestInfo extends Component{
                 {React.createElement(CheckboxToggle, {label: 'One way test completion'})}
                 {React.createElement(DigitInput, {placeholder: 'Enter time...', content: 'mins'})}
                 {React.createElement(DigitInput, {placeholder: 'Enter # retries...', content: 'retrieves'})}
-                
+                <ButtonAnimated></ButtonAnimated>
                 
 
             </div>

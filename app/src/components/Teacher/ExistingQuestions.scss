@@ -1,0 +1,29 @@
+.questions-list{
+    margin: auto;
+    padding: 3em;
+    padding-left: 15rem !important;
+    text-align: center;
+
+    
+    .ui.fluid.selection.dropdown{
+        max-width: 74vw;
+        min-width: 15vw;
+        display: inline;
+    }
+
+    .ui.form{
+        margin-bottom: 4em;
+    }
+
+    button{
+        float: right;
+    }
+
+    .ui.header:first-child{
+        margin-top: 1em;
+    }
+
+    .ui.header{
+        margin-bottom: 2em;
+    }
+}
