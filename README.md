@@ -46,3 +46,60 @@ George
 * Am terminat UI (cu exceptia quizzului in sine care va fi format din modale succesive) + styling refinements la final
 * Probabil ca voi face niste date mockuite pe https://getsandbox.com/ pana reusim sa facem backendul
 * Left to do: Backend + DB
+
+09.01.2019
+George
+
+Structura DB v1:
+Teacher:
+
+* ProfileStatistics: 
+- Tests (integer)
+- QuestionCategories (integer)
+- Questions (integer)
+- GivenAssignments (integer)
+
+* Tests:
+- ID
+- TestName (varchar)
+- Questions (with answers mapped) - one to many (one test, many questions)
+- Shuffle (true/false)
+- Feedback (true/false)
+- Result (true/false)
+- OneWay (true/false)
+- Time (integer)
+- Retrieves (integer)
+- Active (true/false)
+
+* Categories:
+- ID
+- Category (varchar) 
+- Questions (one category, many questions)
+
+* Questions:
+- ID
+- Question (varchar)
+- Category (varchar) (one question, one category)
+- Answers (? maybe array)
+
+* Results:
+- ID
+- Name (varchar)
+- Group (integer)
+- Score (integer)
+
+* AssignmentsHistory:
+- ID
+- Date (varchar or date)
+- Result (one result, one assignment)
+- TestName (varchar) (one assignment, one test)
+
+Student:
+
+* AssignmentsHistory:
+- ID
+- Date (date)
+- Test (varchar) (one assignment, one test)
+- Score (integer)
+
+
