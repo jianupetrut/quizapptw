@@ -57,4 +57,5 @@
     <string name="student_name">Student Name</string>
     <string name="avatar_string">Avatar</string>
     <string name="assignment_history_string">Assignment History</string>
+    <string name="questionNo">Question No. </string>
 </resources>

@@ -2,12 +2,14 @@ package ro.ase.codinquiz.quizapplication.Main.Entities;
 
 import android.media.Image;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Question {
     private int id;
+    private String text;
     private String category;
-    private List<Answer> answerList;
+    private ArrayList<Answer> answerList;
     private Image image;
 
 
@@ -17,6 +19,14 @@ public class Question {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     public String getCategory() {
@@ -31,7 +41,7 @@ public class Question {
         return answerList;
     }
 
-    public void setAnswerList(List<Answer> answerList) {
+    public void setAnswerList(ArrayList<Answer> answerList) {
         this.answerList = answerList;
     }
 }
