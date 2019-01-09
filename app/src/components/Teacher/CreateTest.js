@@ -55,6 +55,7 @@ const DigitInput = (props) => (
     />
   )
 
+
 const ButtonAnimated = ()=>    <Button animated>
                                     <Button.Content visible>Create</Button.Content>
                                     <Button.Content hidden>
@@ -67,6 +68,7 @@ class TestInfo extends Component{
     render(){
         return(
             <div className="test-informations">
+                <Input placeholder='Enter test name...' className="test-name"/>
                 <DropdownMultipleSelection></DropdownMultipleSelection>
                 <SimpleCheckbox ></SimpleCheckbox>
                 {React.createElement(CheckboxToggle, {label: 'Shuffle questions and answers'})}
