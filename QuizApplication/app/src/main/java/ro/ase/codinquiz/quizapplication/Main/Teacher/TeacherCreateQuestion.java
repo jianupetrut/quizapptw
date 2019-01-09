@@ -24,7 +24,7 @@ import ro.ase.codinquiz.quizapplication.R;
 public class TeacherCreateQuestion extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-//    Spinner QuestionCategorySpinner = (Spinner) findViewById(R.id.spQuestionCategory2);
+    Spinner QuestionCategorySpinner = (Spinner) findViewById(R.id.spQuestionCategory2);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +52,8 @@ public class TeacherCreateQuestion extends AppCompatActivity
         SpinnerHintAdapter adapter = new SpinnerHintAdapter(this, objects, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-    //    QuestionCategorySpinner.setAdapter(adapter);
-     //   QuestionCategorySpinner.setSelection(adapter.getCount()); // show hint
+        QuestionCategorySpinner.setAdapter(adapter);
+       QuestionCategorySpinner.setSelection(adapter.getCount()); // show hint
     }
 
     @Override

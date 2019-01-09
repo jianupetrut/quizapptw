@@ -54,4 +54,7 @@
     <string name="mailContact">Do you have further questions? Do not hesitate to contact us via email !</string>
     <string name="goToGmail">Go to Gmail</string>
     <string name="gmail">Gmail</string>
+    <string name="student_name">Student Name</string>
+    <string name="avatar_string">Avatar</string>
+    <string name="assignment_history_string">Assignment History</string>
 </resources>
