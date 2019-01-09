@@ -103,3 +103,47 @@ Student:
 - Score (integer)
 
 
+Structura DB v2:
+
+* User:
+    - ID
+    - Name (varchar)
+    - Username (varchar)
+    - HashedPassword (varchar)
+    - Group (integer)
+    - isStudent (bool)
+
+* Tests:
+    - ID
+    - TestName (varchar)
+    - Questions (with answers mapped) - one to many (one test, many questions)
+    - Shuffle (bool)
+    - Feedback (bool)
+    - Result (bool)
+    - OneWay (bool)
+    - Time (integer)
+    - Retrieves (integer)
+    - isActive (bool)
+
+* QuestionCategories:
+    - ID
+    - Category (varchar) 
+    - Questions [or Question_ID] (one category, many questions)
+
+* Questions:
+    - ID
+    - Question (varchar)
+    - QuestionCategory_ID (one question, one category)
+
+* Answers:
+    - ID
+    - AnswerText (varchar)
+    - isCorrect (bool)
+    - Question_ID
+
+* FinishedTests
+    - ID
+    - Test_ID
+    - Username
+    - Date (date)
+    - Score (integer)
