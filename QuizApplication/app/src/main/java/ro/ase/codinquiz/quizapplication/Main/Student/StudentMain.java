@@ -13,19 +13,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+
+import java.util.List;
 
 import ro.ase.codinquiz.quizapplication.R;
 
 public class StudentMain extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    ListView assignmentHistoryListView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_main2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        assignmentHistoryListView=(ListView)findViewById(R.id.assignment_history_listview);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
