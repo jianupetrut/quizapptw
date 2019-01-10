@@ -13,26 +13,32 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import ro.ase.codinquiz.quizapplication.Main.Entities.Answer;
+import ro.ase.codinquiz.quizapplication.Main.Entities.Question;
 import ro.ase.codinquiz.quizapplication.Main.Teacher.Adapters.SpinnerHintAdapter;
 import ro.ase.codinquiz.quizapplication.R;
 
 public class TeacherCreateQuestion extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    Spinner QuestionCategorySpinner = (Spinner) findViewById(R.id.spQuestionCategory2);
-
+    Spinner QuestionCategorySpinner = null;
+    List<String> categories=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_create_question);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        QuestionCategorySpinner = (Spinner) findViewById(R.id.spQuestionCategory2);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -40,20 +46,68 @@ public class TeacherCreateQuestion extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
         navigationView.setNavigationItemSelectedListener(this);
 
         //Display hint text "Question categories" for spinner
-        List<String> objects = new ArrayList<String>();
-        objects.add("Category 1");
-        objects.add("Category 2");
-        objects.add("Category 3");
-        objects.add("Question Category");  // add hint as last item
+         categories = new ArrayList<String>();
+        categories.add("Category 2");
+        categories.add("Category 3");
+        categories.add("Question Category");  // add hint as last item
 
-        SpinnerHintAdapter adapter = new SpinnerHintAdapter(this, objects, android.R.layout.simple_spinner_item);
+        ArrayAdapter<String> adapter=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,categories);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
         QuestionCategorySpinner.setAdapter(adapter);
-       QuestionCategorySpinner.setSelection(adapter.getCount()); // show hint
+      //  SpinnerHintAdapter adapter = new SpinnerHintAdapter(this, objects, android.R.layout.simple_spinner_item);
+
+
+       // QuestionCategorySpinner.setAdapter(adapter);
+     //  QuestionCategorySpinner.setSelection(adapter.getCount()-1); // show hint
+    }
+
+    public void saveQuestion() {
+        List<Answer> answerList=null;
+        TextView answer1TW=findViewById(R.id.textAnswer1);
+        TextView answer2TW=findViewById(R.id.textAnswer2);
+        TextView answer3TW=findViewById(R.id.textAnswer3);
+        TextView answer4TW=findViewById(R.id.textAnswer4);
+        CheckBox box1=findViewById(R.id.checkBoxAnswer1);
+        CheckBox box2=findViewById(R.id.checkBoxAnswer2);
+        CheckBox box3=findViewById(R.id.checkBoxAnswer3);
+        CheckBox box4=findViewById(R.id.checkBoxAnswer4);
+        boolean answer1isCorrect=false,answer2isCorrect=false,answer3isCorrect=false,answer4isCorrect=false;
+        Answer answer1=new Answer(answer1TW.getText().toString());
+        if (box1.isChecked()) {
+            answer1.setCorrect(true);
+        }
+
+        Answer answer2=new Answer(answer2TW.getText().toString());
+        if(box2.isChecked()) {
+            answer2.setCorrect(true);
+        }
+        Answer answer3=new Answer(answer3TW.getText().toString());
+
+        if(box3.isChecked()) {
+            answer3.setCorrect(true);
+        }
+
+        Answer answer4=new Answer(answer4TW.getText().toString());
+        if(box4.isChecked()) {
+            answer4.setCorrect(true);
+        }
+        answerList.add(answer1);
+        answerList.add(answer2);
+        answerList.add(answer3);
+        answerList.add(answer4);
+        TextView cat=findViewById(R.id.etCategory);
+        if("".equals(cat.getText().toString())) {
+            Question question = new Question(QuestionCategorySpinner.getSelectedItem().toString(), answerList, null);
+        }
+        else
+        {
+            categories.add(cat.getText().toString());
+            Question question = new Question(cat.getText().toString(), answerList, null);
+        }
     }
 
     @Override

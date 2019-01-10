@@ -17,6 +17,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/roundedbutton"
+        android:onClick="saveQuestion"
         android:text="@string/save_question"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="18sp"
