@@ -47,4 +47,5 @@ public class FinishedTestsAdapter extends ArrayAdapter<FinishedTest> {
 
         return convertView;
     }
+
 }
