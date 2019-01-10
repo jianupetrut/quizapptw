@@ -6,8 +6,10 @@ export const MockedData =
                 {
                     "id": 0,
                     "test": "General Recap - Seminar 6",
-                    "questions_id": [0, 1],
+                    "questions_id": [0, 1, 2, 3],
                     "shuffle": false,
+                    "one-way": true,
+                    "retrieves": 0,
                     "feedback": false,
                     "result": false,
                     "time": 30,
@@ -18,6 +20,8 @@ export const MockedData =
                     "test": "Quiz for seminar 9",
                     "questions_id": [2, 3],
                     "shuffle": false,
+                    "one-way": true,
+                    "retrieves": 0,
                     "feedback": false,
                     "result": false,
                     "time": 20,
@@ -81,7 +85,7 @@ export const MockedData =
             {
                 "id": 4,
                 "answer": "Android function for getting the ID",
-                "isCorrect": false,
+                "isCorrect": true,
                 "question_id": 1
             },
             {
@@ -130,7 +134,7 @@ export const MockedData =
                 "id": 12,
                 "answer": "NOT THIS",
                 "isCorrect": false,
-                "question_id": 1
+                "question_id": 3
             },
             {
                 "id": 13,

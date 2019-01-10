@@ -26,7 +26,7 @@
     {
         "id": 4,
         "answer": "Android function for getting the ID",
-        "isCorrect": false,
+        "isCorrect": true,
         "question_id": 1
     },
     {
@@ -75,7 +75,7 @@
         "id": 12,
         "answer": "NOT THIS",
         "isCorrect": false,
-        "question_id": 1
+        "question_id": 3
     },
     {
         "id": 13,
