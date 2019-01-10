@@ -17,12 +17,15 @@ import android.widget.ListView;
 
 import java.util.List;
 
+import ro.ase.codinquiz.quizapplication.Main.Adapters.FinishedTestsAdapter;
+import ro.ase.codinquiz.quizapplication.Main.Entities.FinishedTest;
 import ro.ase.codinquiz.quizapplication.R;
 
 public class StudentMain extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     ListView assignmentHistoryListView;
+    private FinishedTestsAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

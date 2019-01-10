@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ro.ase.codinquiz.quizapplication">
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:test_id="android.permission.INTERNET"></uses-permission>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,74 +11,74 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         >
         <activity
-            android:name=".Main.Student.JoinTestActivity"
+            android:test_id=".Main.Student.JoinTestActivity"
             android:parentActivityName=".Main.Login.LoginActivity" />
-        <activity android:name=".Main.Login.LoginActivity">
+        <activity android:test_id=".Main.Login.LoginActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:test_id="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:test_id="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".Main.Student.StudentMain"
+            android:test_id=".Main.Student.StudentMain"
             android:label="@string/title_activity_student_main"
             android:parentActivityName=".Main.Login.LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
+                android:test_id="android.support.PARENT_ACTIVITY"
                 android:value="ro.ase.codinquiz.quizapplication.Main.Login.LoginActivity" />
         </activity>
         <activity
-            android:name=".Main.Student.StudentFeedbackActivity"
+            android:test_id=".Main.Student.StudentFeedbackActivity"
             android:label="@string/title_activity_student_feedback"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".Main.Teacher.TeacherGenerateCode"
+            android:test_id=".Main.Teacher.TeacherGenerateCode"
             android:label="@string/title_activity_teacher_generate_code"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".Main.Teacher.TeacherCreateTest"
+            android:test_id=".Main.Teacher.TeacherCreateTest"
             android:label="@string/title_activity_teacher_create_test"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".Main.Teacher.TeacherTestOptions"
+            android:test_id=".Main.Teacher.TeacherTestOptions"
             android:label="@string/title_activity_teacher_test_options"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".Main.Teacher.TeacherFeedbackActivity"
+            android:test_id=".Main.Teacher.TeacherFeedbackActivity"
             android:label="@string/title_activity_teacher_feedback"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".Main.Teacher.TeacherCreateQuestion"
+            android:test_id=".Main.Teacher.TeacherCreateQuestion"
             android:label="@string/title_activity_teacher_create_question"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".Main.Teacher.TeacherExistingQuestions"
+            android:test_id=".Main.Teacher.TeacherExistingQuestions"
             android:label="@string/title_activity_teacher_existing_questions"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".Main.Teacher.TeacherSeeHistory"
+            android:test_id=".Main.Teacher.TeacherSeeHistory"
             android:label="@string/title_activity_teacher_see_history"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".Main.Teacher.TeacherShareTest"
+            android:test_id=".Main.Teacher.TeacherShareTest"
             android:label="@string/title_activity_teacher_share_test"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".Main.Teacher.TeacherSeeStatistics"
+            android:test_id=".Main.Teacher.TeacherSeeStatistics"
             android:label="@string/title_activity_teacher_see_statistics"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".Main.Teacher.TeacherExistingTests"
+            android:test_id=".Main.Teacher.TeacherExistingTests"
             android:label="@string/title_activity_teacher_existing_tests"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".Main.Student.StudentTestActivity" />
-        <activity android:name=".Main.Student.StudentStartTestActivity" />
-        <activity android:name=".Main.OtherActivities.ToDoActivity1" />
-        <activity android:name=".Main.OtherActivities.ToDoActivity2" />
-        <activity android:name=".Main.OtherActivities.ToDoActivity3" />
-        <activity android:name=".Main.OtherActivities.ToDoActivity4"></activity>
+        <activity android:test_id=".Main.Student.StudentTestActivity" />
+        <activity android:test_id=".Main.Student.StudentStartTestActivity" />
+        <activity android:test_id=".Main.OtherActivities.ToDoActivity1" />
+        <activity android:test_id=".Main.OtherActivities.ToDoActivity2" />
+        <activity android:test_id=".Main.OtherActivities.ToDoActivity3" />
+        <activity android:test_id=".Main.OtherActivities.ToDoActivity4"></activity>
     </application>
 
 </manifest>
