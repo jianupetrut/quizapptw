@@ -1,0 +1,22 @@
+[
+    {
+        "id": 0,
+        "test": "General Recap - Seminar 6",
+        "questions_id": [0, 1],
+        "shuffle": false,
+        "feedback": false,
+        "result": false,
+        "time": 30,
+        "isActive": false
+    },
+    {
+        "id": 1,
+        "test": "Quiz for seminar 9",
+        "questions_id": [2, 3],
+        "shuffle": false,
+        "feedback": false,
+        "result": false,
+        "time": 20,
+        "isActive": false
+    }
+]

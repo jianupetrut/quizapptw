@@ -1,0 +1,42 @@
+[
+    {
+        "id": 0,
+        "name": "Student Zero",
+        "username": "stud0",
+        "hashedPassword": "",
+        "group": 1077,
+        "isStudent": true
+    },
+    {
+        "id": 1,
+        "name": "Student One",
+        "username": "stud1",
+        "hashedPassword": "",
+        "group": 1077,
+        "isStudent": true
+    },
+    {
+        "id": 2,
+        "name": "Student Two",
+        "username": "stud2",
+        "hashedPassword": "",
+        "group": 1078,
+        "isStudent": true
+    },
+    {
+        "id": 3,
+        "name": "Student Three",
+        "username": "stud3",
+        "hashedPassword": "",
+        "group": 1055,
+        "isStudent": true
+    },
+    {
+        "id": 4,
+        "name": "Teacher Zero",
+        "username": "teacher0",
+        "hashedPassword": "",
+        "group": 0,
+        "isStudent": false
+    }
+]

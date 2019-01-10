@@ -1,0 +1,27 @@
+[
+    {
+        "id": 0,
+        "question_category_id": 0,
+        "question": "What does HTML stand for?",
+        "image": ""
+    },
+    {
+        "id": 1,
+        "question_category_id": 1,
+        "question": "What does R.id.android do?",
+        "image": ""
+    },
+    {
+        "id": 2,
+        "question_category_id": 2,
+        "question": "What does SSE stand for?",
+        "image": ""
+    },
+    {
+        "id": 3,
+        "question_category_id": 3,
+        "question": "What does PCA stand for?",
+        "image": ""
+    }
+
+]

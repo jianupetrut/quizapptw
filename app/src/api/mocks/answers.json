@@ -1,0 +1,98 @@
+[
+    {
+        "id": 0,
+        "answer": "Hyper text markup language",
+        "isCorrect": true,
+        "question_id": 0
+    },
+    {
+        "id": 1,
+        "answer": "Hyper text language",
+        "isCorrect": false,
+        "question_id": 0
+    },
+    {
+        "id": 2,
+        "answer": "markup language",
+        "isCorrect": false,
+        "question_id": 0
+    },
+    {
+        "id": 3,
+        "answer": "language",
+        "isCorrect": false,
+        "question_id": 0
+    },
+    {
+        "id": 4,
+        "answer": "Android function for getting the ID",
+        "isCorrect": false,
+        "question_id": 1
+    },
+    {
+        "id": 5,
+        "answer": "function",
+        "isCorrect": false,
+        "question_id": 1
+    },
+    {
+        "id": 6,
+        "answer": "Android",
+        "isCorrect": false,
+        "question_id": 1
+    },
+    {
+        "id": 7,
+        "answer": "This is not correct",
+        "isCorrect": false,
+        "question_id": 1
+    },
+    {
+        "id": 8,
+        "answer": "Service",
+        "isCorrect": false,
+        "question_id": 2
+    },
+    {
+        "id": 9,
+        "answer": "Sum of squared errors",
+        "isCorrect": true,
+        "question_id": 2
+    },
+    {
+        "id": 10,
+        "answer": "False answer",
+        "isCorrect": false,
+        "question_id": 2
+    },
+    {
+        "id": 11,
+        "answer": "Do not choose this",
+        "isCorrect": false,
+        "question_id": 2
+    },
+    {
+        "id": 12,
+        "answer": "NOT THIS",
+        "isCorrect": false,
+        "question_id": 1
+    },
+    {
+        "id": 13,
+        "answer": "Wrong answer !!!!!!!!!!!!!",
+        "isCorrect": false,
+        "question_id": 3
+    },
+    {
+        "id": 14,
+        "answer": "Nope",
+        "isCorrect": false,
+        "question_id": 3
+    },
+    {
+        "id": 15,
+        "answer": "Principal component analysis",
+        "isCorrect": true,
+        "question_id": 3
+    }
+]
