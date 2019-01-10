@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_row="0"
         android:layout_column="1"
-        android:text="test_id"
+        android:text="name"
         android:textAlignment="center"
         android:textSize="20sp" />
 

@@ -2,8 +2,6 @@ package ro.ase.codinquiz.quizapplication.Main.Student;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -31,8 +29,6 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import ro.ase.codinquiz.quizapplication.Main.Adapters.FinishedTestsAdapter;
 import ro.ase.codinquiz.quizapplication.Main.Entities.FinishedTest;

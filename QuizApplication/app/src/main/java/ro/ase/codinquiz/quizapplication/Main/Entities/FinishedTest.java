@@ -19,8 +19,8 @@ public class FinishedTest {
         return test_id;
     }
 
-    public void setTest_id(int test_id) {
-        this.test_id = test_id;
+    public void setTest_id(int name) {
+        this.test_id = name;
     }
 
     public float getScore() {
