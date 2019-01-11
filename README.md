@@ -46,7 +46,7 @@ George:
 * Toate activitatile in afara de login sunt in acest moment facute cu navigation drawer, iar meniurile trebuie doar copiate. Am incercat sa fac un singur xml de meniu, dar nu se poate (trebuie facut cate un meniu pentru fiecare activitate)
 
 6 Decembrie
-
+Petrut:
 * Fix buguri  nav_menu ------ cand creati o activitate noua cu drawer sa modificati si numele itemelor din drawer menu!
 * Adaugat activitati
 * Fix placeholder bug -- cand vreti sa folositi un placeholder pentru textview folositi optiunea de hint, nu de text( de ex. Enter test code)
@@ -54,3 +54,9 @@ George:
  Doinita:
  
  Am adaugat activitatea de test si o activitate intermediara intre JoinTest (cum e si in schema). Am incercat sa afisez intrebarile in test cu un fragment ca de fiecare data cand apare o intrebare noua sa se schimbe doar fragmentul si nu intreaga actvitate (o sa o fac sa mearga in curand).
+
+9-10 Ian
+Petrut
+* Am adaugat clasele pentru tabele
+* Fix small bugs
+* Am adaugat functionalitate pentru assignment history . TREBUIE MODIFICAT URL-UL

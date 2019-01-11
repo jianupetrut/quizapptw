@@ -2,8 +2,7 @@ package ro.ase.codinquiz.quizapplication.Main.Student;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,14 +14,35 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
-import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
+import ro.ase.codinquiz.quizapplication.Main.Adapters.FinishedTestsAdapter;
+import ro.ase.codinquiz.quizapplication.Main.Entities.FinishedTest;
 import ro.ase.codinquiz.quizapplication.R;
 
 public class StudentMain extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    ArrayList<FinishedTest> arrayOfWebData=new ArrayList<FinishedTest>();
     ListView assignmentHistoryListView;
+
+    private FinishedTestsAdapter adapter;
+
+    static ArrayList<String> resultRow;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +60,59 @@ public class StudentMain extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        String webaddress="TODO";
+        HttpURLConnection connection= null;
+
+        try {
+            URL url=new URL(webaddress);
+            connection= (HttpURLConnection) url.openConnection();
+            InputStream inputStream=connection.getInputStream();
+            BufferedReader reader=new BufferedReader(new InputStreamReader(inputStream));
+            StringBuilder stringBuilder=new StringBuilder();
+            String line=null;
+            while((line=reader.readLine())!=null){
+                stringBuilder.append(resultRow);
+            }
+            String result=stringBuilder.toString();
+            Log.d("JSON",result);
+            FinishedTest finishedTest=new FinishedTest();
+            JSONObject jsonObject=new JSONObject(result);
+            JSONArray jsonArray=jsonObject.getJSONArray("tests");
+            DateFormat df=new SimpleDateFormat( "dd/MM/yyyy") ;
+
+            for(int i=0;i<jsonArray.length();i++){
+                JSONObject testObject=(JSONObject)jsonArray.get(i);
+                finishedTest.setId(Integer.parseInt(testObject.getString("id")));
+                finishedTest.setTest_id(Integer.parseInt(testObject.getString("test_id")));
+
+                finishedTest.setDate((df.parse(testObject.getString("date"))));
+                finishedTest.setScore(Integer.parseInt(testObject.getString("score")));
+                arrayOfWebData.add(finishedTest);
+            }
+
+
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        finally{
+            if(connection !=null){
+                connection.disconnect();
+            }
+        }
+
+        assignmentHistoryListView=(ListView)findViewById(R.id.assignment_history_listview);
+        adapter=new FinishedTestsAdapter(this,R.layout.item_finishedtest,arrayOfWebData);
+        adapter.notifyDataSetChanged();
+        assignmentHistoryListView.setAdapter(adapter);
     }
 
     @Override

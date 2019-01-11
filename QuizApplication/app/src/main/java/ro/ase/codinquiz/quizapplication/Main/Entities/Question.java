@@ -10,6 +10,12 @@ public class Question {
     private List<Answer> answerList;
     private Image image;
 
+    public Question(String category, List<Answer> answerList, Image image) {
+        this.category = category;
+        this.answerList = answerList;
+        this.image = image;
+    }
+
 
     public int getId() {
         return id;

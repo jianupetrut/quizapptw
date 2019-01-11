@@ -15,15 +15,16 @@
         android:layout_marginStart="88dp"
         android:layout_marginTop="60dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/roundedbutton"
-        android:text="Save Question"
+        android:onClick="saveQuestion"
+        android:text="@string/save_question"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.3"
+        app:layout_constraintHorizontal_bias="0.267"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/npLabel" />
 
@@ -46,22 +47,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="44dp"
-        android:labelFor="@id/etQuestion"
+        android:layout_marginTop="28dp"
+        android:labelFor="@id/textQuestion"
         android:text="Question"
-        android:textColor="@android:color/background_dark"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/lblAnswers"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginTop="116dp"
-        android:text="Answers"
         android:textColor="@android:color/background_dark"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -73,9 +61,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="300dp"
         android:layout_marginEnd="8dp"
-        android:text="Select Category"
+        android:text="@string/select_category"
         android:textColor="@android:color/background_dark"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -88,8 +76,8 @@
         android:id="@+id/spQuestionCategory2"
         android:layout_width="168dp"
         android:layout_height="32dp"
-        android:layout_marginTop="180dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="300dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/switchShuffle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -97,15 +85,72 @@
         app:layout_constraintVertical_bias="0.23" />
 
     <EditText
-        android:id="@+id/etQuestion"
+        android:id="@+id/textQuestion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/lblQuestion"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/textAnswer4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="232dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/lblQuestion"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/textAnswer2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/lblQuestion"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/textAnswer1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="72dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/lblQuestion"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/textAnswer3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="184dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/lblQuestion"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -114,15 +159,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="344dp"
         android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/lblSelectCategory"
-        tools:text="or"
         android:textColor="@android:color/background_dark"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="or" />
 
     <TextView
         android:id="@+id/textView12"
@@ -139,6 +185,64 @@
         app:layout_constraintHorizontal_bias="0.069"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+    <CheckBox
+        android:id="@+id/checkBoxAnswer1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/answer_1"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/textAnswer1"
+        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textAnswer1" />
+
+    <CheckBox
+        android:id="@+id/checkBoxAnswer4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/answer_4"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textAnswer4"
+        app:layout_constraintEnd_toStartOf="@+id/textAnswer4"
+        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkBoxAnswer2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/answer_2"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textAnswer2"
+        app:layout_constraintEnd_toStartOf="@+id/textAnswer2"
+        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkBoxAnswer3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="4dp"
+        android:text="@string/answer_3"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/textAnswer3"
+        app:layout_constraintEnd_toStartOf="@+id/textAnswer3"
+        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>
