@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Test.scss';
 import StudentNavBar from './StudentNavBar'
-import { Grid, Checkbox, Header, Label, Icon, List, Button, Segment, Form, Radio } from 'semantic-ui-react'
+import { Grid, Progress, Header, Label, Icon, List, Button, Segment, Form, Radio } from 'semantic-ui-react'
 import {MockedData} from '../../api/mocks/mockedData'
 
 
@@ -48,7 +48,14 @@ const FinishedTestSegment = (props) => (
       <Header icon>
         <Icon name='checkmark' />
         You have completed this test!
-        { props.showResult ? <div> Correct answers: {props.score} <div>Total questions: {props.maxIteration + 1} </div><div>Percentage: {props.score/(props.maxIteration + 1) * 100}% </div> <Button primary>Go to my profile</Button></div> : <Button primary>Go to my profile</Button>}
+        { 
+            props.showResult 
+            ? 
+                <div> Correct answers: {props.score} <div>Total questions: {props.maxIteration + 1} </div><div>Percentage: {props.score/(props.maxIteration + 1) * 100}% 
+                </div> </div> 
+            : 
+            <div></div>
+        }
       </Header>
     </Segment>
   )
@@ -63,6 +70,21 @@ function shuffleArray(array) {
         [array[i], array[j]] = [array[j], array[i]];
     }
 };
+
+class ProgressBar extends Component {
+
+    constructor(props){
+        super(props);
+    }
+  
+    render() {
+      return (
+        <div>
+          <Progress value={this.props.currentNumber+1} total={this.props.maxNumber+1} progress='ratio' />
+        </div>
+      )
+    }
+}
 
 
 
@@ -262,10 +284,13 @@ class NewTest extends Component{
 
 
                         {
+                            //question segment
                             this.state.iteration <= this.state.maxIteration 
                             ? 
                                 //test is not finished, show next question
+                                
                                 <div>
+                                    <ProgressBar currentNumber={this.state.iteration} maxNumber={this.state.maxIteration} ></ProgressBar>
                                     <Segment>
                                     <Header as='h3' textAlign='center'>
                                         {this.state.currentQuestion.question}
@@ -282,8 +307,10 @@ class NewTest extends Component{
                             : 
                                 //test is finished
                                 
-                                    <FinishedTestSegment showResult={this.state.showResult} score={this.state.score} maxIteration={this.state.maxIteration}></FinishedTestSegment>
-                                    
+                                    <div>
+                                        <FinishedTestSegment showResult={this.state.showResult} score={this.state.score} maxIteration={this.state.maxIteration}></FinishedTestSegment>
+                                        <Button primary onClick={()=>this.props.history.push('/student/profile')}>Go to my profile</Button>
+                                    </div>
                                 
                             
                         }

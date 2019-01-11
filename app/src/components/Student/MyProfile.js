@@ -4,19 +4,19 @@ import './MyProfile.scss';
 import StudentNavBar from './StudentNavBar'
 import myImage from '../../images/image.png'
 import { Image, Grid, Table } from 'semantic-ui-react'
+import {MockedData} from '../../api/mocks/mockedData'
 
 
-const tableData = [
-    { number: '1', test: 'Test 1', date: '12.10.2018', score: 90 },
-    { number: '2', test: 'Test 2', date: '23.11.2018', score: 60 },
-    { number: '3', test: 'Test 3', date: '02.12.2018', score: 84 },
-    { number: '4', test: 'Test 4', date: '12.12.2018', score: 94 },
-  ]
   
   class SummaryTable extends Component {
+
+    constructor(props){
+      super(props);
+    }
+
     state = {
       column: null,
-      data: tableData,
+      data: this.props.grades,
       direction: null,
     }
   
@@ -47,16 +47,10 @@ const tableData = [
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell
-                sorted={column === 'number' ? direction : null}
-                onClick={this.handleSort('number')}
+                sorted={column === 'test_id' ? direction : null}
+                onClick={this.handleSort('test_id')}
               >
-                #
-              </Table.HeaderCell>
-              <Table.HeaderCell
-                sorted={column === 'test' ? direction : null}
-                onClick={this.handleSort('test')}
-              >
-                Test
+                Test ID
               </Table.HeaderCell>
               <Table.HeaderCell
                 sorted={column === 'date' ? direction : null}
@@ -74,10 +68,9 @@ const tableData = [
             </Table.Row>
           </Table.Header>
           <Table.Body>
-            {_.map(data, ({ number, test, date, score }) => (
-              <Table.Row key={number}>
-                <Table.Cell>{number}</Table.Cell>
-                <Table.Cell>{test}</Table.Cell>
+            {_.map(data, ({ test_id, date, score }) => (
+              <Table.Row key={test_id}>
+                <Table.Cell>{test_id}</Table.Cell>
                 <Table.Cell>{date}</Table.Cell>
                 <Table.Cell>{score}</Table.Cell>
               </Table.Row>
@@ -91,14 +84,37 @@ const tableData = [
 
 
 class ProfileInfo extends Component{
+
+  constructor(props){
+    super(props);
+
+  }
+
+
+
     render(){
+      //fetch data
+
+      const userData = MockedData.data.users[0];//get user
+      const finishedTests = MockedData.data.finished_tests; //get all finished tests
+
+      //find user test results
+      const userTests = finishedTests.filter(test=>{
+        if(test.username === userData.username){
+          return true;
+        }
+      })
+
+      console.log("userTests", userTests);
+
+
         return(
             <div className = "myprofile-selector">
                 <Image src={ myImage } size='small' centered circular />
-                <h2>Name: John Doe</h2>
+                <h2>Name: {userData.name}</h2>
                 <h4>Role: Student</h4>
-                <h4>Group: 1077</h4>
-                <SummaryTable></SummaryTable>
+                <h4>Group: {userData.group}</h4>
+                <SummaryTable grades={ userTests }></SummaryTable>
             </div>
         )
     }

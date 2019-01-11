@@ -179,36 +179,36 @@ export const MockedData =
             {
                 "id": 0,
                 "test_id": 0,
-                "username": "user0",
-                "date": "09.01.2018",
+                "username": "stud0",
+                "date": "11.10.2018",
                 "score": 80
             },
             {
                 "id": 1,
                 "test_id": 0,
-                "username": "user1",
-                "date": "09.01.2018",
+                "username": "stud1",
+                "date": "24.11.2018",
                 "score": 90
             },
             {
                 "id": 2,
-                "test_id": 0,
-                "username": "user2",
-                "date": "09.01.2018",
+                "test_id": 1,
+                "username": "stud0",
+                "date": "24.11.2018",
                 "score": 60
             },
             {
                 "id": 3,
-                "test_id": 1,
-                "username": "user3",
-                "date": "09.01.2018",
+                "test_id": 2,
+                "username": "stud0",
+                "date": "12.12.2018",
                 "score": 40
             },
             {
                 "id": 4,
                 "test_id": 1,
-                "username": "user4",
-                "date": "09.01.2018",
+                "username": "stud1",
+                "date": "12.12.2018",
                 "score": 100
             }
         ],
