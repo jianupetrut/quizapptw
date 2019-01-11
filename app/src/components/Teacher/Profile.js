@@ -3,16 +3,34 @@ import './Profile.scss';
 import TeacherNavBar from './TeacherNavBar'
 import myImage from '../../images/image.png'
 import { Statistic, Image, Grid, Icon } from 'semantic-ui-react'
-
+import { MockedData } from '../../api/mocks/mockedData'
 
 
 
 class ProfileInfo extends Component{
+
+  constructor(props){
+    super(props);
+    this.state={
+      userData: []
+    }
+  }
+
+  componentDidMount(){
+    //fetch data
+    const userInfo = MockedData.data.users[4];
+    this.setState({
+      userData: userInfo
+    })
+  }
+    
+
     render(){
+        //fetch data
         return(
             <div className = "profile-selector">
                 <Image src={ myImage } size='small' centered circular />
-                <h2>Welcome, Professor John Doe!</h2>
+                <h2>Welcome, Professor {this.state.userData.name}!</h2>
                 <h4>Please select an item from the left side vertical menu</h4>
                 <StatisticProfile></StatisticProfile>
             </div>

@@ -2,59 +2,106 @@ import { Grid, Table, Card, Icon, Button, Modal, Header } from 'semantic-ui-reac
 import React, { Component } from 'react';
 import TeacherNavBar from './TeacherNavBar';
 import _ from 'lodash'
+import { MockedData } from '../../api/mocks/mockedData'
 
 import './AssignmentsHistory.scss';
 
 class Statistics extends Component{
+
+    constructor(props){
+        super(props);
+        this.state={
+            relevantTests:[],
+            relevantFinishedTests:[]
+        }
+    }
+
+    componentDidMount(){
+
+
+        //fetch data here
+        const finishedTests = MockedData.data.finished_tests;
+        const userID = MockedData.data.users[4].id;
+        const allTests = MockedData.data.tests;
+
+        const relevantTests = allTests.filter(test=>{
+            if(test.owner_id == userID){
+                return true;
+            }
+        })
+        console.log("Relevant Tests", relevantTests);
+        console.log("Finished tests", finishedTests);
+
+        const testsID = [];
+        relevantTests.map(test=>testsID.push(test.id));
+
+        console.log('testsID', testsID);
+
+        const relevantFinishedTests = finishedTests.filter(test=>{
+            if(testsID.includes(test.test_id)){
+                return true;
+            }
+            return false;
+        })
+
+        console.log("relevant finished tests", relevantFinishedTests);
+
+        this.setState({
+            relevantTests: relevantTests,
+            relevantFinishedTests: relevantFinishedTests
+        })
+
+    }
+
     render(){
         return(
         <div className="assignment-history">
-            {testHistory.map((test,i)=>React.createElement(TestCard, {date: test.date}))}
+            {this.state.relevantTests.map((test,i)=>React.createElement(TestCard, {data: this.state.relevantFinishedTests, header: test.test, currentTestID: test.id}))}
         </div> 
         )
     }
 }
 
-const tableData = [
-    { name: 'John', group: 15, score: 80 },
-    { name: 'Daniel', group: 1415, score: 65 },
-    { name: 'Johnny', group: 1511, score: 100 },
-  ]
 
-const testHistory = [
-    {
-        date: '12.11.2018',
-        info: tableData
-    },
-    {
-        date: '06.12.2018',
-        info: tableData
-    },
-    {
-        date: '16.12.2018',
-        info: tableData
+class TestCard extends Component{
+    constructor(props){
+        super(props);
     }
-]
 
-const TestCard = (props) => (
-    <Card>
-        <Card.Content>
-        <Icon name='tasks' size='big' />
-        <Card.Header><strong>Date:</strong>{props.date}</Card.Header>
-        </Card.Content>
-        <Card.Content extra>
-            <div className='ui three buttons'>
-                <Modal trigger={<Button basic color='black'>Table</Button>} closeIcon>
-                    <Header icon='list ul' content='Test results' />
-                    <Modal.Content>
-                        {React.createElement(AssignmentsHistoryTable, {data: tableData})}
-                    </Modal.Content>
-                </Modal>
-                <Button basic color='black'>Statistics</Button>
-            </div>
-        </Card.Content>
-    </Card>
-)
+
+    goodData = this.props.data.filter(item=>{
+        if(item.test_id === this.props.currentTestID){
+            return true;
+        }
+    })
+
+
+
+    render(){
+
+        return(
+            <Card>
+                <Card.Content>
+                    <Icon name='tasks' size='big' />
+                </Card.Content>
+                <Card.Content extra>
+                <Card.Header>{this.props.header}</Card.Header>
+                    <div className='ui three buttons'>
+                        <Modal trigger={<Button basic color='black'>Table</Button>} closeIcon>
+                            <Header icon='list ul' content='Test results' />
+                            <Modal.Content>
+                                {
+                                    React.createElement(AssignmentsHistoryTable, {data: this.goodData, currentTestID: this.props.currentTestID})
+                                }
+                            </Modal.Content>
+                        </Modal>
+                        <Button basic color='black'>Statistics</Button>
+                    </div>
+                </Card.Content>
+            </Card>
+        )
+    }
+} 
   
 class AssignmentsHistoryTable extends Component {
 

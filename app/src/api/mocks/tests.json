@@ -4,23 +4,25 @@
         "test": "General Recap - Seminar 6",
         "questions_id": [0, 1],
         "shuffle": false,
-        "one-way": true,
+        "one_way": true,
         "retrieves": 0,
         "feedback": false,
         "showResult": false,
         "time": 30,
-        "isActive": false
+        "isActive": false,
+        "owner_id":4
     },
     {
         "id": 1,
         "test": "Quiz for seminar 9",
         "questions_id": [2, 3],
         "shuffle": false,
-        "one-way": true,
+        "one_way": true,
         "retrieves": 0,
         "feedback": false,
         "showResult": false,
         "time": 20,
-        "isActive": false
+        "isActive": false,
+        "owner_id": 4
     }
 ]

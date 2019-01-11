@@ -65,6 +65,13 @@ const ButtonAnimated = ()=>    <Button animated>
 
 class TestInfo extends Component{
 
+    constructor(props){
+        super(props);
+        this.state={
+            
+        }
+    }
+
     render(){
         return(
             <div className="test-informations">

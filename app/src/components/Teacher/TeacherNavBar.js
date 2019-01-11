@@ -29,12 +29,6 @@ class TeacherNavBar extends Component {
           <Menu.Header>Tests</Menu.Header>
 
           <Menu.Menu>
-          <Menu.Item
-              name='Active tests'
-              active={activeItem === 'activetest'}
-              onClick={this.handleItemClick}
-              as={NavLink} exact to="/teacher/active-tests"
-            />
             <Menu.Item
               name='Create a new test'
               active={activeItem === 'newtest'}

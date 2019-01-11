@@ -7,25 +7,27 @@ export const MockedData =
                     "id": 0,
                     "test": "General Recap - Seminar 6",
                     "questions_id": [0, 1, 2, 3],
-                    "shuffle": false,
-                    "one-way": true,
+                    "shuffle": true,
+                    "one_way": true,
                     "retrieves": 0,
                     "feedback": false,
                     "result": true,
                     "time": 30,
-                    "isActive": true
+                    "isActive": true,
+                    "owner_id": 4
                 },
                 {
                     "id": 1,
                     "test": "Quiz for seminar 9",
                     "questions_id": [2, 3],
                     "shuffle": false,
-                    "one-way": true,
+                    "one_way": true,
                     "retrieves": 0,
                     "feedback": false,
                     "result": false,
                     "time": 20,
-                    "isActive": true
+                    "isActive": false,
+                    "owner_id": 4
                 }
             ],
         "questions":
@@ -166,11 +168,11 @@ export const MockedData =
                 "category": "Android"
             },
             {
-                "id": 3,
+                "id": 2,
                 "category": "Econometrics"
             },
             {
-                "id": 4,
+                "id": 3,
                 "category": "Data Analysis"
             }
         ],
@@ -180,35 +182,40 @@ export const MockedData =
                 "id": 0,
                 "test_id": 0,
                 "username": "stud0",
-                "date": "11.10.2018",
+                "name":"Student 0",
+                "date": "09.01.2018",
                 "score": 80
             },
             {
                 "id": 1,
                 "test_id": 0,
                 "username": "stud1",
-                "date": "24.11.2018",
+                "name":"Student 1",
+                "date": "09.01.2018",
                 "score": 90
             },
             {
                 "id": 2,
                 "test_id": 1,
                 "username": "stud0",
-                "date": "24.11.2018",
+                "name":"Student 0",
+                "date": "09.01.2018",
                 "score": 60
             },
             {
                 "id": 3,
                 "test_id": 2,
                 "username": "stud0",
-                "date": "12.12.2018",
+                "name":"Student 0",
+                "date": "09.01.2018",
                 "score": 40
             },
             {
                 "id": 4,
                 "test_id": 1,
                 "username": "stud1",
-                "date": "12.12.2018",
+                "name":"Student 1",
+                "date": "09.01.2018",
                 "score": 100
             }
         ],
