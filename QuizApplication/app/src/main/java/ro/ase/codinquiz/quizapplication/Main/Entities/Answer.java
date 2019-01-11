@@ -1,6 +1,8 @@
 package ro.ase.codinquiz.quizapplication.Main.Entities;
 
-public class Answer  {
+import java.io.Serializable;
+
+public class Answer implements Serializable {
 
     private int id;
     private String text;

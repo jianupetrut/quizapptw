@@ -79,6 +79,7 @@
         <activity android:name=".Main.OtherActivities.ToDoActivity2" />
         <activity android:name=".Main.OtherActivities.ToDoActivity3" />
         <activity android:name=".Main.OtherActivities.ToDoActivity4"></activity>
+
     </application>
 
 </manifest>
