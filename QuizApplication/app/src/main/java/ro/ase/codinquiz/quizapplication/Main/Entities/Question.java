@@ -16,6 +16,7 @@ public class Question implements Serializable {
         this.category = category;
         this.answerList = answerList;
         this.image = image;
+        this.text=text;
     }
 
     public String getText() {
