@@ -2,20 +2,37 @@ package ro.ase.codinquiz.quizapplication.Main.Entities;
 
 import android.media.Image;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Question {
+public class Question implements Serializable {
     private int id;
     private String category;
+    private String text;
     private List<Answer> answerList;
     private Image image;
 
-    public Question(String category, List<Answer> answerList, Image image) {
+    public Question(String category,String text, List<Answer> answerList, Image image) {
         this.category = category;
         this.answerList = answerList;
         this.image = image;
     }
 
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
+    }
 
     public int getId() {
         return id;

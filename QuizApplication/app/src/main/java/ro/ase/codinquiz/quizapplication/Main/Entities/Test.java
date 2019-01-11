@@ -1,8 +1,9 @@
 package ro.ase.codinquiz.quizapplication.Main.Entities;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Test {
+public class Test implements Serializable {
     private int id;
     private String testName;
     private List<Question> questionList;
