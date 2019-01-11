@@ -1,8 +1,9 @@
 package ro.ase.codinquiz.quizapplication.Main.Entities;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Test {
+public class Test implements Serializable {
     private int id;
     private String testName;
     private List<Question> questionList;
@@ -11,7 +12,7 @@ public class Test {
     private boolean result;
     private boolean oneWay;
     private int time;
-    private int retrieve;
+    private int retries;
     private boolean active;
 
     public int getId() {
@@ -78,12 +79,12 @@ public class Test {
         this.time = time;
     }
 
-    public int getRetrieve() {
-        return retrieve;
+    public int getRetries() {
+        return retries;
     }
 
-    public void setRetrieve(int retrieve) {
-        this.retrieve = retrieve;
+    public void setRetries(int retries) {
+        this.retries = retries;
     }
 
     public boolean isActive() {
@@ -104,7 +105,7 @@ public class Test {
         this.result = result;
         this.oneWay = oneWay;
         this.time = time;
-        this.retrieve = retrieve;
+        this.retries = retrieve;
         this.active = active;
     }
 }

@@ -99,14 +99,15 @@ public class TeacherCreateQuestion extends AppCompatActivity
         answerList.add(answer2);
         answerList.add(answer3);
         answerList.add(answer4);
+        TextView questionTW=findViewById(R.id.textQuestion);
         TextView cat=findViewById(R.id.etCategory);
         if("".equals(cat.getText().toString())) {
-            Question question = new Question(QuestionCategorySpinner.getSelectedItem().toString(), answerList, null);
+            Question question = new Question(QuestionCategorySpinner.getSelectedItem().toString(),questionTW.getText().toString(), answerList, null);
         }
         else
         {
             categories.add(cat.getText().toString());
-            Question question = new Question(cat.getText().toString(), answerList, null);
+            Question question = new Question(cat.getText().toString(), questionTW.getText().toString(),answerList, null);
         }
     }
 
