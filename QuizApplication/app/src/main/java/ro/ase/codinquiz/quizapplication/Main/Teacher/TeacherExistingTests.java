@@ -93,6 +93,9 @@ public class TeacherExistingTests extends AppCompatActivity
         } else if (id == R.id.nav_leave_feedback) {
             Intent intent =new Intent(this,TeacherFeedbackActivity.class);
             startActivity(intent);
+        }else if (id == R.id.nav_share) {
+            Intent intent = new Intent(this, TeacherShareTest.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
