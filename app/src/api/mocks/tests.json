@@ -7,7 +7,7 @@
         "one-way": true,
         "retrieves": 0,
         "feedback": false,
-        "result": false,
+        "showResult": false,
         "time": 30,
         "isActive": false
     },
@@ -19,7 +19,7 @@
         "one-way": true,
         "retrieves": 0,
         "feedback": false,
-        "result": false,
+        "showResult": false,
         "time": 20,
         "isActive": false
     }

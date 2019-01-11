@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Test.scss';
 import StudentNavBar from './StudentNavBar'
-import { Grid, Checkbox, Header, Label, Icon, List, Button, Segment } from 'semantic-ui-react'
+import { Grid, Checkbox, Header, Label, Icon, List, Button, Segment, Form, Radio } from 'semantic-ui-react'
 import {MockedData} from '../../api/mocks/mockedData'
 
 
@@ -11,14 +11,49 @@ class AnswerLine extends Component{
         super(props);
     }
 
+    state = {}
+    handleChange = (e, {value}) => {
+
+        var isCorrect = '';
+        if( this.props.isCorrect ){
+            isCorrect = true;
+        }
+        else{
+            isCorrect = false;
+        }
+        this.setState({ isCorrect: isCorrect, value: value},()=>console.log('answerLine state', this.state))
+        this.props.onChangeAnswer(isCorrect);  
+    }
+    // handleChange = (e, { value }) => this.setState({ value })
+
     render(){
         return(
-            <List.Item>
-                <Checkbox label={this.props.label} />
-            </List.Item>
+            <div>
+                <Form.Field>
+                <Radio
+                    label={this.props.label}
+                    name='radioGroup'
+                    value={this.props.id}
+                    checked={this.state.value === this.props.id}
+                    onChange={this.handleChange}
+                />
+                </Form.Field>
+            </div>
         )
     }
 } 
+
+const FinishedTestSegment = (props) => (
+    <Segment placeholder>
+      <Header icon>
+        <Icon name='checkmark' />
+        You have completed this test!
+        { props.showResult ? <div> Correct answers: {props.score} <div>Total questions: {props.maxIteration + 1} </div><div>Percentage: {props.score/(props.maxIteration + 1) * 100}% </div> <Button primary>Go to my profile</Button></div> : <Button primary>Go to my profile</Button>}
+      </Header>
+    </Segment>
+  )
+
+
 
 
 //algorithm for shuffling array elements
@@ -43,7 +78,8 @@ class Test extends Component{
             answersArray: [], //array which contains relevant answers objects
             shuffle: '',
             feedback: '',
-            result: 0,
+            showResult: '',
+            score: 0,
             time: 0,
             iteration: -1, //keeps track of current question
             maxIteration: -1, //knows when the test should be finished
@@ -54,6 +90,8 @@ class Test extends Component{
         this.navigate = this.navigate.bind(this);
 
     }
+
+    isCorrectAnswer = ''; //stores whether the choice is the correct answer or not
 
 
 
@@ -121,7 +159,8 @@ class Test extends Component{
             questionsArray: relevantQuestionsArray,
             shuffle: testData.shuffle,
             feedback: testData.feedback,
-            result: testData.result,
+            showResult: testData.result,
+            score: 0,
             time: testData.time,
             iteration: 0,
             maxIteration: testData.questions_id.length-1,
@@ -133,9 +172,43 @@ class Test extends Component{
         
     }
 
+    storeAnswer(){
+        //store the choice and compute the score
+        if(this.state.iteration == 0){
+            //reset local storage
+            localStorage.setItem('score', 0)
+            localStorage.setItem('outOf', 0)
+            localStorage.setItem('maxScore', 0)
+        }
+        // console.log('storeanswer test', this.state);
+        // console.log('isCorrect in storeanswer', this.isCorrectAnswer)
+        if(this.isCorrectAnswer){
+            //correct answer
+            var newScore = this.state.score + 1;
+            this.setState({
+                score: newScore
+            })
+            localStorage.setItem('score', newScore)
+            localStorage.setItem('outOf', this.state.iteration+1)
+            localStorage.setItem('maxScore', this.state.maxIteration+1)
+        }else{
+            localStorage.setItem('outOf', this.state.iteration+1)
+        }
+
+        if(this.state.iteration === this.state.maxIteration){
+            //last iteration, test will be finished
+            //TO DO: send results to DB
+        }
+
+    }
+
 
 
     navigate(){
+        //go to next question or to the end of the quiz
+        //store the answer
+        //the state changes here
+        this.storeAnswer(this);
 
         var nextIteration = this.state.iteration + 1;
         console.log("nextIteration", nextIteration);
@@ -167,32 +240,60 @@ class Test extends Component{
             
         }, ()=>console.log("state",this.state))
 
-        // if(this.state.iteration == this.state.maxIteration){
-        //     //this is the last quiz page
-        // }  
 
+    }
+
+    onChangeAnswer = isCorrect =>{
+        //this triggers whenever the user chooses an answer and tells if it's correct or not
+        this.isCorrectAnswer = isCorrect;
+        console.log('isCorrectAnswer', this.isCorrectAnswer);
     }
 
     render(){
         
         return(
             <div className="test-info">
-                <Segment>
-                <Header as='h3' textAlign='center'>
-                    {this.state.currentQuestion.question}
-                </Header>
-                </Segment>
-                <List>
-                    {
-                        this.state.currentAnswers.map(answerElement =>  React.createElement(AnswerLine, {label: answerElement.answer}))
-                    }
-                </List>
-                <Button animated type="submit" onClick = {() => this.navigate(this)}>
-                    <Button.Content visible>Next</Button.Content>
-                    <Button.Content hidden>
-                    <Icon name='arrow circle right' />
-                    </Button.Content>
-                </Button>
+
+
+                {
+                    this.state.iteration <= this.state.maxIteration 
+                    ? 
+                        //test is not finished, show next question
+                        <div>
+                            <Segment>
+                            <Header as='h3' textAlign='center'>
+                                {this.state.currentQuestion.question}
+                            </Header>
+                            </Segment>
+                            <Form>
+                                {
+                                    this.state.currentAnswers.map((answerElement,i) =>  React.createElement(AnswerLine, {index: i, label: answerElement.answer, isCorrect: answerElement.isCorrect, id: answerElement.id, onChangeAnswer: this.onChangeAnswer}))
+                                }
+                            </Form>
+            
+                        </div>
+                    
+                    : 
+                        //test is finished
+                        
+                            <FinishedTestSegment showResult={this.state.showResult} score={this.state.score} maxIteration={this.state.maxIteration}></FinishedTestSegment>
+                              
+                        
+                    
+                }
+
+
+                {
+                    //verify if we should show the 'next' button
+                    this.state.iteration <= this.state.maxIteration 
+                    ? 
+                        <Button type="submit" onClick = {() => this.navigate(this)}>
+                            <Button.Content visible>Next</Button.Content>
+                        </Button>
+                    : 
+                        <div></div>
+                }
+                
 
             </div>
         )

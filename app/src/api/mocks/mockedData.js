@@ -11,7 +11,7 @@ export const MockedData =
                     "one-way": true,
                     "retrieves": 0,
                     "feedback": false,
-                    "result": false,
+                    "result": true,
                     "time": 30,
                     "isActive": false
                 },
