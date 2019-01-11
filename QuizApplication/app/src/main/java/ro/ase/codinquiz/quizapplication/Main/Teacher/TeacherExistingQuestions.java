@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,19 +14,41 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import ro.ase.codinquiz.quizapplication.Main.Entities.Answer;
+import ro.ase.codinquiz.quizapplication.Main.Entities.Question;
+import ro.ase.codinquiz.quizapplication.Main.Entities.Test;
+import ro.ase.codinquiz.quizapplication.Main.Teacher.Adapters.QuestionsListAdapter;
 import ro.ase.codinquiz.quizapplication.R;
 
 public class TeacherExistingQuestions extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    final int[] SelectedQuestionId = new int[1];
+    ArrayList<Question> questionArrayList=new ArrayList<>();
+    ListView existingQuestionsListView;
+    QuestionsListAdapter adapter;
+    Spinner spinner;
+    ArrayList<Test> testArrayList=new ArrayList<>();
+    ArrayAdapter<String> spinnerAdapter;
+    ArrayList<String> stringArrayList=new ArrayList<>();
+    boolean questionSelected=false;
+    boolean testSelected=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_existing_questions);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        spinner=findViewById(R.id.spinnerSelectTest);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -36,6 +59,77 @@ public class TeacherExistingQuestions extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        //------------------mockup data-------------------
+        List<Answer> ansList1=new ArrayList<>();
+        List<Answer> ansList2=new ArrayList<>();
+        Answer ansList1answer1=new Answer(1,"Answer 1",true,1);
+        Answer ansList1answer2=new Answer(2,"Answer 2",false,1);
+        Answer ansList1answer3=new Answer(3,"Answer 3",false,1);
+        Answer ansList1answer4=new Answer(4,"Answer 4",false,1);
+        ansList1.add(ansList1answer1);
+        ansList1.add(ansList1answer2);
+        ansList1.add(ansList1answer3);
+        ansList1.add(ansList1answer4);
+        Answer ansList2answer1=new Answer(5,"Answer 1",false,2);
+        Answer ansList2answer2=new Answer(6,"Answer 2",true,2);
+        Answer ansList2answer3=new Answer(7,"Answer 3",true,2);
+        Answer ansList2answer4=new Answer(8,"Answer 4",false,2);
+        ansList2.add(ansList2answer1);
+        ansList2.add(ansList2answer2);
+        ansList2.add(ansList2answer3);
+        ansList2.add(ansList2answer4);
+        Question q1=new Question("Cat1","Text for question 1",ansList1,null);
+        Question q2=new Question("Cat1","text for question2",ansList2,null);
+
+        questionArrayList.add(q1);
+        questionArrayList.add(q2);
+        Test test=new Test(1,"blabla",questionArrayList,false,false,false,false,30,1,true);
+        testArrayList.add(test);
+        for (Test t:testArrayList
+             ) {
+            stringArrayList.add(t.getTestName());
+
+        }
+        //------------------mockup data-------------------
+
+
+        existingQuestionsListView=findViewById(R.id.listView_ExistingQuestions);
+        adapter=new QuestionsListAdapter(getApplicationContext(),R.layout.item_question,questionArrayList);
+        existingQuestionsListView.setAdapter(adapter);
+        existingQuestionsListView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                if(existingQuestionsListView.getSelectedItem() != null) {
+                    SelectedQuestionId[0] =(existingQuestionsListView.getSelectedItemPosition());
+                    questionSelected=true;
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                    questionSelected=false;
+            }
+        });
+        adapter.notifyDataSetChanged();
+        spinner = findViewById(R.id.spinnerSelectTest);
+
+        spinnerAdapter = new ArrayAdapter<>(this,
+                R.layout.support_simple_spinner_dropdown_item,
+                stringArrayList);
+        spinner.setAdapter(spinnerAdapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                testSelected=true;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+                testSelected=false;
+            }
+        });
     }
 
     @Override
@@ -102,5 +196,30 @@ public class TeacherExistingQuestions extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    public void onAddClick(View view){
+
+        if(testSelected){
+            for (Question q: questionArrayList) {
+                if (q.getId()==SelectedQuestionId[0]){
+                    for (Test t:testArrayList
+                         ) {
+                        t.getQuestionList().add(q);
+                        Toast.makeText(this, "added", Toast.LENGTH_SHORT).show();
+
+                    }
+                }
+            }
+        }
+        else{
+            AlertDialog.Builder builder =
+                    new AlertDialog.Builder(this);
+            builder.setTitle("Error");
+            builder.setMessage("Please select a test and a question!");
+            builder.setPositiveButton("OK", null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+        }
     }
 }
