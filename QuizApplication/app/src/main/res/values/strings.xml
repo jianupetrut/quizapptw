@@ -63,4 +63,6 @@
     <string name="answer_4">Answer 4</string>
     <string name="answer_3">Answer 3</string>
     <string name="save_question">Save Question</string>
+    <string name="first">First</string>
+    <string name="last">Last</string>
 </resources>
