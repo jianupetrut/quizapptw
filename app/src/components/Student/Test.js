@@ -67,7 +67,7 @@ function shuffleArray(array) {
 
 
 
-class Test extends Component{
+class NewTest extends Component{
 
     constructor(props){
         super(props);
@@ -91,13 +91,16 @@ class Test extends Component{
 
     }
 
-    isCorrectAnswer = ''; //stores whether the choice is the correct answer or not
+    test = this.props.location.state;//get the test from previous state !IMPORTANT STEP
+    // test = MockedData.data.tests[0];
 
+    isCorrectAnswer = ''; //stores whether the choice is the correct answer or not
 
 
     componentDidMount() {
         //fetch data here
-        const testData = MockedData.data.tests[0];//get test info
+        const testData = this.test.test;//get test info
+        console.log("testData", testData)
 
         const questionsID = testData.questions_id;//get all question ids for the test
         console.log("question IDs",questionsID)
@@ -252,61 +255,53 @@ class Test extends Component{
     render(){
         
         return(
-            <div className="test-info">
-
-
-                {
-                    this.state.iteration <= this.state.maxIteration 
-                    ? 
-                        //test is not finished, show next question
-                        <div>
-                            <Segment>
-                            <Header as='h3' textAlign='center'>
-                                {this.state.currentQuestion.question}
-                            </Header>
-                            </Segment>
-                            <Form>
-                                {
-                                    this.state.currentAnswers.map((answerElement,i) =>  React.createElement(AnswerLine, {index: i, label: answerElement.answer, isCorrect: answerElement.isCorrect, id: answerElement.id, onChangeAnswer: this.onChangeAnswer}))
-                                }
-                            </Form>
-            
-                        </div>
-                    
-                    : 
-                        //test is finished
-                        
-                            <FinishedTestSegment showResult={this.state.showResult} score={this.state.score} maxIteration={this.state.maxIteration}></FinishedTestSegment>
-                              
-                        
-                    
-                }
-
-
-                {
-                    //verify if we should show the 'next' button
-                    this.state.iteration <= this.state.maxIteration 
-                    ? 
-                        <Button type="submit" onClick = {() => this.navigate(this)}>
-                            <Button.Content visible>Next</Button.Content>
-                        </Button>
-                    : 
-                        <div></div>
-                }
-                
-
-            </div>
-        )
-    }
-}
-
-class NewTest extends Component{
-    render(){
-        return(
             <Grid>
                 <Grid.Row>
                     <StudentNavBar></StudentNavBar>
-                    <Test></Test>
+                    <div className="test-info">
+
+
+                        {
+                            this.state.iteration <= this.state.maxIteration 
+                            ? 
+                                //test is not finished, show next question
+                                <div>
+                                    <Segment>
+                                    <Header as='h3' textAlign='center'>
+                                        {this.state.currentQuestion.question}
+                                    </Header>
+                                    </Segment>
+                                    <Form>
+                                        {
+                                            this.state.currentAnswers.map((answerElement,i) =>  React.createElement(AnswerLine, {index: i, label: answerElement.answer, isCorrect: answerElement.isCorrect, id: answerElement.id, onChangeAnswer: this.onChangeAnswer}))
+                                        }
+                                    </Form>
+                    
+                                </div>
+                            
+                            : 
+                                //test is finished
+                                
+                                    <FinishedTestSegment showResult={this.state.showResult} score={this.state.score} maxIteration={this.state.maxIteration}></FinishedTestSegment>
+                                    
+                                
+                            
+                        }
+
+
+                        {
+                            //verify if we should show the 'next' button
+                            this.state.iteration <= this.state.maxIteration 
+                            ? 
+                                <Button type="submit" onClick = {() => this.navigate(this)}>
+                                    <Button.Content visible>Next</Button.Content>
+                                </Button>
+                            : 
+                                <div></div>
+                        }
+                        
+
+                    </div>
                 </Grid.Row>
             </Grid>
         )

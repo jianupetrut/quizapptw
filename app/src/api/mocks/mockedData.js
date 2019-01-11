@@ -13,7 +13,7 @@ export const MockedData =
                     "feedback": false,
                     "result": true,
                     "time": 30,
-                    "isActive": false
+                    "isActive": true
                 },
                 {
                     "id": 1,
@@ -25,7 +25,7 @@ export const MockedData =
                     "feedback": false,
                     "result": false,
                     "time": 20,
-                    "isActive": false
+                    "isActive": true
                 }
             ],
         "questions":

@@ -10,6 +10,7 @@ class NewAssignment extends Component{
     constructor(props){
         super(props);
         this.state={
+            testData: '',
             name: '',
             time: 0,
             questions: 0
@@ -48,7 +49,7 @@ class NewAssignment extends Component{
 
         console.log("foundTest", foundTest)
 
-        if(foundTest.length === 0){
+        if(foundTest.length === 0 || !foundTest[0].isActive ){
             this.wrongID = true;
             this.showInfo = false;
             this.setState({
@@ -84,9 +85,9 @@ class NewAssignment extends Component{
                         this.wrongID 
                         ?
                             <Message
-                            icon='warning cicle'
+                            icon='warning circle'
                             header='Incorrect ID'
-                            content='The ID you entered could not be found. Please try again'
+                            content='The ID you entered could not be found or the test has not been activated. Please try again'
                             />
                         :
                             <div></div>
@@ -117,7 +118,12 @@ class NewAssignment extends Component{
                                             </Label>
                                         </List.Item>
                                     </List>
-                                    <Button className="start-btn" onClick = { ()=> this.props.history.push('/student/assignment/new') }>Start Quiz</Button>
+                                    <Button className="start-btn" onClick = { 
+                                        ()=> this.props.history.push({
+                                            pathname: '/student/assignment/new', 
+                                            state: {test: this.state.testData}}) 
+                                        }
+                                    >Start Quiz</Button>
                                 </div>
                             :
                                 <div></div>
