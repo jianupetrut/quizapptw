@@ -25,6 +25,9 @@
         <item
             android:id="@+id/nav_share"
             android:title="Share test"/>
+        <item
+            android:id="@+id/nav_see_statistics"
+            android:title="Test Statistics"/>
     </group>
 
     <item android:title="Feedback">
@@ -33,6 +36,15 @@
                 android:id="@+id/nav_leave_feedback"
                 android:icon="@drawable/ic_menu_send"
                 android:title="@string/feedback" />
+            <item
+                android:id="@+id/nav_rate_app"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/rateAppText" />
+            <item
+                android:id="@+id/nav_contact_us"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/contact_us" />
+
         </menu>
     </item>
 
