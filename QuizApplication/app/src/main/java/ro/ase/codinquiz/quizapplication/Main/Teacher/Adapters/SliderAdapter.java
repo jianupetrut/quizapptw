@@ -77,13 +77,15 @@ public class SliderAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         layoutInflater=(LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-        View view = layoutInflater.inflate(R.layout.content_teacher_existing_tests,container,false);
+        View view = layoutInflater.inflate(R.layout.slide_layout,container,false);
+
         TextView slideHeading = (TextView)view.findViewById(R.id.slide_heading);
         TextView slideQuestions = (TextView)view.findViewById(R.id.question_list);
         slideHeading.setText(slide_headings[position]);
         slideQuestions.setText(slide_descriptions[position]);
        // Button btn = (Button)view.findViewById(R.id.btnSelectTest);
        // btn.setText("SELECT");
+
         container.addView(view);
         return view;
     }

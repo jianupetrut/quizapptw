@@ -26,6 +26,7 @@
     <string name="test_options">Test Options</string>
     <string name="create_new_test">Create new test</string>
     <string name="existing_tests">Existing tests</string>
+    <string name="btnSelectTest">SELECT TEST</string>
     <string name="create_a_new_question">Create a new question</string>
     <string name="existing_questions">Existing questions</string>
     <string name="assignment_history">Assignment history</string>
