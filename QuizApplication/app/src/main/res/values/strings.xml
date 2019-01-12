@@ -68,6 +68,9 @@
     <string name="dash">Dash</string>
     <string name="google_maps">Find us on Google Maps</string>
     <string name="questionNo">Question No. </string>
+    <string name="start">Start</string>
+    <string name="enterTestCode">Enter test code</string>
+    <string name="enterYourName">Enter your name</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
