@@ -2,31 +2,43 @@ package ro.ase.codinquiz.quizapplication.Main.Teacher;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
+import android.support.v4.view.ViewPager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import ro.ase.codinquiz.quizapplication.Main.Teacher.Adapters.SliderAdapter;
 import ro.ase.codinquiz.quizapplication.R;
 
 public class TeacherExistingTests extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    //slider
+    private ViewPager mSlideViewPager;
+    private LinearLayout mDotLayout;
+    private TextView[] mDots;
+    private SliderAdapter sliderAdapter;
+    private Button selectTest;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_existing_tests);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
+//slider
+        mSlideViewPager=(ViewPager)findViewById(R.id.slideViewPager);
+        mDotLayout=(LinearLayout)findViewById(R.id.dotsLayout);
+        sliderAdapter=new SliderAdapter(this);
+        mSlideViewPager.setAdapter(sliderAdapter);
+        addDotsIndicator();
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -36,6 +48,9 @@ public class TeacherExistingTests extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
     }
 
     @Override
@@ -70,6 +85,18 @@ public class TeacherExistingTests extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
+    //dots indicator for slider
+    public void addDotsIndicator(){
+        mDots= new TextView[5];
+        for(int i = 0; i < mDots.length; i++){
+            mDots[i]=new TextView(this);
+            mDots[i].setText(Html.fromHtml("&#8226"));
+            mDots[i].setTextSize(50);
+            mDots[i].setTextColor(getResources().getColor(R.color.CodinBlue));
+            mDotLayout.addView(mDots[i]);
+        }
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -80,7 +107,8 @@ public class TeacherExistingTests extends AppCompatActivity
             Intent intent =new Intent(this,TeacherCreateTest.class);
             startActivity(intent);
         } else if (id == R.id.nav_existing_tests) {
-
+            Intent intent =new Intent(this,TeacherExistingTests.class);
+            startActivity(intent);
         } else if (id == R.id.nav_create_new_question) {
             Intent intent =new Intent(this,TeacherCreateQuestion.class);
             startActivity(intent);
