@@ -13,11 +13,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.SeekBar;
+import android.widget.TextView;
+
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+
+import java.util.ArrayList;
 
 import ro.ase.codinquiz.quizapplication.R;
 
 public class TeacherSeeStatistics extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private BarChart barChart;
+    private ArrayList<String> tests;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +51,32 @@ public class TeacherSeeStatistics extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        barChart=(BarChart)findViewById(R.id.bargraph);
+        ArrayList<BarEntry> barEntries=new ArrayList<>();
+        barEntries.add(new BarEntry(64f,5));
+        barEntries.add(new BarEntry(58f,6));
+        barEntries.add(new BarEntry(47f,5));
+        barEntries.add(new BarEntry(60f,8));
+
+
+        BarDataSet barDataSet = new BarDataSet(barEntries,"Tests");
+
+        tests=new ArrayList<>();
+        tests.add("Test 1");
+        tests.add("Test 2");
+        tests.add("Test 3");
+        tests.add("Test 4");
+        barChart.setFitsSystemWindows(true);
+        Description description= new Description();
+        description.setText("This is the chart where you can see the average grade of all tests");
+        barChart.setDescription(description);
+        BarData data = new BarData(barDataSet);
+        data.setBarWidth(0.9f);
+        barChart.setData(data);
+        barChart.setFitBars(true);
+        barChart.invalidate();
+
     }
 
     @Override
@@ -81,7 +122,8 @@ public class TeacherSeeStatistics extends AppCompatActivity
             Intent intent =new Intent(this,TeacherCreateTest.class);
             startActivity(intent);
         } else if (id == R.id.nav_existing_tests) {
-
+            Intent intent =new Intent(this,TeacherExistingTests.class);
+            startActivity(intent);
         } else if (id == R.id.nav_create_new_question) {
             Intent intent =new Intent(this,TeacherCreateQuestion.class);
             startActivity(intent);
@@ -93,6 +135,9 @@ public class TeacherSeeStatistics extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_leave_feedback) {
             Intent intent =new Intent(this,TeacherFeedbackActivity.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_share) {
+            Intent intent = new Intent(this, TeacherShareTest.class);
             startActivity(intent);
         }
 

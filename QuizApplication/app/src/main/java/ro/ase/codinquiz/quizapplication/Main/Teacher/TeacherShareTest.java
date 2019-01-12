@@ -13,11 +13,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import ro.ase.codinquiz.quizapplication.R;
 
 public class TeacherShareTest extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    Button bt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,17 @@ public class TeacherShareTest extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        bt=(Button)findViewById(R.id.buttonShareViaEmail);
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              Intent intent=new Intent(Intent.ACTION_SEND);
+              intent.setType(("text/plain"));
+              startActivity(Intent.createChooser(intent,"Share via:"));
+        }
+        });
+
+
     }
 
     @Override
@@ -93,6 +106,9 @@ public class TeacherShareTest extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_leave_feedback) {
             Intent intent =new Intent(this,TeacherFeedbackActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_share) {
+            Intent intent = new Intent(this, TeacherShareTest.class);
             startActivity(intent);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

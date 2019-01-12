@@ -22,6 +22,12 @@
         <item
             android:id="@+id/nav_assignment_history"
             android:title="@string/assignment_history" />
+        <item
+            android:id="@+id/nav_share"
+            android:title="Share test"/>
+        <item
+            android:id="@+id/nav_see_statistics"
+            android:title="Test Statistics"/>
     </group>
 
     <item android:title="Feedback">

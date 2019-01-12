@@ -4,9 +4,8 @@ import java.util.Date;
 
 public class FinishedTest {
     private int id;
-    private int testId;
+    private int test_id;
     private float score;
-    private Date date;
 
     public int getId() {
         return id;
@@ -16,12 +15,12 @@ public class FinishedTest {
         this.id = id;
     }
 
-    public int getTestId() {
-        return testId;
+    public int getTest_id() {
+        return test_id;
     }
 
-    public void setTestId(int testId) {
-        this.testId = testId;
+    public void setTest_id(int name) {
+        this.test_id = name;
     }
 
     public float getScore() {
@@ -39,4 +38,6 @@ public class FinishedTest {
     public void setDate(Date date) {
         this.date = date;
     }
+
+    private Date date;
 }

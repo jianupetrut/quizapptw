@@ -8,10 +8,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import ro.ase.codinquiz.quizapplication.Main.Entities.Test;
 import ro.ase.codinquiz.quizapplication.Main.Teacher.Models.Choice;
 import ro.ase.codinquiz.quizapplication.R;
 
 public class JoinTestActivity extends AppCompatActivity {
+
 
     public static final String CODE="EXTRA_CODE";
     private String code;
