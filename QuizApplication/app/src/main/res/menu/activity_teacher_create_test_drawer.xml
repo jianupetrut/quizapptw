@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_create_new_test"
+
+            android:title="@string/create_new_test" />
+        <item
+            android:id="@+id/nav_existing_tests"
+
+            android:title="@string/existing_tests" />
+        <item
+            android:id="@+id/nav_create_new_question"
+
+            android:title="@string/create_a_new_question" />
+        <item
+            android:id="@+id/nav_existing_questions"
+            android:title="@string/existing_questions" />
+        <item
+            android:id="@+id/nav_assignment_history"
+            android:title="@string/assignment_history" />
+    </group>
+
+    <item android:title="Feedback">
+        <menu>
+            <item
+                android:id="@+id/nav_leave_feedback"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/feedback" />
+        </menu>
+    </item>
+
+</menu>
