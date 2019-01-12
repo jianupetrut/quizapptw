@@ -23,16 +23,16 @@
             android:id="@+id/nav_assignment_history"
             android:title="@string/assignment_history" />
         <item
-            android:id="@+id/nav_share"
-            android:title="Share test"/>
+            android:id="@+id/nav_share_test"
+            android:title="@string/shareTest"/>
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/communicate">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="@string/share" />
 
         </menu>
     </item>

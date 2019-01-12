@@ -24,15 +24,27 @@
             android:title="@string/assignment_history" />
         <item
             android:id="@+id/nav_share"
-            android:title="Share test"/>
+            android:title="@string/shareTest"/>
+        <item
+            android:id="@+id/nav_see_statistics"
+            android:title="@string/test_statistics"/>
     </group>
 
-    <item android:title="Feedback">
+    <item android:title="@string/feedback">
         <menu>
             <item
                 android:id="@+id/nav_leave_feedback"
                 android:icon="@drawable/ic_menu_send"
                 android:title="@string/feedback" />
+            <item
+                android:id="@+id/nav_rate_app"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/rateAppText" />
+            <item
+                android:id="@+id/nav_contact_us"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/contact_us" />
+
         </menu>
     </item>
 

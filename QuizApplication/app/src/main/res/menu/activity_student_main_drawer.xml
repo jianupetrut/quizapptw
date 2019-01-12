@@ -9,9 +9,13 @@
 
             android:title="@string/my_profile" />
         <item
-            android:id="@+id/nav_new_assignment"
+        android:id="@+id/nav_new_assignment"
 
-            android:title="@string/new_assignment" />
+        android:title="@string/new_assignment" />
+        <item
+            android:id="@+id/nav_see_school_week"
+
+            android:title="@string/calendarText" />
     </group>
 
     <item android:title="@string/feedback">
@@ -20,6 +24,14 @@
                 android:id="@+id/nav_leave_feedback"
                 android:icon="@drawable/ic_menu_send"
                 android:title="@string/leave_feedback" />
+            <item
+                android:id="@+id/nav_rate_app"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/rateAppText" />
+            <item
+                android:id="@+id/nav_contact_us"
+                android:icon="@drawable/ic_menu_send"
+                android:title="@string/contact_us" />
 
         </menu>
     </item>
