@@ -28,7 +28,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import ro.ase.codinquiz.quizapplication.Main.Entities.Test;
+
 import ro.ase.codinquiz.quizapplication.Main.Teacher.Adapters.QuestionsAdapter;
 import ro.ase.codinquiz.quizapplication.Main.Teacher.Adapters.SpinnerHintAdapter;
 import ro.ase.codinquiz.quizapplication.Main.Entities.Question;
@@ -37,11 +37,7 @@ import ro.ase.codinquiz.quizapplication.R;
 public class TeacherCreateTest extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public Spinner QuestionCategorySpinner ;
-    private ArrayList<Question> questionsList; // pe care il populam din baza de date in functie de id-ul autorului si drepturile pe care le are pentru intrebarile altor autori
-    public QuestionsAdapter questionsAdapter;
-    private ArrayAdapter<String> adapter;
-    private  ListView questionsListView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,14 +156,6 @@ public class TeacherCreateTest extends AppCompatActivity
         Boolean result = resultSw.isChecked();
         Boolean oneWay = true;
 
-        for (int i = 0; i < questionsListView.getCount(); i++) {
-            CheckBox cb =  questionsListView.getChildAt(i).findViewById(R.id.liCheckBox);
-            TextView tv =  questionsListView.getChildAt(i).findViewById(R.id.liQuestionNo);
-            String questionId = tv.getText().toString().substring(12);
-            if (cb.isChecked()) {
-                questionList.add(questionList.get(Integer.parseInt(questionId)));
-            }
-        }
 
         int time = numberPicker.getValue();
         //Test test = new Test(id generat din baza de date, "Test no. id", questionList, shuffle,  feedback, result,  time, oneWay)

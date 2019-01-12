@@ -16,17 +16,6 @@ public class Test implements Serializable {
     private boolean active;
     private int owner_id;
 
-    public Test(int id, String testName, List<Question> questionList, boolean shuffle, boolean feedback, boolean result, int time, boolean oneWay) {
-        this.id = id;
-        this.testName = testName;
-        this.questionList = questionList;
-        this.shuffle = shuffle;
-        this.feedback = feedback;
-        this.result = result;
-        this.time = time;
-        this.oneWay = oneWay;
-    }
-
     public Test(int id, String testName, List<Question> questionList, boolean shuffle, boolean feedback, boolean result, boolean oneWay, int time, int retries, boolean active, int owner_id) {
         this.id = id;
         this.testName = testName;

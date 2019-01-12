@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
+
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -49,9 +50,8 @@ public class TeacherExistingTests extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-
     }
+
 
     @Override
     public void onBackPressed() {
@@ -96,7 +96,7 @@ public class TeacherExistingTests extends AppCompatActivity
             mDotLayout.addView(mDots[i]);
         }
     }
-
+    
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
