@@ -17,6 +17,7 @@ public class JoinTestActivity extends AppCompatActivity {
 
     public static final String CODE="EXTRA_CODE";
     private String code;
+    private String studentName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,13 +33,16 @@ public class JoinTestActivity extends AppCompatActivity {
     public void onButtonStartClick(View view){
 
         EditText et=findViewById(R.id.editTestCode);
+        EditText et2 = findViewById(R.id.editStudentName);
 
         code=et.getText().toString();
+        studentName = et2.getText().toString();
         Choice c=new Choice("Test",true);
 
         Intent i=new Intent( this,StudentStartTestActivity.class);
         i.putExtra("CODE",code);
         i.putExtra("CHOICE",c);
+        i.putExtra("studentName", studentName);
         startActivity(i);
 
     }
