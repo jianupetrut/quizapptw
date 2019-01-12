@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -48,10 +49,24 @@ public class TeacherExistingTests extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        //button for opening the test options activity
 
+        selectTest=(Button)findViewById(R.id.btnSelectTest);
+        selectTest.setOnClickListener(new View.OnClickListener(){
 
+            @Override
+            public void onClick(View v) {
+                openTestOptions();
+            }
+        });
 
     }
+
+    private void openTestOptions() {
+        Intent intent = new Intent(this,TeacherTestOptions.class);
+        startActivity(intent);
+    }
+
 
     @Override
     public void onBackPressed() {
@@ -96,6 +111,7 @@ public class TeacherExistingTests extends AppCompatActivity
             mDotLayout.addView(mDots[i]);
         }
     }
+
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
