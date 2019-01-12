@@ -9,7 +9,7 @@
     tools:showIn="@layout/app_bar_teacher_share_test">
 
     <Button
-        android:id="@+id/buttonShareViaEmail"
+        android:id="@+id/buttonShareLDAPViaEmail"
         android:layout_width="97dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/buttonShareViaLDAP"
+        android:id="@+id/buttonShareViaEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
