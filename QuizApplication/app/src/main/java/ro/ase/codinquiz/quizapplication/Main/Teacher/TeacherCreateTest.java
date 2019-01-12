@@ -19,15 +19,17 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 import java.util.List;
 
+import ro.ase.codinquiz.quizapplication.Main.Teacher.Adapters.QuestionsAdapter;
 import ro.ase.codinquiz.quizapplication.Main.Teacher.Adapters.SpinnerHintAdapter;
-import ro.ase.codinquiz.quizapplication.Main.Teacher.Models.Question;
+import ro.ase.codinquiz.quizapplication.Main.Entities.Question;
 import ro.ase.codinquiz.quizapplication.R;
 
 public class TeacherCreateTest extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
 //    Spinner QuestionCategorySpinner = (Spinner) findViewById(R.id.spQuestionCategory);
-    private ArrayList<Question> questionsList; // pe care il populam din baza de date in functie de id-ul autorului si drepturile pe care le are pentru intrebarile altor autori
+    private List<Question> questionsList; // pe care il populam din baza de date in functie de id-ul autorului si drepturile pe care le are pentru intrebarile altor autori
+    public QuestionsAdapter questionsAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +62,10 @@ public class TeacherCreateTest extends AppCompatActivity
        // QuestionCategorySpinner.setAdapter(adapter);
       //  QuestionCategorySpinner.setSelection(adapter.getCount()); // show hint
 
+        questionsList = new ArrayList<>();
         ListView questionsListView = (ListView)findViewById(R.id.lvQuestions);
+        questionsAdapter = new QuestionsAdapter(getApplicationContext(),R.layout.question_listview_item, questionsList);
+        questionsListView.setAdapter(questionsAdapter);
 
     }
 

@@ -1,7 +1,6 @@
 package ro.ase.codinquiz.quizapplication.Main.OtherActivities;
 
 import android.content.Intent;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,5 +28,13 @@ public class ToDoActivity4 extends AppCompatActivity {
 
     }
 
+    public void navigateToMapsActivity(View view) {
+        Intent intent =
+                new Intent(ToDoActivity4.this,
+                        MapsActivity.class);
+            intent.putExtra("location",
+                    "Academia de Studii Economice din Bucuresti");
+        startActivity(intent);
+    }
 
 }

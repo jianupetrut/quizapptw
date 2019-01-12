@@ -30,6 +30,8 @@ public class StudentStartTestActivity extends AppCompatActivity {
 
         String testCode=intent.getStringExtra("CODE");
         Choice c=(Choice)intent.getSerializableExtra("CHOICE");
+        //------------------mockup data-------------------
+
         List<Answer> ansList1=new ArrayList<>();
         List<Answer> ansList2=new ArrayList<>();
         Answer ansList1answer1=new Answer(1,"Answer 1",true,1);
@@ -53,6 +55,8 @@ public class StudentStartTestActivity extends AppCompatActivity {
         List<Question> questions=new ArrayList<>();
         questions.add(q1);
         questions.add(q2);
+        //------------------mockup data-------------------
+
         String text="Now taking test " +testCode +" as primitive and we also passed choice: " +c.getContent()+ " as object";
         Toast.makeText(this,text,Toast.LENGTH_LONG).show();
         test=new Test(Integer.parseInt(testCode),"Test",questions,false,false,false,false,30,1,true);

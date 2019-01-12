@@ -113,6 +113,7 @@ public class StudentMain extends AppCompatActivity
         adapter=new FinishedTestsAdapter(this,R.layout.item_finishedtest,arrayOfWebData);
         adapter.notifyDataSetChanged();
         assignmentHistoryListView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
     @Override
