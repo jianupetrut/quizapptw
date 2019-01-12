@@ -43,6 +43,20 @@ teacher: profile + create test.
 08.01.2019
 George
 
-* Am terminat UI (cu exceptia quizzului in sine care va fi format din modale succesive) + styling refinements la final
+* Am terminat UI (cu exceptia quizului in sine care va fi format din modale succesive) + styling refinements la final
 * Probabil ca voi face niste date mockuite pe https://getsandbox.com/ pana reusim sa facem backendul
 * Left to do: Backend + DB
+
+09.01.2019 - 12.01.2019
+
+* UI: Quizul este gata (mai este loc de imbunatatiri), jumate din teacher este gata
+* Am creat baza de date. Am populat-o cu niste valori dummy.
+* Backend up and running here https://ide.c9.io/georgedobrin/quiz-app-api 
+* Get requests:
+  - https://quiz-app-api-georgedobrin.c9users.io/api/users
+  - https://quiz-app-api-georgedobrin.c9users.io/api/tests
+  - https://quiz-app-api-georgedobrin.c9users.io/api/questions
+  - https://quiz-app-api-georgedobrin.c9users.io/api/question_categories
+  - https://quiz-app-api-georgedobrin.c9users.io/api/answers
+  - https://quiz-app-api-georgedobrin.c9users.io/api/finished_tests
+  To do backend: create params for get requests
