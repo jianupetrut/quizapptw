@@ -68,6 +68,11 @@ public class TeacherCreateTest extends AppCompatActivity
 
         questionsList = new ArrayList<>();
 
+        Question q1=new Question("Cat1","Text for question 1",null,null);
+        Question q2=new Question("Cat1","text for question2",null,null);
+        questionsList.add(q1);
+        questionsList.add(q2);
+
         //Display hint text "Question categories" for spinner
         List<String> objects = new ArrayList<String>();
         objects.add("Category 1");
