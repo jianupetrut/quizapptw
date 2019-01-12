@@ -5,7 +5,7 @@ const bodyParser = require('body-parser')
 
 //define DBs
 
-const sequelize = new Sequelize('codindb', 'root', 'root', {
+const sequelize = new Sequelize('codindb', 'root', '', {
   dialect: 'mysql'
 })
 
@@ -46,6 +46,8 @@ const Questions = sequelize.define('questions', {
         type: Sequelize.TEXT   
     }
 })
+
+Questions.belongsTo(QuestionCategories, {foreignKey: 'question_category_id'});
 
 const Users = sequelize.define('users', {
     id: {
@@ -95,7 +97,7 @@ const Tests = sequelize.define('tests', {
     },
     questions_id: {
         //Sequelize does not have Array for mySQL, so i have to join and split all the ids
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
         get() {
             return this.getDataValue('questions_id').split(';')
         },
@@ -141,6 +143,8 @@ const Tests = sequelize.define('tests', {
 
 })
 
+Tests.belongsTo(Users, {foreignKey: 'owner_id'});
+
 const Answers = sequelize.define('answers', {
     id: {
         type: Sequelize.INTEGER,
@@ -167,6 +171,8 @@ const Answers = sequelize.define('answers', {
         }
     }
 })
+
+Answers.belongsTo(Questions, {foreignKey: 'question_id'});
 
 const FinishedTests = sequelize.define('finished_tests', {
     id: {
@@ -202,24 +208,29 @@ const FinishedTests = sequelize.define('finished_tests', {
     }
 })
 
+FinishedTests.belongsTo(Tests, {foreignKey: 'test_id'});
+
 const app = express()
 app.use(bodyParser.json())
 
 const port = process.env.PORT || 3001;
 
 app.get('/api/hello', (req, res) => {
-  res.send({ express: 'Hello From Express' });
+  res.send({ message: 'Welcome guys' });
 });
 
-app.get('/api/create', async (req, res) => {
+app.get('/api/create', async(req, res) => {
     //create DB
+    console.log('entered api/create')
 	try{
 		await sequelize.sync({force : true})
 		res.status(201).json({message : 'created'})
+		console.log('created')
 	}
 	catch(e){
 		console.warn(e)
 		res.status(500).json({message : 'server error'})
+		console.log('error')
 	}
 })
 
@@ -228,7 +239,32 @@ app.get('/api/users', (req, res) => {
     Users.findAll().then(users => res.json(users))
 })
 
-app.post('/api/students', async (req, res) => {
+app.get('/api/questions', (req, res) => {
+    //get users
+    Questions.findAll().then(questions => res.json(questions))
+})
+
+app.get('/api/tests', (req, res) => {
+    //get users
+    Tests.findAll().then(tests => res.json(tests))
+})
+
+app.get('/api/question_categories', (req, res) => {
+    //get users
+    QuestionCategories.findAll().then(questions => res.json(questions))
+})
+
+app.get('/api/finished_tests', (req, res) => {
+    //get users
+    FinishedTests.findAll().then(tests => res.json(tests))
+})
+
+app.get('/api/answers', (req, res) => {
+    //get users
+    Answers.findAll().then(answers => res.json(answers))
+})
+
+app.post('/api/users', async (req, res) => {
     //post users
 	try{
 		if (req.query.bulk && req.query.bulk == 'on'){
@@ -245,5 +281,96 @@ app.post('/api/students', async (req, res) => {
 		res.status(500).json({message : 'server error'})
 	}
 })
+
+app.post('/api/questions', async (req, res) => {
+    //post users
+	try{
+		if (req.query.bulk && req.query.bulk == 'on'){
+			await Questions.bulkCreate(req.body)
+			res.status(201).json({message : 'created'})
+		}
+		else{
+			await Questions.create(req.body)
+			res.status(201).json({message : 'created'})
+		}
+	}
+	catch(e){
+		console.warn(e)
+		res.status(500).json({message : 'server error'})
+	}
+})
+
+app.post('/api/question_categories', async (req, res) => {
+    //post users
+	try{
+		if (req.query.bulk && req.query.bulk == 'on'){
+			await QuestionCategories.bulkCreate(req.body)
+			res.status(201).json({message : 'created'})
+		}
+		else{
+			await QuestionCategories.create(req.body)
+			res.status(201).json({message : 'created'})
+		}
+	}
+	catch(e){
+		console.warn(e)
+		res.status(500).json({message : 'server error'})
+	}
+})
+
+app.post('/api/tests', async (req, res) => {
+    //post users
+	try{
+		if (req.query.bulk && req.query.bulk == 'on'){
+			await Tests.bulkCreate(req.body)
+			res.status(201).json({message : 'created'})
+		}
+		else{
+			await Tests.create(req.body)
+			res.status(201).json({message : 'created'})
+		}
+	}
+	catch(e){
+		console.warn(e)
+		res.status(500).json({message : 'server error'})
+	}
+})
+
+app.post('/api/finished_tests', async (req, res) => {
+    //post users
+	try{
+		if (req.query.bulk && req.query.bulk == 'on'){
+			await FinishedTests.bulkCreate(req.body)
+			res.status(201).json({message : 'created'})
+		}
+		else{
+			await FinishedTests.create(req.body)
+			res.status(201).json({message : 'created'})
+		}
+	}
+	catch(e){
+		console.warn(e)
+		res.status(500).json({message : 'server error'})
+	}
+})
+
+app.post('/api/answers', async (req, res) => {
+    //post users
+	try{
+		if (req.query.bulk && req.query.bulk == 'on'){
+			await Answers.bulkCreate(req.body)
+			res.status(201).json({message : 'created'})
+		}
+		else{
+			await Answers.create(req.body)
+			res.status(201).json({message : 'created'})
+		}
+	}
+	catch(e){
+		console.warn(e)
+		res.status(500).json({message : 'server error'})
+	}
+})
+
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
