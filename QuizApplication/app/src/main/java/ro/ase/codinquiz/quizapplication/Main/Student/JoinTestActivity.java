@@ -1,6 +1,7 @@
 package ro.ase.codinquiz.quizapplication.Main.Student;
 
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -37,13 +38,24 @@ public class JoinTestActivity extends AppCompatActivity {
 
         code=et.getText().toString();
         studentName = et2.getText().toString();
-        Choice c=new Choice("Test",true);
 
-        Intent i=new Intent( this,StudentStartTestActivity.class);
-        i.putExtra("CODE",code);
-        i.putExtra("CHOICE",c);
-        i.putExtra("studentName", studentName);
-        startActivity(i);
+        if("".equals(code) ||"".equals(studentName)) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle(R.string.error_text);
+            builder.setMessage("Both fields are mandatory!");
+            builder.setPositiveButton("OK", null);
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+        else {
+            Choice c = new Choice("Test", true);
+
+            Intent i = new Intent(this, StudentStartTestActivity.class);
+            i.putExtra("CODE", code);
+            i.putExtra("CHOICE", c);
+            i.putExtra("studentName", studentName);
+            startActivity(i);
+        }
 
     }
 

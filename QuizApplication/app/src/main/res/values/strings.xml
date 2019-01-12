@@ -71,6 +71,7 @@
     <string name="start">Start</string>
     <string name="enterTestCode">Enter test code</string>
     <string name="enterYourName">Enter your name</string>
+    <string name="error_text">Error</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
