@@ -6,7 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".Main.Teacher.TeacherSeeStatistics">
 
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/bargraph"
+        android:layout_width="match_parent"
+        android:layout_height="373dp"
+        app:layout_anchor="@+id/appBarLayout"
+        app:layout_anchorGravity="bottom|center"></com.github.mikephil.charting.charts.BarChart>
+
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/AppBarOverlay">
@@ -20,6 +28,10 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_teacher_see_statistics" />
+    <!--<include-->
+    <!--android:id="@+id/include"-->
+    <!--layout="@layout/content_teacher_see_statistics"-->
+    <!--android:layout_width="282dp"-->
+    <!--android:layout_height="95dp" />-->
 
 </android.support.design.widget.CoordinatorLayout>

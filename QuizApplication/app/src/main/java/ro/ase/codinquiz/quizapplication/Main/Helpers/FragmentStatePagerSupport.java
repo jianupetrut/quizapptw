@@ -104,12 +104,12 @@ public class FragmentStatePagerSupport extends Activity {
             return v;
         }
 
-//        @Override
-//        public void onActivityCreated(Bundle savedInstanceState) {
-//            super.onActivityCreated(savedInstanceState);
-//            setListAdapter(new ArrayAdapter<String>(getActivity(),
-//                    android.R.layout.simple_list_item_1,Q ));
-//        }
+        @Override
+        public void onActivityCreated(Bundle savedInstanceState) {
+            super.onActivityCreated(savedInstanceState);
+            setListAdapter(new ArrayAdapter<String>(getActivity(),
+                    android.R.layout.simple_list_item_1 ));
+        }
 
         @Override
         public void onListItemClick(ListView l, View v, int position, long id) {
