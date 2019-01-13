@@ -1,9 +1,12 @@
 package ro.ase.codinquiz.quizapplication.Main.Teacher;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Base64;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,9 +19,11 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +40,8 @@ public class TeacherCreateQuestion extends AppCompatActivity
 
     Spinner QuestionCategorySpinner = null;
     List<String> categories=null;
+    private static int RESULT_LOAD_IMAGE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +75,25 @@ public class TeacherCreateQuestion extends AppCompatActivity
      //  QuestionCategorySpinner.setSelection(adapter.getCount()-1); // show hint
     }
 
-    public void saveQuestion() {
+    public void addImage(View view) {
+        Intent gallery = new Intent(Intent.ACTION_GET_CONTENT);
+        gallery.setType("image/*");
+        startActivityForResult(gallery, RESULT_LOAD_IMAGE);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode == RESULT_LOAD_IMAGE && resultCode == RESULT_OK){
+            Uri imageUri = data.getData();
+            ImageView imageView = findViewById(R.id.ivAddedImage);
+            imageView.setImageURI(imageUri);
+        }
+    }
+
+    public void saveQuestion(View view) {
         List<Answer> answerList=null;
         TextView answer1TW=findViewById(R.id.textAnswer1);
         TextView answer2TW=findViewById(R.id.textAnswer2);
@@ -102,15 +127,25 @@ public class TeacherCreateQuestion extends AppCompatActivity
         answerList.add(answer2);
         answerList.add(answer3);
         answerList.add(answer4);
+
+        ImageView imageView = findViewById(R.id.ivAddedImage);
+        imageView.buildDrawingCache();
+        Bitmap bitmap = imageView.getDrawingCache();
+
+        ByteArrayOutputStream stream=new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream);
+        byte[] image=stream.toByteArray();
+        String img_str = Base64.encodeToString(image, 0);
+
         TextView questionTW=findViewById(R.id.textQuestion);
         TextView cat=findViewById(R.id.etCategory);
         if("".equals(cat.getText().toString())) {
-            Question question = new Question(QuestionCategorySpinner.getSelectedItem().toString(),questionTW.getText().toString(), answerList, null);
+            Question question = new Question(QuestionCategorySpinner.getSelectedItem().toString(),questionTW.getText().toString(), answerList, image);
         }
         else
         {
             categories.add(cat.getText().toString());
-            Question question = new Question(cat.getText().toString(), questionTW.getText().toString(),answerList, null);
+            Question question = new Question(cat.getText().toString(), questionTW.getText().toString(),answerList, image);
         }
     }
 
