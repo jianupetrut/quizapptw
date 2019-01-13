@@ -28,10 +28,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <!--<include-->
-    <!--android:id="@+id/include"-->
-    <!--layout="@layout/content_teacher_see_statistics"-->
-    <!--android:layout_width="282dp"-->
-    <!--android:layout_height="95dp" />-->
+    <include layout="@layout/content_teacher_see_statistics" />
 
 </android.support.design.widget.CoordinatorLayout>
