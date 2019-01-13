@@ -110,8 +110,9 @@ public class TeacherSeeStatistics extends AppCompatActivity
         finishedTests.add(finishedTest4);
         finishedTests.add(finishedTest5);
 
-       // FinishedTestListAdapter adapter = new FinishedTestListAdapter(this, R.layout.listview_average_grade_per_group,finishedTests);
-        //listView.setAdapter(adapter);
+        FinishedTestListAdapter adapter = new FinishedTestListAdapter(this, R.layout.listview_average_grade_per_group,finishedTests);
+        adapter.notifyDataSetChanged();
+        listView.setAdapter(adapter);
     }
 
     @Override
