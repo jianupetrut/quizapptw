@@ -14,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity2;
 import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity4;
@@ -51,6 +53,14 @@ public class TeacherShareTest extends AppCompatActivity
         });
 
 
+    }
+
+    public void shareTest(View view){
+        EditText et = findViewById(R.id.etEmail);
+        String email = et.getText().toString();
+        // post to db test with id of user with email from above
+
+        Toast.makeText(this,"Test shared with "+email,Toast.LENGTH_LONG).show();
     }
 
     @Override
