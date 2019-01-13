@@ -96,11 +96,11 @@ public class TeacherSeeStatistics extends AppCompatActivity
         ListView listView = (ListView) findViewById(R.id.listViewTeacherStatistics);
         Calendar myCalendar = new GregorianCalendar(2019, 2, 11);
 
-        FinishedTest finishedTest1 = new FinishedTest(1, 1, 9.5f, "dointa", "test0", myCalendar.getTime());
-        FinishedTest finishedTest2 = new FinishedTest(2, 2, 9.4f, "mara", "test0", myCalendar.getTime());
-        FinishedTest finishedTest3 = new FinishedTest(3, 3, 9.3f, "ioana", "test0", myCalendar.getTime());
-        FinishedTest finishedTest4 = new FinishedTest(4, 4, 9.2f, "maria", "test2", myCalendar.getTime());
-        FinishedTest finishedTest5 = new FinishedTest(5, 5, 9.1f, "raluca", "test2", myCalendar.getTime());
+        FinishedTest finishedTest1 = new FinishedTest(1, 1, 9, "dointa", "test0", myCalendar.getTime());
+        FinishedTest finishedTest2 = new FinishedTest(2, 2, 8, "mara", "test0", myCalendar.getTime());
+        FinishedTest finishedTest3 = new FinishedTest(3, 3, 3, "ioana", "test0", myCalendar.getTime());
+        FinishedTest finishedTest4 = new FinishedTest(4, 4, 5, "maria", "test2", myCalendar.getTime());
+        FinishedTest finishedTest5 = new FinishedTest(5, 5, 10, "raluca", "test2", myCalendar.getTime());
 
 
         ArrayList<FinishedTest> finishedTests = new ArrayList<FinishedTest>();

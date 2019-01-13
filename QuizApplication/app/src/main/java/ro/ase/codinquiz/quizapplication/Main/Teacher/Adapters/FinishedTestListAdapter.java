@@ -43,7 +43,7 @@ public class FinishedTestListAdapter extends ArrayAdapter<FinishedTest> {
 
         textViewTest.setText(testName);
         textViewName.setText(username);
-        String s = Float.toString(score);
+        String s = Integer.toString(score);
         textViewGrade.setText(s);
 
         return convertView;
