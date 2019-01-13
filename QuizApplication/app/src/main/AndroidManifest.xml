@@ -83,12 +83,18 @@
             android:name=".Main.Teacher.TeacherExistingTests"
             android:label="@string/title_activity_teacher_existing_tests"
             android:theme="@style/CodinTheme" />
-        <activity android:name=".Main.Student.StudentTestActivity" />
-        <activity android:name=".Main.Student.StudentStartTestActivity" />
-        <activity android:name=".Main.OtherActivities.ToDoActivity1" />
-        <activity android:name=".Main.OtherActivities.ToDoActivity2" />
-        <activity android:name=".Main.OtherActivities.ToDoActivity3" />
-        <activity android:name=".Main.OtherActivities.ToDoActivity4" />
+        <activity android:name=".Main.Student.StudentTestActivity"
+            android:theme="@style/CodinTheme"/>
+        <activity android:name=".Main.Student.StudentStartTestActivity"
+            android:theme="@style/CodinTheme"/>
+        <activity android:name=".Main.OtherActivities.ToDoActivity1"
+            android:theme="@style/CodinTheme"/>
+        <activity android:name=".Main.OtherActivities.ToDoActivity2"
+            android:theme="@style/CodinTheme"/>
+        <activity android:name=".Main.OtherActivities.ToDoActivity3"
+            android:theme="@style/CodinTheme"/>
+        <activity android:name=".Main.OtherActivities.ToDoActivity4"
+            android:theme="@style/CodinTheme"/>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
