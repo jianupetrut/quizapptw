@@ -1,7 +1,5 @@
 package ro.ase.codinquiz.quizapplication.Main.Entities;
 
-import android.media.Image;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -10,9 +8,9 @@ public class Question implements Serializable {
     private String category;
     private String text;
     private List<Answer> answerList;
-    private Image image;
+    private String image;
 
-    public Question(String category,String text, List<Answer> answerList, Image image) {
+    public Question(String category, String text, List<Answer> answerList, String image) {
         this.category = category;
         this.answerList = answerList;
         this.image = image;
@@ -27,11 +25,11 @@ public class Question implements Serializable {
         this.text = text;
     }
 
-    public Image getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

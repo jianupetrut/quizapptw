@@ -18,6 +18,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import ro.ase.codinquiz.quizapplication.Main.Entities.Answer;
 import ro.ase.codinquiz.quizapplication.Main.Entities.Category;
 import ro.ase.codinquiz.quizapplication.Main.Entities.FinishedTest;
 import ro.ase.codinquiz.quizapplication.Main.Entities.Question;
@@ -25,21 +26,68 @@ import ro.ase.codinquiz.quizapplication.Main.Entities.Test;
 import ro.ase.codinquiz.quizapplication.Main.Entities.User;
 
 public class APIFunctions {
-    private static final String questionsAddress="";
-    private static final String categoryAddress="";
-    private static final String finishedTestAddress="";
-    private static final String answerAddress="";//may not be needed
-    private static final String testAddress="";
-    private static final String userAddress="";
+    private static final String questionsAddress="https://quiz-app-api-georgedobrin.c9users.io/api/questions/%d";
+    private static final String categoryAddress="https://quiz-app-api-georgedobrin.c9users.io/api/question_categories/%d";
+    private static final String finishedTestAddress="https://quiz-app-api-georgedobrin.c9users.io/api/finished_tests/%d";
+    private static final String answerAddress="https://quiz-app-api-georgedobrin.c9users.io/api/answers/%d";
+    private static final String getAnswer_byQuestionIdAddress="https://quiz-app-api-georgedobrin.c9users.io/api/answers/question_id/%d";
+    private static final String testAddress="https://quiz-app-api-georgedobrin.c9users.io/api/tests/%d";
+    private static final String userAddress="https://quiz-app-api-georgedobrin.c9users.io/api/users/username/%d";
     HttpURLConnection connection=null;
 
+    public Answer retrieveAnswer(int answerId){
+
+        Answer answer=null;
+
+        try{
+            String address=String.format(answerAddress,answerId);
+            URL url = new URL(address);
+            connection=(HttpURLConnection)url.openConnection();
+            InputStream inputStream=connection.getInputStream();
+            BufferedReader reader=new BufferedReader(new InputStreamReader(inputStream));
+            StringBuilder stringBuilder=new StringBuilder();
+            String line=null;
+            while((line=reader.readLine())!=null){
+                stringBuilder.append(line);
+            }
+            String result=stringBuilder.toString();
+            JSONObject jsonObject=new JSONObject(result);
+
+            int id=Integer.parseInt(jsonObject.getString("id"+ ""));
+            String text=jsonObject.getString("question");
+            
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+        }
+
+
+        return null;
+
+    }
+    public Answer retrieveAnswer_byQuestionId(int questionId){
+        Answer answer=null;
+
+
+
+
+        return null;
+    }
     public void retrieveQuestion(int QuestionId,ArrayList<Question> questionArrayList){
         Question question=null;
 
 
         try{
-           //sa formatezi adresa astfel incat sa caute dupa id
-            URL url = new URL(questionsAddress);
+            String address=String.format(questionsAddress,QuestionId);//must work on get answers
+            URL url = new URL(address);
             connection=(HttpURLConnection)url.openConnection();
             InputStream inputStream=connection.getInputStream();
             BufferedReader reader=new BufferedReader(new InputStreamReader(inputStream));
@@ -85,10 +133,11 @@ public class APIFunctions {
 
     }
 
-    public Category retrieveCategory(int CategoryID){
+    public Category retrieveCategory(int CategoryID){//done
         Category category=null;
-        try{//format for category id
-            URL url = new URL(categoryAddress);
+        try{
+            String address=String.format(categoryAddress,CategoryID);
+            URL url = new URL(address);
             connection=(HttpURLConnection)url.openConnection();
             InputStream inputStream=connection.getInputStream();
             BufferedReader reader=new BufferedReader(new InputStreamReader(inputStream));
@@ -100,8 +149,8 @@ public class APIFunctions {
             String result=stringBuilder.toString();
             JSONObject jsonObject=new JSONObject(result);
 
-            int id=Integer.parseInt(jsonObject.getString("category"));
-            String text=jsonObject.getString("question");
+            int id=jsonObject.getInt("id");
+            String text=jsonObject.getString("category");
             category=new Category(id,text);
 
         } catch (MalformedURLException e) {
@@ -123,10 +172,10 @@ public class APIFunctions {
 
     }
 
-    public Test getTest(int testId){
+    public Test retrieveTest(int testId){//must work on getquestion
         Test test=new Test();
-        try{//format for test id
-            URL url = new URL(testAddress);
+        try{String address=String.format(testAddress,testId);
+            URL url = new URL(address);
             connection=(HttpURLConnection)url.openConnection();
             InputStream inputStream=connection.getInputStream();
             BufferedReader reader=new BufferedReader(new InputStreamReader(inputStream));
@@ -139,13 +188,19 @@ public class APIFunctions {
             JSONObject jsonObject=new JSONObject(result);
             JSONArray jsonArray=new JSONArray(jsonObject.getJSONArray("questions_id"));
             int[] questionIds=new int[jsonArray.length()];
+            ArrayList<Question> questions=new ArrayList<>();
             // ai putea sa faci un foreach si sa dai get pe fiecare question id
+
             for(int i=0;i<jsonArray.length();i++){
                 questionIds[i]=Integer.parseInt(((JSONObject)jsonArray.get(i)).getString(""));
 
             }
-            //set question ids
+            for (int questionId: questionIds
+                    ) {
 
+                retrieveQuestion(questionId,questions);
+
+            }
             int id=Integer.parseInt(jsonObject.getString("id"));
             String name=jsonObject.getString("test");
             boolean shuffle=jsonObject.getBoolean("shuffle");
@@ -158,7 +213,7 @@ public class APIFunctions {
             int owner_id=jsonObject.getInt("owner_id");
 
 
-            String text=jsonObject.getString("question");
+
 
 
         } catch (MalformedURLException e) {
@@ -174,14 +229,14 @@ public class APIFunctions {
         }
         return test;
     }
-    public FinishedTest getFinishedTest(int id){
+    public FinishedTest retrieveFinishedTest(int id){//done
 
         ArrayList<String> resultRow=new ArrayList<>();
 
         FinishedTest finishedTest=new FinishedTest();
 
-        try {//format adress
-            URL url=new URL(finishedTestAddress);
+        try {String address=String.format(finishedTestAddress,id);
+            URL url=new URL(address);
             connection= (HttpURLConnection) url.openConnection();
             InputStream inputStream=connection.getInputStream();
             BufferedReader reader=new BufferedReader(new InputStreamReader(inputStream));
@@ -227,11 +282,11 @@ public class APIFunctions {
         }
         return finishedTest;
     }
-    public User getUser(String username){
+    public User retrieveUser(String username){//done
         User user=new User();
         ArrayList<String> resultRow=new ArrayList<>();
-        try {//format adress
-            URL url=new URL(finishedTestAddress);
+        try {String address=String.format(userAddress,username);
+            URL url=new URL(address);
             connection= (HttpURLConnection) url.openConnection();
             InputStream inputStream=connection.getInputStream();
             BufferedReader reader=new BufferedReader(new InputStreamReader(inputStream));
