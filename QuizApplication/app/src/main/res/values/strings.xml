@@ -76,7 +76,7 @@
     <string name="existingTestAnswer">Answer</string>
     <string name="start">Start</string>
     <string name="textView_existingQuestions_Title">See Questions </string>
-<string name="buttonGenerateCode">Get code</string>
+    <string name="buttonGenerateCode">Get code</string>
     <string name="buttonSave">Save Test</string>
     <string name="npLabel2">Select maximum time(min)</string>
     <string name="editTimeLimit">Int Number</string>

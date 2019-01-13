@@ -16,6 +16,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
 
+        android:text="@string/getCode"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -31,8 +32,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="36dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="7dp"
 
+        android:text="@string/buttonSave"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textSize="18sp"
         android:textStyle="bold"
