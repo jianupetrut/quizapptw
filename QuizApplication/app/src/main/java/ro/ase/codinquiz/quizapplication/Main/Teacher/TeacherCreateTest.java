@@ -179,6 +179,10 @@ public class TeacherCreateTest extends AppCompatActivity
         int time = numberPicker.getValue();
         //Test test = new Test(id generat din baza de date, "Test no. id", questionList, shuffle,  feedback, result,  time, oneWay)
             //push test to db
+
+        Toast.makeText(this,"A new test has successfully been created",Toast.LENGTH_LONG).show();
+        Intent intent =new Intent(this,TeacherExistingTests.class);
+        startActivity(intent);
     }
 
 

@@ -47,10 +47,12 @@ public class LoginActivity extends AppCompatActivity {
         EditText et = findViewById(R.id.inputEmail);
         String name;
         name = et.getText().toString();
-        SharedPreferences sp = getApplication().getSharedPreferences("cOdin", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString("username", name);
-        editor.commit();
+        if(name!=null) {
+            SharedPreferences sp = getApplication().getSharedPreferences("cOdin", MODE_PRIVATE);
+            SharedPreferences.Editor editor = sp.edit();
+            editor.putString("username", name);
+            editor.commit();
+        }
 
         if(sw.isChecked()){
             openTeacherActivity(view);

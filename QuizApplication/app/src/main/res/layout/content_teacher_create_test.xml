@@ -70,10 +70,9 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintHorizontal_bias="0.233"
         app:layout_constraintStart_toEndOf="@+id/npLabel"
-        app:layout_constraintTop_toBottomOf="@+id/switchResult"></NumberPicker>
+        app:layout_constraintTop_toBottomOf="@+id/switchResult"/>
 
     <TextView
         android:id="@+id/npLabel"
@@ -82,7 +81,7 @@
         android:layout_marginStart="48dp"
         android:layout_marginTop="24dp"
         android:labelFor="@id/numberPicker"
-        android:text="Select maximum time(min)"
+        android:text="@string/selectMaxTime"
         android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="18sp"
         android:textStyle="bold"
