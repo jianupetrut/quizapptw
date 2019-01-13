@@ -41,6 +41,17 @@ public class LoginActivity extends AppCompatActivity {
 
     public void loginChecker(View view){
         Switch sw=(Switch)findViewById(R.id.switchLogin);
+
+        //here check if username with correct password are in db
+
+        EditText et = findViewById(R.id.editStudentName);
+        String name;
+        name = et.getText().toString();
+        SharedPreferences sp = getApplication().getSharedPreferences("cOdin", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("username", name);
+        editor.commit();
+
         if(sw.isChecked()){
             openTeacherActivity(view);
 
@@ -61,13 +72,5 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-
-        EditText et = findViewById(R.id.editStudentName);
-        String name;
-        name = et.getText().toString();
-        SharedPreferences sp = getApplication().getSharedPreferences("cOdin", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sp.edit();
-        editor.putString("username", name);
-        editor.commit();
     }
 }
