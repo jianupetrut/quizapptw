@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -17,6 +18,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import ro.ase.codinquiz.quizapplication.Main.Entities.Answer;
@@ -29,6 +31,7 @@ import ro.ase.codinquiz.quizapplication.Main.Entities.User;
 public class APIFunctions {
     private static final String questionsAddress="https://quiz-app-api-georgedobrin.c9users.io/api/questions/%d";
     private static final String categoryAddress="https://quiz-app-api-georgedobrin.c9users.io/api/question_categories/%d";
+    private static final String categoryPostAddress="https://quiz-app-api-georgedobrin.c9users.io/api/question_categories";
     private static final String finishedTestAddress="https://quiz-app-api-georgedobrin.c9users.io/api/finished_tests/owner_id/%d";
     private static final String finishedTestAddress_byUsername="https://quiz-app-api-georgedobrin.c9users.io/api/finished_tests/username/%s";
    // private static final String answerAddress="https://quiz-app-api-georgedobrin.c9users.io/api/answers/%d";
@@ -199,7 +202,47 @@ public class APIFunctions {
 
     public void postCategory(Category category){
 
+        try{
+
+
+            URL url = new URL(categoryPostAddress);
+            connection=(HttpURLConnection)url.openConnection();
+            connection.setDoOutput(true);
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Accept","application/json");
+            connection.setChunkedStreamingMode(0);
+            JSONObject jsonObject=new JSONObject();
+
+            jsonObject.put("category",category.getName());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+            String date=sdf.format(Calendar.getInstance().getTimeInMillis()).toString();
+            jsonObject.put("createdAt", date);
+            jsonObject.put("updatedAt", date);
+
+            String string=jsonObject.toString();
+            DataOutputStream os=new DataOutputStream(connection.getOutputStream());
+
+            os.writeBytes(string);
+
+            os.close();
+
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+        }
+
     }
+
+
 
     public List<Test> retrieveTest_All(int ownerId){
         List<Test> testList=new ArrayList<>();
