@@ -140,12 +140,12 @@ public class TeacherCreateQuestion extends AppCompatActivity
         TextView questionTW=findViewById(R.id.textQuestion);
         TextView cat=findViewById(R.id.etCategory);
         if("".equals(cat.getText().toString())) {
-            Question question = new Question(QuestionCategorySpinner.getSelectedItem().toString(),questionTW.getText().toString(), answerList, image);
+            Question question = new Question(QuestionCategorySpinner.getSelectedItem().toString(),questionTW.getText().toString(), answerList, img_str);
         }
         else
         {
             categories.add(cat.getText().toString());
-            Question question = new Question(cat.getText().toString(), questionTW.getText().toString(),answerList, image);
+            Question question = new Question(cat.getText().toString(), questionTW.getText().toString(),answerList, img_str);
         }
     }
 
