@@ -83,7 +83,7 @@
         android:layout_marginTop="24dp"
         android:labelFor="@id/numberPicker"
         android:text="Select maximum time(min)"
-        android:textColor="@android:color/background_dark"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -118,7 +118,8 @@
         app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spQuestionCategory"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        />
 
     <Button
         android:id="@+id/btnCreateTest"
