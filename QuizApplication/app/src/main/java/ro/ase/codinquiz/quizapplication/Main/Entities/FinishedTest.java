@@ -27,9 +27,8 @@ public class FinishedTest {
     }
 
 
+
     public FinishedTest(int id, int test_id, int score, String username, String testName, Date date) {
-=======
-    public FinishedTest(int id, int test_id, float score, String username, String testName, Date date) {
 
 
         this.id = id;

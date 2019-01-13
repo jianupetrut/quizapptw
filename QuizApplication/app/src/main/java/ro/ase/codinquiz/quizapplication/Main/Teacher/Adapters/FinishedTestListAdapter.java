@@ -32,7 +32,7 @@ public class FinishedTestListAdapter extends ArrayAdapter<FinishedTest> {
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         String username=getItem(position).getUsername();
         String testName=getItem(position).getTestName();
-        float score=getItem(position).getScore();
+        int score=getItem(position).getScore();
         Calendar calendar= new GregorianCalendar(2019,1,1);
      FinishedTest finishedTest=new FinishedTest(1,1,score,username,testName,calendar.getTime());
         LayoutInflater inflater=LayoutInflater.from(context);
