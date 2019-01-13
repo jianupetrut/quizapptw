@@ -19,5 +19,6 @@
         android:layout_below="@+id/text"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="36dp"
-        android:src="@drawable/ic_menu_camera" />
+        android:src="@drawable/ic_menu_camera"
+        android:contentDescription="@string/todo" />
 </RelativeLayout>

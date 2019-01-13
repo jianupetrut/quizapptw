@@ -84,5 +84,8 @@
     <string name="title_activity_maps">Map</string>
     <string name="helloworld">Text to be replaced</string>
     <string name="take_test">Take Test</string>
+    <string name="swipe_right_or_left_to_see_questions"><![CDATA[Swipe Right or Left to see questions ->]]></string>
+    <string name="submit_answer">Submit Answer</string>
+    <string name="todo">TODO</string>
 
 </resources>
