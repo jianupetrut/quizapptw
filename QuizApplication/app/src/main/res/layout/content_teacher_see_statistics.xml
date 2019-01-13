@@ -13,6 +13,12 @@
         android:layout_height="match_parent"
         android:id="@+id/bargraph"></com.github.mikephil.charting.charts.BarChart>
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/listViewTeacherStatistics"
+        ></ListView>
+
 
 
 </android.support.constraint.ConstraintLayout>

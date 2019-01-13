@@ -1,9 +1,12 @@
 package ro.ase.codinquiz.quizapplication.Main.Teacher;
 
+import android.content.ClipData;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,7 +16,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -24,7 +34,10 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
+import ro.ase.codinquiz.quizapplication.Main.Entities.FinishedTest;
 import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity2;
 import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity4;
 import ro.ase.codinquiz.quizapplication.R;
@@ -34,6 +47,7 @@ public class TeacherSeeStatistics extends AppCompatActivity
 
     private BarChart barChart;
     private ArrayList<String> tests;
+
 
 
     @Override
@@ -79,7 +93,13 @@ public class TeacherSeeStatistics extends AppCompatActivity
         barChart.setFitBars(true);
         barChart.invalidate();
 
+        ListView listView=(ListView)findViewById(R.id.listViewTeacherStatistics);
+        Calendar myCalendar = new GregorianCalendar(2014, 2, 11);
+
+        //FinishedTest finishedTest1=new FinishedTest(1,1,9.5f,"doinita","test0",myCalendar.getTime());
+
     }
+
 
     @Override
     public void onBackPressed() {
