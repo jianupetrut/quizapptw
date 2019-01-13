@@ -40,6 +40,7 @@ import java.util.GregorianCalendar;
 import ro.ase.codinquiz.quizapplication.Main.Entities.FinishedTest;
 import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity2;
 import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity4;
+import ro.ase.codinquiz.quizapplication.Main.Teacher.Adapters.FinishedTestListAdapter;
 import ro.ase.codinquiz.quizapplication.R;
 
 public class TeacherSeeStatistics extends AppCompatActivity
@@ -58,7 +59,6 @@ public class TeacherSeeStatistics extends AppCompatActivity
         setSupportActionBar(toolbar);
 
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -68,23 +68,23 @@ public class TeacherSeeStatistics extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        barChart=(BarChart)findViewById(R.id.bargraph);
-        ArrayList<BarEntry> barEntries=new ArrayList<>();
-        barEntries.add(new BarEntry(64f,5));
-        barEntries.add(new BarEntry(58f,6));
-        barEntries.add(new BarEntry(47f,5));
-        barEntries.add(new BarEntry(60f,8));
+        barChart = (BarChart) findViewById(R.id.bargraph);
+        ArrayList<BarEntry> barEntries = new ArrayList<>();
+        barEntries.add(new BarEntry(64f, 5));
+        barEntries.add(new BarEntry(58f, 6));
+        barEntries.add(new BarEntry(47f, 5));
+        barEntries.add(new BarEntry(60f, 8));
 
 
-        BarDataSet barDataSet = new BarDataSet(barEntries,"Tests");
+        BarDataSet barDataSet = new BarDataSet(barEntries, "Tests");
 
-        tests=new ArrayList<>();
+        tests = new ArrayList<>();
         tests.add("Test 1");
         tests.add("Test 2");
         tests.add("Test 3");
         tests.add("Test 4");
         barChart.setFitsSystemWindows(true);
-        Description description= new Description();
+        Description description = new Description();
         description.setText("This is the chart where you can see the average grade of all tests");
         barChart.setDescription(description);
         BarData data = new BarData(barDataSet);
@@ -93,13 +93,26 @@ public class TeacherSeeStatistics extends AppCompatActivity
         barChart.setFitBars(true);
         barChart.invalidate();
 
-        ListView listView=(ListView)findViewById(R.id.listViewTeacherStatistics);
-        Calendar myCalendar = new GregorianCalendar(2014, 2, 11);
+        ListView listView = (ListView) findViewById(R.id.listViewTeacherStatistics);
+        Calendar myCalendar = new GregorianCalendar(2019, 2, 11);
 
-        //FinishedTest finishedTest1=new FinishedTest(1,1,9.5f,"doinita","test0",myCalendar.getTime());
+        FinishedTest finishedTest1 = new FinishedTest(1, 1, 9.5f, "dointa", "test0", myCalendar.getTime());
+        FinishedTest finishedTest2 = new FinishedTest(2, 2, 9.4f, "mara", "test0", myCalendar.getTime());
+        FinishedTest finishedTest3 = new FinishedTest(3, 3, 9.3f, "ioana", "test0", myCalendar.getTime());
+        FinishedTest finishedTest4 = new FinishedTest(4, 4, 9.2f, "maria", "test2", myCalendar.getTime());
+        FinishedTest finishedTest5 = new FinishedTest(5, 5, 9.1f, "raluca", "test2", myCalendar.getTime());
 
+
+        ArrayList<FinishedTest> finishedTests = new ArrayList<FinishedTest>();
+        finishedTests.add(finishedTest1);
+        finishedTests.add(finishedTest2);
+        finishedTests.add(finishedTest3);
+        finishedTests.add(finishedTest4);
+        finishedTests.add(finishedTest5);
+
+        FinishedTestListAdapter adapter = new FinishedTestListAdapter(this, R.layout.listview_average_grade_per_group,finishedTests);
+        listView.setAdapter(adapter);
     }
-
 
     @Override
     public void onBackPressed() {
