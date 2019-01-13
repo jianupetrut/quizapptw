@@ -20,9 +20,12 @@ public class ToDoActivity4 extends AppCompatActivity {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                Intent mailClient = new Intent(Intent.ACTION_VIEW);
+                /*Intent mailClient = new Intent(Intent.ACTION_VIEW);
                 mailClient.setClassName("com.google.android.gm", "com.google.android.gm.ConversationListActivity");
                 startActivity(mailClient);
+                */
+                Intent intent = getPackageManager().getLaunchIntentForPackage("com.google.android.gm");
+                startActivity(intent);
             }});
         thread.start();
 
