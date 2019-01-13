@@ -66,22 +66,22 @@ public class StudentTestActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            switch (position) {
-                case 0: // Fragment # 0 - This will show image
-                     return ImageFragment.init(position);
-
-                case 1: // Fragment # 1 - This will show image
-                      return ImageFragment.init(position);
-
-                default:// Fragment # 2-9 - Will show list
-                      return ArrayListFragment.init(position, Test[0]);
-            }
-//            if(Test[0].getQuestionList().get(position).getImage()!=null){
-//                return ImageFragment.init(position);
+//            switch (position) {
+//                case 0: // Fragment # 0 - This will show image
+//                     return ImageFragment.init(position);
 //
-//            }else{
-//                return ArrayListFragment.init(position, Test[0]);
+//                case 1: // Fragment # 1 - This will show image
+//                      return ImageFragment.init(position);
+//
+//                default:// Fragment # 2-9 - Will show list
+//                      return ArrayListFragment.init(position, Test[0]);
 //            }
+            if(Test[0].getQuestionList().get(position).getImage()!=null){
+                return ImageFragment.init(position);
+
+            }else{
+                return ArrayListFragment.init(position, Test[0]);
+            }
         }
 
         @Override
