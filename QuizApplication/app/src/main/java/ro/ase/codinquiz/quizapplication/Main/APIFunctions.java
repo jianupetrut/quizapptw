@@ -35,32 +35,24 @@ public class APIFunctions {
     private static final String userAddress="https://quiz-app-api-georgedobrin.c9users.io/api/users/username/%d";
     HttpURLConnection connection=null;
 
-    public Answer retrieveAnswer(int answerId){
+    public Answer retrieveAnswer(int answerId,HttpURLConnection connection,JSONArray jsonArray,int jsonArrayPosition){
 
         Answer answer=null;
 
         try{
-            String address=String.format(answerAddress,answerId);
-            URL url = new URL(address);
-            connection=(HttpURLConnection)url.openConnection();
-            InputStream inputStream=connection.getInputStream();
-            BufferedReader reader=new BufferedReader(new InputStreamReader(inputStream));
-            StringBuilder stringBuilder=new StringBuilder();
-            String line=null;
-            while((line=reader.readLine())!=null){
-                stringBuilder.append(line);
-            }
-            String result=stringBuilder.toString();
-            JSONObject jsonObject=new JSONObject(result);
 
-            int id=Integer.parseInt(jsonObject.getString("id"+ ""));
-            String text=jsonObject.getString("question");
-            
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+                JSONObject jsonObject = jsonArray.getJSONObject(jsonArrayPosition);
+                int id=jsonObject.getInt("id");
+                String text_answer=jsonObject.getString("answer");
+                boolean isCorrect=jsonObject.getBoolean("isCorrect");
+                int question_id=jsonObject.getInt("question_id");
+                answer=new Answer(id,text_answer,isCorrect,question_id);
+
+
+
+
+
         } catch (JSONException e) {
             e.printStackTrace();
         }finally {
@@ -70,7 +62,7 @@ public class APIFunctions {
         }
 
 
-        return null;
+        return answer;
 
     }
     public Answer retrieveAnswer_byQuestionId(int questionId){
