@@ -73,5 +73,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_question_to_test">Add Question to Test</string>
     <string name="title_activity_maps">Map</string>
+    <string name="helloworld">Text to be replaced</string>
+    <string name="take_test">Take Test</string>
 
 </resources>
