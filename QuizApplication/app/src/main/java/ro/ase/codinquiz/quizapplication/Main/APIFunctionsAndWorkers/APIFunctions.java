@@ -33,7 +33,7 @@ public class APIFunctions {
     private static final String finishedTestAddress_byUsername="https://quiz-app-api-georgedobrin.c9users.io/api/finished_tests/username/%s";
    // private static final String answerAddress="https://quiz-app-api-georgedobrin.c9users.io/api/answers/%d";
     private static final String getAnswer_byQuestionIdAddress="https://quiz-app-api-georgedobrin.c9users.io/api/answers/question_id/%d";
-    private static final String testAddress="https://quiz-app-api-georgedobrin.c9users.io/api/tests/%d";
+    private static final String testAddress="https://quiz-app-api-georgedobrin.c9users.io/api/tests/owner_id/%d";
     private static final String userAddress="https://quiz-app-api-georgedobrin.c9users.io/api/users/username/%s";
     HttpURLConnection connection=null;
 
@@ -134,11 +134,12 @@ public class APIFunctions {
 
             answerList=retrieveAnswers_byQuestionId(question_id);
 
-            question.setCategory(category.getName());
+            question=new Question(category.getName(),text,answerList,image);
+
             question.setId(question_id);
-            question.setAnswerList(answerList);
-            question.setText(text);
-            question.setImage(image);
+
+
+
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -200,8 +201,9 @@ public class APIFunctions {
 
     }
 
-    public Test retrieveTest(int ownerId){//must work on getquestion
-        Test test=new Test();
+    public List<Test> retrieveTest_All(int ownerId){
+        List<Test> testList=new ArrayList<>();
+
         try{String address=String.format(testAddress,ownerId);
             URL url = new URL(address);
             connection=(HttpURLConnection)url.openConnection();
@@ -213,13 +215,40 @@ public class APIFunctions {
                 stringBuilder.append(line);
             }
             String result=stringBuilder.toString();
-            JSONObject jsonObject=new JSONObject(result);
-            JSONArray jsonArray=new JSONArray(jsonObject.getJSONArray("questions_id"));
-            int[] questionIds=new int[jsonArray.length()];
-            ArrayList<Question> questions=new ArrayList<>();
+
+            JSONArray jsonArray=new JSONArray(result);
 
             for(int i=0;i<jsonArray.length();i++){
-                questionIds[i]=Integer.parseInt(((JSONObject)jsonArray.get(i)).getString(""));
+                testList.add(retrieveTest(jsonArray,i));
+            }
+
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+        }
+        return testList;
+    }
+    public Test retrieveTest(JSONArray jsonArray,int jsonArrayPosition){
+        Test test=new Test();
+        try{
+            JSONObject jsonObject=(JSONObject)jsonArray.get(jsonArrayPosition);
+
+            String questionIdsString=jsonObject.getString("questions_id").replaceAll("\\D+","");
+            String[] separated=questionIdsString.split("(?!^)");
+
+            int[] questionIds=new int[separated.length];
+            ArrayList<Question> questions=new ArrayList<>();
+
+           for(int i=0;i<separated.length;i++){
+              questionIds[i]=Integer.parseInt(separated[i]);
 
             }
             for (int questionId: questionIds
@@ -251,10 +280,6 @@ public class APIFunctions {
             test.setTestName(name);
 
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         } catch (JSONException e) {
             e.printStackTrace();
         }finally {
@@ -268,6 +293,7 @@ public class APIFunctions {
 
         List<FinishedTest> finishedTests=new ArrayList<>();
         try {
+
             String address = String.format(finishedTestAddress_byUsername, username);
             URL url = new URL(address);
             connection = (HttpURLConnection) url.openConnection();

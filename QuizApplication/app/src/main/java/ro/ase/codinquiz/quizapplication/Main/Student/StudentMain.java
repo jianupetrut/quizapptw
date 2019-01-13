@@ -18,7 +18,8 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import ro.ase.codinquiz.quizapplication.Main.APIFunctionsAndWorkers.WorkerRetrieveFinishedTest_All;
-import ro.ase.codinquiz.quizapplication.Main.APIFunctionsAndWorkers.WorkerRetrieveTest;
+
+import ro.ase.codinquiz.quizapplication.Main.APIFunctionsAndWorkers.WorkerRetrieveTest_All;
 import ro.ase.codinquiz.quizapplication.Main.Adapters.FinishedTestsAdapter;
 import ro.ase.codinquiz.quizapplication.Main.Entities.FinishedTest;
 import ro.ase.codinquiz.quizapplication.Main.Entities.Test;
@@ -72,15 +73,15 @@ public class StudentMain extends AppCompatActivity
         adapter.notifyDataSetChanged();
         assignmentHistoryListView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        Test test;
-        WorkerRetrieveTest workerRetrieveTest=new WorkerRetrieveTest(getApplicationContext());
-        try {
-            test=workerRetrieveTest.execute().get().get(0);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
+//        List<Test> tests=new ArrayList<>();
+//        WorkerRetrieveTest_All workerRetrieveTest=new WorkerRetrieveTest_All(getApplicationContext());
+//        try {
+//            tests.add(workerRetrieveTest.execute(tests).get().get(0));
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        }
     }
 
     @Override
