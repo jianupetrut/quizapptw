@@ -19,14 +19,20 @@ import ro.ase.codinquiz.quizapplication.R;
 
 public class LoginActivity extends AppCompatActivity {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        EditText et = findViewById(R.id.inputEmail);
 
+        final SharedPreferences sp = getApplication().getSharedPreferences("cOdin", MODE_PRIVATE);
+        String name = sp.getString("username", null);
+        if(name != null) {
+            et.setText(name);
+        }
     }
+
     public void joinTest(View view){
         Intent intent = new Intent(this, JoinTestActivity.class);
         startActivity(intent);

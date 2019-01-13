@@ -25,6 +25,8 @@ import com.github.mikephil.charting.data.BarEntry;
 
 import java.util.ArrayList;
 
+import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity2;
+import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity4;
 import ro.ase.codinquiz.quizapplication.R;
 
 public class TeacherSeeStatistics extends AppCompatActivity
@@ -139,7 +141,17 @@ public class TeacherSeeStatistics extends AppCompatActivity
         }else if (id == R.id.nav_share) {
             Intent intent = new Intent(this, TeacherShareTest.class);
             startActivity(intent);
+        }else if (id == R.id.nav_see_statistics) {
+            Intent intent = new Intent(this, TeacherSeeStatistics.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_rate_app) {
+            Intent intent = new Intent(this, ToDoActivity2.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_contact_us) {
+            Intent intent = new Intent(this, ToDoActivity4.class);
+            startActivity(intent);
         }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
