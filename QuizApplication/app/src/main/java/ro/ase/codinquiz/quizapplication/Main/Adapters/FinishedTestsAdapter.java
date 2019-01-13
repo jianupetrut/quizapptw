@@ -36,8 +36,8 @@ public class FinishedTestsAdapter extends ArrayAdapter<FinishedTest> {
         TextView numberTW =convertView.findViewById(R.id.finishedTestNumberTextView);
         numberTW.setText("#"+test.getId());
         TextView testIdTW=convertView.findViewById(R.id.finishedTestNameTextView);
-        testIdTW.setText(test.getTest_id());
-        DateFormat df=new SimpleDateFormat("dd/MM/yyyy");
+        testIdTW.setText(test.getTest_id()+"");
+        DateFormat df=new SimpleDateFormat("dd.MM.yyyy");
         TextView dateTW=convertView.findViewById(R.id.finishedTestDateTextView);
         dateTW.setText(df.format(test.getDate()));
         TextView scoreTW=convertView.findViewById(R.id.finishedTestScoreTextView);
