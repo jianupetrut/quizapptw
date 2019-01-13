@@ -24,13 +24,13 @@
             android:title="@string/assignment_history" />
         <item
             android:id="@+id/nav_share"
-            android:title="Share test"/>
+            android:title="@string/shareTest"/>
         <item
             android:id="@+id/nav_see_statistics"
-            android:title="Test Statistics"/>
+            android:title="@string/test_statistics"/>
     </group>
 
-    <item android:title="Feedback">
+    <item android:title="@string/feedback">
         <menu>
             <item
                 android:id="@+id/nav_leave_feedback"

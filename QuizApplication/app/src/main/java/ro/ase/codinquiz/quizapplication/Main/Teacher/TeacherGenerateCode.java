@@ -14,6 +14,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity2;
+import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity4;
 import ro.ase.codinquiz.quizapplication.R;
 
 public class TeacherGenerateCode extends AppCompatActivity
@@ -75,11 +77,13 @@ public class TeacherGenerateCode extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+
         if (id == R.id.nav_create_new_test) {
             Intent intent =new Intent(this,TeacherCreateTest.class);
             startActivity(intent);
         } else if (id == R.id.nav_existing_tests) {
-
+            Intent intent =new Intent(this,TeacherExistingTests.class);
+            startActivity(intent);
         } else if (id == R.id.nav_create_new_question) {
             Intent intent =new Intent(this,TeacherCreateQuestion.class);
             startActivity(intent);
@@ -95,7 +99,17 @@ public class TeacherGenerateCode extends AppCompatActivity
         }else if (id == R.id.nav_share) {
             Intent intent = new Intent(this, TeacherShareTest.class);
             startActivity(intent);
+        }else if (id == R.id.nav_see_statistics) {
+            Intent intent = new Intent(this, TeacherSeeStatistics.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_rate_app) {
+            Intent intent = new Intent(this, ToDoActivity2.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_contact_us) {
+            Intent intent = new Intent(this, ToDoActivity4.class);
+            startActivity(intent);
         }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
