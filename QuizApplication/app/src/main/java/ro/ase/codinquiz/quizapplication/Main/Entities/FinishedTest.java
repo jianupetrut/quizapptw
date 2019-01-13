@@ -5,7 +5,7 @@ import java.util.Date;
 public class FinishedTest {
     private int id;
     private int test_id;
-    private float score;
+    private int score;
     private String username;
     private String testName;
     private Date date;
@@ -26,7 +26,7 @@ public class FinishedTest {
         this.testName = testName;
     }
 
-    public FinishedTest(int id, int test_id, float score, String username, String testName, Date date) {
+    public FinishedTest(int id, int test_id, int score, String username, String testName, Date date) {
 
         this.id = id;
         this.test_id = test_id;
@@ -55,11 +55,11 @@ public class FinishedTest {
         this.test_id = name;
     }
 
-    public float getScore() {
+    public int getScore() {
         return score;
     }
 
-    public void setScore(float score) {
+    public void setScore(int score) {
         this.score = score;
     }
 
