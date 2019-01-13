@@ -94,7 +94,7 @@ public class Test implements Serializable {
         this.feedback = feedback;
     }
 
-    public boolean isResult() {
+    public boolean getResult() {
         return result;
     }
 
