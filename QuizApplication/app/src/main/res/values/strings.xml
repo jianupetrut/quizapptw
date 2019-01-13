@@ -75,6 +75,12 @@
     <string name="existingTestQuestion">Question</string>
     <string name="existingTestAnswer">Answer</string>
     <string name="start">Start</string>
+    <string name="textView_existingQuestions_Title">See Questions </string>
+<string name="buttonGenerateCode">Get code</string>
+    <string name="buttonSave">Save Test</string>
+    <string name="npLabel2">Select maximum time(min)</string>
+    <string name="editTimeLimit">Int Number</string>
+    <string name="textView_existingQuestions_SelectTest">Select test </string>
     <string name="enterTestCode">Enter test code</string>
     <string name="enterYourName">Enter your name</string>
     <string name="error_text">Error</string>
