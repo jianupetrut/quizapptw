@@ -44,6 +44,8 @@
     <string name="title_activity_teacher_share_test">TeacherShareTest</string>
     <string name="title_activity_teacher_see_statistics">TeacherSeeStatistics</string>
     <string name="title_activity_teacher_existing_tests">Select one of the existing tests: </string>
+    <string name="btnSelectTest">SELECT TEST</string>
+    <string name="btnTakeTest">Take test</string>
     <string name="downloadStudents">Download List of Students</string>
     <string name="rateAppText">Rate the application</string>
     <string name="rate1">How easy it is to use the app?</string>
