@@ -27,7 +27,11 @@ public class Test implements Serializable {
         this.oneWay = oneWay;
     }
 
+    public Test() {
+    }
+
     public Test(int id, String testName, List<Question> questionList, boolean shuffle, boolean feedback, boolean result, boolean oneWay, int time, int retries, boolean active, int owner_id) {
+
         this.id = id;
         this.testName = testName;
         this.questionList = questionList;
