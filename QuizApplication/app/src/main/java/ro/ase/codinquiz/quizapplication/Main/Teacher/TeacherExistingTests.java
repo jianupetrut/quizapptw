@@ -19,6 +19,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import ro.ase.codinquiz.quizapplication.Main.Entities.Answer;
+import ro.ase.codinquiz.quizapplication.Main.Entities.Question;
+import ro.ase.codinquiz.quizapplication.Main.Entities.Test;
+import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity2;
+import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity4;
 import ro.ase.codinquiz.quizapplication.Main.Teacher.Adapters.SliderAdapter;
 import ro.ase.codinquiz.quizapplication.R;
 
