@@ -97,5 +97,9 @@
     <string name="swipe_right_or_left_to_see_questions"><![CDATA[Swipe Right or Left to see questions ->]]></string>
     <string name="submit_answer">Submit Answer</string>
     <string name="todo">TODO</string>
+    <string name="textview2">TextView2</string>
+    <string name="textview1">TextView1</string>
+    <string name="textview3">TextView3</string>
+    <string name="buttonSaveGrades">Save Data</string>
 
 </resources>
