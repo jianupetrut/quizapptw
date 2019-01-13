@@ -154,7 +154,7 @@ public class TeacherCreateTest extends AppCompatActivity
     }
 
 
-    public void saveTest() {
+    public void saveTest(View view) {
         List<Question> questionList=null;
 
         Switch shuffleSw = findViewById(R.id.switchShuffle);
