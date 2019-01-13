@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
 
         //here check if username with correct password are in db
 
-        EditText et = findViewById(R.id.editStudentName);
+        EditText et = findViewById(R.id.inputEmail);
         String name;
         name = et.getText().toString();
         SharedPreferences sp = getApplication().getSharedPreferences("cOdin", MODE_PRIVATE);
