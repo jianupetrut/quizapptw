@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import ro.ase.codinquiz.quizapplication.Main.Entities.Answer;
 import ro.ase.codinquiz.quizapplication.Main.Entities.Question;
 import ro.ase.codinquiz.quizapplication.Main.Entities.Test;
 import ro.ase.codinquiz.quizapplication.R;
@@ -30,8 +31,8 @@ public class ArrayListFragment extends ListFragment {
         args.putStringArrayList("questions",(ArrayList)test.getQuestionList());
         truitonList.setArguments(args);
         int index=0;
-        for (Question q:test.getQuestionList()) {
-            arr.add(test.getQuestionList().get(index).getText());
+        for (Answer s:test.getQuestionList().get(index).getAnswerList()) {
+            arr.add(test.getQuestionList().get(qNumber[0]).getAnswerList().get(index).getText());
             index++;
         }
         qNumber[0]=val;
