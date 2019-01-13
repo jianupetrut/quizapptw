@@ -15,10 +15,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
-import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity2;
-import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity4;
+
 import ro.ase.codinquiz.quizapplication.Main.Teacher.Adapters.SliderAdapter;
 import ro.ase.codinquiz.quizapplication.R;
 
@@ -30,16 +30,84 @@ public class TeacherExistingTests extends AppCompatActivity
     private TextView[] mDots;
     private SliderAdapter sliderAdapter;
     private Button selectTest;
+    List<Test> testArrayList;
+
+    ListView existingTestsListView;
+
+    public List<Test> createExistingTests(){
+        List<Test> existingTests = new ArrayList<>();
+        Test test1 = new Test();
+        Test test2 = new Test();
+        Test test3 = new Test();
+        Test test4 = new Test();
+        Test test5 = new Test();
+        test1.setId(0);
+        test2.setId(1);
+        test3.setId(3);
+        test4.setId(4);
+        test5.setId(5);
+        test1.setTestName("Test 1");
+        test2.setTestName("Test 2");
+        test3.setTestName("Test 3");
+        test4.setTestName("Test 4");
+        test5.setTestName("Test 5");
+        List<Question> questionArray = new ArrayList<>();
+        //Question q1 = new Question("Weather","How's the weather?","sunny");
+        List<Answer> ansList1=new ArrayList<>();
+        List<Answer> ansList2=new ArrayList<>();
+        Answer ansList1answer1=new Answer(1,"Answer 1",true,1);
+        Answer ansList1answer2=new Answer(2,"Answer 2",false,1);
+        Answer ansList1answer3=new Answer(3,"Answer 3",false,1);
+        Answer ansList1answer4=new Answer(4,"Answer 4",false,1);
+        ansList1.add(ansList1answer1);
+        ansList1.add(ansList1answer2);
+        ansList1.add(ansList1answer3);
+        ansList1.add(ansList1answer4);
+        Answer ansList2answer1=new Answer(5,"Answer 1",false,2);
+        Answer ansList2answer2=new Answer(6,"Answer 2",true,2);
+        Answer ansList2answer3=new Answer(7,"Answer 3",true,2);
+        Answer ansList2answer4=new Answer(8,"Answer 4",false,2);
+        ansList2.add(ansList2answer1);
+        ansList2.add(ansList2answer2);
+        ansList2.add(ansList2answer3);
+        ansList2.add(ansList2answer4);
+        //questionArray.add("Question 1");
+        Question q1=new Question("Cat1","Text for question 1",ansList1,null);
+        Question q2=new Question("Cat1","text for question2",ansList2,null);
+        Question q3=new Question("Cat2","text for question1",ansList1,null);
+        Question q4=new Question("Cat2","text for question1",ansList1,null);
+        Question q5=new Question("Cat2","text for question1",ansList1,null);
+        questionArray.add(q1);
+        questionArray.add(q2);
+        questionArray.add(q3);
+        questionArray.add(q4);
+        questionArray.add(q5);
+        test1.setQuestionList(questionArray);
+        test2.setQuestionList(questionArray);
+        test3.setQuestionList(questionArray);
+        test4.setQuestionList(questionArray);
+        test5.setQuestionList(questionArray);
+        existingTests.add(test1);
+        existingTests.add(test2);
+        existingTests.add(test3);
+        existingTests.add(test4);
+        existingTests.add(test5);
+        return existingTests;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teacher_existing_tests);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-//slider
+        //mockup data
+        testArrayList=createExistingTests();
+
+        //slider
         mSlideViewPager=(ViewPager)findViewById(R.id.slideViewPager);
         mDotLayout=(LinearLayout)findViewById(R.id.dotsLayout);
-        sliderAdapter=new SliderAdapter(this);
+        sliderAdapter=new SliderAdapter(this,testArrayList);
         mSlideViewPager.setAdapter(sliderAdapter);
         addDotsIndicator();
 
