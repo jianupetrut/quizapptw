@@ -86,7 +86,7 @@
     <string name="error_text">Error</string>
     <string name="contact_us">Contact us</string>
     <string name="test_statistics">Test Statistics</string>
-    <string name="shareTest">Share Test"></string>
+    <string name="shareTest">Share Test</string>
     <string name="communicate">Communicate</string>
     <string name="share">Share</string>
     <string name="viewPieChart">View Pie Chart</string>
@@ -97,6 +97,14 @@
     <string name="addImage">Add an image</string>
     <string name="question">Question</string>
     <string name="createCategory">Create a new category</string>
+    <string name="shareViaEmail">Share via Email with</string>
+    <string name="enterEmail">Enter email</string>
+    <string name="send">Send</string>
+    <string name="getCode">Get code</string>
+    <string name="saveTest">Save test</string>
+    <string name="selectMaxTime">Select maximum time(min)</string>
+    <string name="seeQuestions">See questions</string>
+    <string name="selectTest">Select test</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

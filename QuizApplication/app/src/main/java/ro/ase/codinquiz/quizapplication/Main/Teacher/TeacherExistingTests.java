@@ -18,12 +18,15 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 import ro.ase.codinquiz.quizapplication.Main.Entities.Answer;
 import ro.ase.codinquiz.quizapplication.Main.Entities.Question;
 import ro.ase.codinquiz.quizapplication.Main.Entities.Test;
+import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity2;
+import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity4;
 import ro.ase.codinquiz.quizapplication.Main.Teacher.Adapters.SliderAdapter;
 import ro.ase.codinquiz.quizapplication.R;
 
@@ -212,6 +215,15 @@ public class TeacherExistingTests extends AppCompatActivity
             startActivity(intent);
         }else if (id == R.id.nav_share) {
             Intent intent = new Intent(this, TeacherShareTest.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_see_statistics) {
+            Intent intent = new Intent(this, TeacherSeeStatistics.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_rate_app) {
+            Intent intent = new Intent(this, ToDoActivity2.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_contact_us) {
+            Intent intent = new Intent(this, ToDoActivity4.class);
             startActivity(intent);
         }
 

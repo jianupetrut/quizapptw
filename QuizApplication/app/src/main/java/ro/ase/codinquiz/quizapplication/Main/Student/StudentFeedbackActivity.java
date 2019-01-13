@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity2;
 import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity3;
@@ -38,6 +39,10 @@ public class StudentFeedbackActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    public void sendFeedback(View view){
+        Toast.makeText(this,"Feedback sent",Toast.LENGTH_LONG).show();
     }
 
     @Override
