@@ -26,7 +26,11 @@ public class FinishedTest {
         this.testName = testName;
     }
 
+
     public FinishedTest(int id, int test_id, int score, String username, String testName, Date date) {
+=======
+    public FinishedTest(int id, int test_id, float score, String username, String testName, Date date) {
+
 
         this.id = id;
         this.test_id = test_id;

@@ -10,81 +10,89 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="97dp"
-        android:layout_height="91dp"
-        android:layout_marginStart="140dp"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="140dp"
-        android:src="@mipmap/ic_launcher_round"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/inputPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="206dp"
+        android:layout_height="169dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="312dp"
+        android:layout_marginTop="44dp"
         android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:inputType="textPassword"
+        android:contentDescription="@string/codinlogo"
+        android:cropToPadding="true"
+        android:src="@drawable/codin500"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/codin500" />
 
     <EditText
         android:id="@+id/inputEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="56dp"
         android:ems="10"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/inputPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
 
     <TextView
         android:id="@+id/textUsername"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="29dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="244dp"
+        android:layout_marginTop="36dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/e_mail"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/inputEmail"
         app:layout_constraintEnd_toStartOf="@+id/inputEmail"
+        app:layout_constraintHorizontal_bias="0.787"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="332dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="48dp"
         android:text="@string/password"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toStartOf="@+id/inputPassword"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textUsername"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/inputPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="56dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputEmail" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="99dp"
         android:layout_height="46dp"
         android:layout_marginStart="140dp"
-        android:layout_marginTop="380dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="140dp"
+        android:background="@color/colorPrimary"
         android:onClick="loginChecker"
         android:text="@string/login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
 
     <Button
         android:id="@+id/takeTestNowBtn"
@@ -100,10 +108,9 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2"
-        app:layout_constraintVertical_bias="0.321" />
+        app:layout_constraintVertical_bias="0.409" />
 
     <Switch
         android:id="@+id/switchLogin"

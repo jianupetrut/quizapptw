@@ -31,10 +31,11 @@ public class ArrayListFragment extends ListFragment {
         args.putStringArrayList("questions",(ArrayList)test.getQuestionList());
         truitonList.setArguments(args);
         int index=0;
+        if(arr.isEmpty()){
         for (Answer s:test.getQuestionList().get(index).getAnswerList()) {
             arr.add(test.getQuestionList().get(qNumber[0]).getAnswerList().get(index).getText());
             index++;
-        }
+        }}
         qNumber[0]=val;
         return truitonList;
     }
