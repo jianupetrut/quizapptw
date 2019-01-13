@@ -35,34 +35,42 @@
         <!--app:layout_constraintStart_toStartOf="parent"-->
         <!--app:layout_constraintTop_toTopOf="parent" />-->
     <TextView
-        android:gravity="center"
-        android:textAlignment="center"
-        android:text="TextView1"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
         android:id="@+id/testTextView"
-        android:layout_weight="66.6"/>
+        android:layout_width="168dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="8dp"
+        android:layout_weight="66.6"
+        android:gravity="center"
+        android:text="@string/textview1"
+        android:textAlignment="center"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
+        android:layout_width="218dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_weight="33.3"
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="33.3">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.307"
+        app:layout_constraintStart_toEndOf="@+id/testTextView"
+        tools:layout_editor_absoluteY="0dp">
 
         <TextView
-            android:gravity="center"
-            android:text="TextView2"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:id="@+id/nameTextView"/>
-
-        <TextView
-            android:gravity="center"
-            android:text="TextView3"
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
             android:id="@+id/gradeTextView"
-            android:layout_below="@+id/nameTextView"/>
+            android:layout_width="253dp"
+            android:layout_height="34dp"
+            android:gravity="center"
+            android:text="@string/textview3" />
+
+        <TextView
+            android:id="@+id/nameTextView"
+            android:layout_width="249dp"
+            android:layout_height="36dp"
+            android:gravity="center"
+            android:text="@string/textview2" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

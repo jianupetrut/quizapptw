@@ -25,6 +25,7 @@ import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.charts.LineChart;
@@ -33,6 +34,9 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -48,6 +52,7 @@ public class TeacherSeeStatistics extends AppCompatActivity
 
     private BarChart barChart;
     private ArrayList<String> tests;
+    private  ArrayList<FinishedTest> finishedTests;
 
 
 
@@ -103,7 +108,7 @@ public class TeacherSeeStatistics extends AppCompatActivity
         FinishedTest finishedTest5 = new FinishedTest(5, 5, 10, "raluca", "test2", myCalendar.getTime());
 
 
-        ArrayList<FinishedTest> finishedTests = new ArrayList<FinishedTest>();
+        finishedTests = new ArrayList<FinishedTest>();
         finishedTests.add(finishedTest1);
         finishedTests.add(finishedTest2);
         finishedTests.add(finishedTest3);
@@ -113,6 +118,36 @@ public class TeacherSeeStatistics extends AppCompatActivity
         FinishedTestListAdapter adapter = new FinishedTestListAdapter(this, R.layout.listview_average_grade_per_group,finishedTests);
         adapter.notifyDataSetChanged();
         listView.setAdapter(adapter);
+
+
+        String MY_FILE_NAME = "gradesFile.txt";
+
+        try {
+            FileOutputStream fileos = openFileOutput(MY_FILE_NAME, Context.MODE_PRIVATE);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+    }
+    public void writeInTextFile(View v){
+
+        try {
+            FileOutputStream fileout=openFileOutput("gradesFile.txt", MODE_PRIVATE);
+            OutputStreamWriter outputWriter=new OutputStreamWriter(fileout);
+            for( FinishedTest f : finishedTests){
+                outputWriter.write(f.getTestName().toString());
+                outputWriter.write((f.getUsername().toString()));
+                outputWriter.write(Integer.toString(f.getScore()));
+            }
+
+            outputWriter.close();
+
+            Toast.makeText(getBaseContext(), "File saved successfully!",
+                    Toast.LENGTH_SHORT).show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
