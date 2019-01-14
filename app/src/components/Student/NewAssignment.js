@@ -39,35 +39,52 @@ class NewAssignment extends Component{
     
     getTestInfo = () => {
         //find the entered id in the DB
-        const testsData = MockedData.data.tests; //got all tests
-        console.log("testsData",testsData)
-        const foundTest = testsData.filter(test=>{
-            if(test.id == this.enteredID){
-                return test;
-            }
-        })
 
-        console.log("foundTest", foundTest)
-
-        if(foundTest.length === 0 || !foundTest[0].isActive ){
-            this.wrongID = true;
-            this.showInfo = false;
-            this.setState({
-                name: '',
-                time: 0,
-                questions: 0
+        fetch('https://quiz-app-api-georgedobrin.c9users.io/api/tests')
+        .then(res=>res.json()
+        .then(testsData=>{
+            console.log("testsData",testsData)
+            const foundTest = testsData.filter(test=>{
+                if(test.id == this.enteredID){
+                    return test;
+                }
             })
-        }
-        else{
-            this.showInfo = true;
-            this.wrongID = false;
-            this.setState({ 
-                testData: foundTest[0],
-                name: foundTest[0].test,
-                time: foundTest[0].time,
-                questions: foundTest[0].questions_id.length
-            }, ()=>console.log("found test state",this.state));
-        }
+    
+            console.log("foundTest", foundTest)
+    
+            if(foundTest.length === 0 || !foundTest[0].isActive ){
+                this.wrongID = true;
+                this.showInfo = false;
+                this.setState({
+                    name: '',
+                    time: 0,
+                    questions: 0
+                })
+            }
+            else{
+                this.showInfo = true;
+                this.wrongID = false;
+                this.setState({ 
+                    testData: foundTest[0],
+                    name: foundTest[0].test,
+                    time: foundTest[0].time,
+                    questions: foundTest[0].questions_id.length
+                }, ()=>console.log("found test state",this.state));
+            }
+
+        })) 
+
+        //get user data
+        //student with id=1 is giving the test
+        fetch('https://quiz-app-api-georgedobrin.c9users.io/api/users/1')
+        .then(res=>res.json()
+        .then(userInfo=>{
+            localStorage.setItem('username',userInfo.username);
+            localStorage.setItem('name', userInfo.name);
+        })) 
+
+
+
 
 
     }
@@ -104,7 +121,7 @@ class NewAssignment extends Component{
                                     <List>
                                         <List.Item>
                                             <Label>
-                                                <Icon name='clock' /> Test name: {this.state.name}
+                                                Test name: {this.state.name}
                                             </Label>
                                         </List.Item>
                                         <List.Item>

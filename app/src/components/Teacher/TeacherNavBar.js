@@ -60,6 +60,12 @@ class TeacherNavBar extends Component {
               onClick={this.handleItemClick}
               as={NavLink} exact to="/teacher/existing-questions"
             />
+            <Menu.Item
+              name='Create new question category'
+              active={activeItem === 'newquestioncategory'}
+              onClick={this.handleItemClick}
+              as={NavLink} exact to="/teacher/create-question-category"
+            />
           </Menu.Menu>
           
         </Menu.Item>

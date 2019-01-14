@@ -13,10 +13,17 @@ class QuestionsList extends Component{
     }
 
     componentDidMount(){
-        //fetch data here
-        const questionCategories = MockedData.data.question_categories;
-        const allQuestions = MockedData.data.questions;
 
+    //fetch data here
+    Promise.all([
+        fetch('https://quiz-app-api-georgedobrin.c9users.io/api/question_categories').then(res => res.json()),
+        fetch('https://quiz-app-api-georgedobrin.c9users.io/api/questions').then(res => res.json())
+        ])
+        .then(responses => {
+        console.log('responses', responses)
+        //fetch data here
+        const questionCategories = responses[0];
+        const allQuestions = responses[1];
         var newQuestionCategories = [];
 
         //the object has to be this way as per Semantic UI documentation, that's why I created another object
@@ -30,6 +37,8 @@ class QuestionsList extends Component{
             questionCategories: newQuestionCategories,
             allQuestions: allQuestions
         })
+        })
+        
     }
 
     render(){
@@ -37,16 +46,16 @@ class QuestionsList extends Component{
             <div className="questions-list">
                 {React.createElement(HeaderIcon, {icon: 'eye', header: 'Explore questions'})}
                 {React.createElement(QuestionsCategoriesDropdown, {label: 'Select question category', dropdown: 'Question categories', source: this.state.questionCategories, questions: this.state.allQuestions})}
-                {React.createElement(HeaderIcon, {icon: 'add circle', header: 'Add question to test'})}
+                {/* {React.createElement(HeaderIcon, {icon: 'add circle', header: 'Add question to test'})} */}
                 {/* {React.createElement(LabeledDropdown, {label: 'Select question category', dropdown: 'Question categories', source: this.state.questionCategories})}
                 {React.createElement(LabeledDropdown, {label: 'Select question', dropdown: 'Questions', source: questions})}
                 {React.createElement(LabeledDropdown, {label: 'Select target test', dropdown: 'Tests', source: tests})} */}
-                <Button animated>
+                {/* <Button animated>
                     <Button.Content visible>Add</Button.Content>
                     <Button.Content hidden>
                         <Icon name='add square' />
                     </Button.Content>
-                </Button>
+                </Button> */}
 
             </div>
         )
@@ -103,11 +112,12 @@ class QuestionsTable extends Component{
         var goodData='';
         if(this.props.questionsArr){
             goodData = this.props.questionsArr.filter(question=>{
-                if(question.id === this.props.choiceID){
+                if(question.question_category_id === this.props.choiceID){
                     return true;
                 }
             })
         }
+        console.log('good data', goodData)
         return goodData;
     }
 

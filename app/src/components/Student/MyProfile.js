@@ -12,14 +12,19 @@ import {MockedData} from '../../api/mocks/mockedData'
 
     constructor(props){
       super(props);
+      this.state = {
+        column: null,
+        data: this.props.grades,
+        direction: null,
+      }
     }
 
-    state = {
-      column: null,
-      data: this.props.grades,
-      direction: null,
+    static getDerivedStateFromProps(props, state){
+      return{
+        data: props.grades
+      }
     }
-  
+
     handleSort = clickedColumn => () => {
       const { column, data, direction } = this.state
   
@@ -87,34 +92,53 @@ class ProfileInfo extends Component{
 
   constructor(props){
     super(props);
-
+    this.state={
+      userData: '',
+      finishedTests: [],
+      userTests: []
+    }
   }
 
+  componentDidMount(){
 
-
-    render(){
-      //fetch data
-
-      const userData = MockedData.data.users[0];//get user
-      const finishedTests = MockedData.data.finished_tests; //get all finished tests
-
-      //find user test results
-      const userTests = finishedTests.filter(test=>{
-        if(test.username === userData.username){
+    Promise.all([
+      fetch('https://quiz-app-api-georgedobrin.c9users.io/api/users/1').then(res => res.json()),
+      fetch('https://quiz-app-api-georgedobrin.c9users.io/api/finished_tests').then(res => res.json())
+    ])
+    .then(responses => {
+      console.log('responses', responses)
+      this.setState({
+        userData: responses[0],
+        finishedTests: responses[1]
+      })
+    })
+    .then(() => {
+      const userTests = this.state.finishedTests.filter(test=>{
+        if(test.username === this.state.userData.username){
           return true;
         }
       })
+      console.log('User tests', userTests)
 
-      console.log("userTests", userTests);
+      this.setState({
+        userTests: userTests
+      })
 
+      console.log('user tests state', this.state.userTests)
+    })
 
+   
+  }
+
+    render(){
+      console.log('user tests situation', this.state.userTests)
         return(
             <div className = "myprofile-selector">
                 <Image src={ myImage } size='small' centered circular />
-                <h2>Name: {userData.name}</h2>
+                <h2>Name: {this.state.userData.name}</h2>
                 <h4>Role: Student</h4>
-                <h4>Group: {userData.group}</h4>
-                <SummaryTable grades={ userTests }></SummaryTable>
+                <h4>Group: {this.state.userData.group}</h4>
+                <SummaryTable grades={ this.state.userTests }></SummaryTable>
             </div>
         )
     }

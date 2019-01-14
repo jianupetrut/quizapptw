@@ -18,38 +18,48 @@ class Statistics extends Component{
 
     componentDidMount(){
 
+        Promise.all([
+            fetch('https://quiz-app-api-georgedobrin.c9users.io/api/users/2').then(res => res.json()),
+            fetch('https://quiz-app-api-georgedobrin.c9users.io/api/finished_tests').then(res => res.json()),
+            fetch('https://quiz-app-api-georgedobrin.c9users.io/api/tests').then( res => res.json())
+          ])
+          .then(responses => {
+            console.log('responses', responses)
 
+            const finishedTests = responses[1];
+            const userID = responses[0].id;
+            const allTests = responses[2];
+    
+            const relevantTests = allTests.filter(test=>{
+                if(test.owner_id == userID){
+                    return true;
+                }
+            })
+            console.log("Relevant Tests", relevantTests);
+            console.log("Finished tests", finishedTests);
+    
+            const testsID = [];
+            relevantTests.map(test=>testsID.push(test.id));
+    
+            console.log('testsID', testsID);
+    
+            const relevantFinishedTests = finishedTests.filter(test=>{
+                if(testsID.includes(test.test_id)){
+                    return true;
+                }
+                return false;
+            })
+    
+            console.log("relevant finished tests", relevantFinishedTests);
+    
+            this.setState({
+                relevantTests: relevantTests,
+                relevantFinishedTests: relevantFinishedTests
+            })
+
+          })
         //fetch data here
-        const finishedTests = MockedData.data.finished_tests;
-        const userID = MockedData.data.users[4].id;
-        const allTests = MockedData.data.tests;
 
-        const relevantTests = allTests.filter(test=>{
-            if(test.owner_id == userID){
-                return true;
-            }
-        })
-        console.log("Relevant Tests", relevantTests);
-        console.log("Finished tests", finishedTests);
-
-        const testsID = [];
-        relevantTests.map(test=>testsID.push(test.id));
-
-        console.log('testsID', testsID);
-
-        const relevantFinishedTests = finishedTests.filter(test=>{
-            if(testsID.includes(test.test_id)){
-                return true;
-            }
-            return false;
-        })
-
-        console.log("relevant finished tests", relevantFinishedTests);
-
-        this.setState({
-            relevantTests: relevantTests,
-            relevantFinishedTests: relevantFinishedTests
-        })
 
     }
 
@@ -151,12 +161,6 @@ class AssignmentsHistoryTable extends Component {
                 Name
                 </Table.HeaderCell>
                 <Table.HeaderCell
-                sorted={column === 'group' ? direction : null}
-                onClick={this.handleSort('group')}
-                >
-                Group
-                </Table.HeaderCell>
-                <Table.HeaderCell
                 sorted={column === 'score' ? direction : null}
                 onClick={this.handleSort('score')}
                 >
@@ -168,7 +172,6 @@ class AssignmentsHistoryTable extends Component {
             {_.map(data, ({ name, group, score }) => (
                 <Table.Row key={name}>
                 <Table.Cell>{name}</Table.Cell>
-                <Table.Cell>{group}</Table.Cell>
                 <Table.Cell>{score}</Table.Cell>
                 </Table.Row>
             ))}

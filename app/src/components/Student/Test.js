@@ -43,22 +43,39 @@ class AnswerLine extends Component{
     }
 } 
 
-const FinishedTestSegment = (props) => (
-    <Segment placeholder>
-      <Header icon>
-        <Icon name='checkmark' />
-        You have completed this test!
-        { 
-            props.showResult 
-            ? 
-                <div> Correct answers: {props.score} <div>Total questions: {props.maxIteration + 1} </div><div>Percentage: {props.score/(props.maxIteration + 1) * 100}% 
-                </div> </div> 
-            : 
-            <div></div>
+class FinishedTestSegment extends Component{
+    constructor(props){
+        super(props);
+        this.state={
+            showResult: false
         }
-      </Header>
-    </Segment>
-  )
+    }
+
+    static getDerivedStateFromProps(props, state){
+        return{
+          showResult: props.showResult
+        }
+      }
+
+    render(){
+        return(
+            <Segment placeholder>
+                <Header icon>
+                    <Icon name='checkmark' />
+                    You have completed this test!
+                    { 
+                        this.state.showResult 
+                        ? 
+                            <div> Correct answers: {this.props.score} <div>Total questions: {this.props.maxIteration + 1} </div><div>Percentage: {this.props.score/(this.props.maxIteration + 1) * 100}% 
+                            </div> </div> 
+                        : 
+                        <div></div>
+                    }
+                </Header>
+            </Segment>
+        )
+    }
+}
 
 
 
@@ -106,7 +123,9 @@ class NewTest extends Component{
             iteration: -1, //keeps track of current question
             maxIteration: -1, //knows when the test should be finished
             currentQuestion: {},
-            currentAnswers: []
+            currentAnswers: [],
+            allQuestions:[],
+            allAnswers:[]
         }
 
         this.navigate = this.navigate.bind(this);
@@ -121,78 +140,103 @@ class NewTest extends Component{
 
     componentDidMount() {
         //fetch data here
-        const testData = this.test.test;//get test info
-        console.log("testData", testData)
+        Promise.all([
+            fetch('https://quiz-app-api-georgedobrin.c9users.io/api/questions').then(res => res.json()),
+            fetch('https://quiz-app-api-georgedobrin.c9users.io/api/answers').then(res => res.json())
+          ])
+          .then(responses => {
+            console.log('responses', responses)
+            this.setState({
+              allQuestions: responses[0],
+              allAnswers: responses[1]
+            })
+          })
+          .then(()=>{
+              console.log()
 
-        const questionsID = testData.questions_id;//get all question ids for the test
-        console.log("question IDs",questionsID)
+            const testData = this.test.test;//get test info
+            console.log("testData", testData)
+            const stringQuestionsID = testData.questions_id;//get all question ids for the test
+            console.log("stringQuestion IDs",stringQuestionsID)
 
-        const allAnswersArray = MockedData.data.answers;//first get all answers, then reduce to answers for questions from test
+            var questionsID=[];
+            stringQuestionsID.map(e=>{
+                questionsID.push(parseInt(e));
+            })
+            console.log('question IDs', questionsID);
 
-        const allQuestionsArray = MockedData.data.questions;//first get all questions, then reduce to questions from test
-        console.log("allQuestionsArr", allQuestionsArray);
+            const allAnswersArray = this.state.allAnswers;//first get all answers, then reduce to answers for questions from test
 
-        function compareIDs(id){
+            const allQuestionsArray = this.state.allQuestions;//first get all questions, then reduce to questions from test
+            console.log("allQuestionsArr", allQuestionsArray);
 
-            for(let questionID of questionsID){
-                if(id == questionID){
-                    return true;
+            function compareIDs(id){
+
+                for(let questionID of questionsID){
+                    if(id == questionID){
+                        return true;
+                    }
                 }
+                return false;
             }
-            return false;
-        }
 
-        const relevantAnswersArray = allAnswersArray.filter(answerElement=>   
-           compareIDs(answerElement.question_id)
-        )    
-        console.log("Relevant answers array", relevantAnswersArray);
-        
-        const relevantQuestionsArray = allQuestionsArray.filter(questionElement=>
-            compareIDs(questionElement.id)
-        )
-        console.log("Relevant questions array", relevantQuestionsArray);
-        
-        if(testData.shuffle){
-            shuffleArray(testData.questions_id);
-            console.log("Array shuffled!", testData.questions_id);
-            //the array is now shuffled
-        }
-
-
-        
-        //setting the first question and answers
-        var currQuest;
-        relevantQuestionsArray.map((question)=>{
-            if(question.id == testData.questions_id[0]){
-                currQuest = question;
+            const relevantAnswersArray = allAnswersArray.filter(answerElement=>   
+            compareIDs(answerElement.question_id)
+            )    
+            console.log("Relevant answers array", relevantAnswersArray);
+            
+            const relevantQuestionsArray = allQuestionsArray.filter(questionElement=>
+                compareIDs(questionElement.id)
+            )
+            console.log("Relevant questions array", relevantQuestionsArray);
+            
+            if(testData.shuffle){
+                shuffleArray(testData.questions_id);
+                console.log("Array shuffled!", testData.questions_id);
+                //the array is now shuffled
             }
-        })
-        console.log(currQuest);
 
-        var currAns = [];
-        relevantAnswersArray.map((answer)=>{
-            if(answer.question_id == testData.questions_id[0]){
-                currAns.push(answer);
-            }
-        })
-        console.log(currAns);
 
-        this.setState({ 
-            questionsIDArray: testData.questions_id,
-            test: testData,
-            answersArray: relevantAnswersArray,
-            questionsArray: relevantQuestionsArray,
-            shuffle: testData.shuffle,
-            feedback: testData.feedback,
-            showResult: testData.result,
-            score: 0,
-            time: testData.time,
-            iteration: 0,
-            maxIteration: testData.questions_id.length-1,
-            currentQuestionID: relevantQuestionsArray[0].id,
-            currentQuestion: currQuest,
-            currentAnswers: currAns
-        }, ()=>console.log("1state",this.state));
+            
+            //setting the first question and answers
+            var currQuest;
+            relevantQuestionsArray.map((question)=>{
+                if(question.id == testData.questions_id[0]){
+                    currQuest = question;
+                }
+            })
+            console.log(currQuest);
+
+            var currAns = [];
+            relevantAnswersArray.map((answer)=>{
+                if(answer.question_id == testData.questions_id[0]){
+                    currAns.push(answer);
+                }
+            })
+            console.log(currAns);
+
+            this.setState({ 
+                questionsIDArray: testData.questions_id,
+                test: testData,
+                answersArray: relevantAnswersArray,
+                questionsArray: relevantQuestionsArray,
+                shuffle: testData.shuffle,
+                feedback: testData.feedback,
+                showResult: testData.showResult,
+                score: 0,
+                time: testData.time,
+                iteration: 0,
+                maxIteration: testData.questions_id.length-1,
+                currentQuestionID: relevantQuestionsArray[0].id,
+                currentQuestion: currQuest,
+                currentAnswers: currAns
+            }, ()=>console.log("1state",this.state));
+
+          })
+        
+
+
+        
         
         
     }
@@ -265,6 +309,36 @@ class NewTest extends Component{
             
         }, ()=>console.log("state",this.state))
 
+        if(this.state.iteration == this.state.maxIteration){
+            //test is finished, post the results
+
+            var results = {};
+            results.test_id = this.state.test.id;
+            results.name = localStorage.getItem('name');
+            results.username = localStorage.getItem('username');
+
+            var score = localStorage.getItem('score');
+            const percentage = (score/(this.state.maxIteration+1))*1.00*100;
+            results.score = percentage;
+
+            var date = new Date();
+            var stringDate = "" + date.getDate() + "." + date.getMonth()+1 + "." + date.getFullYear();
+            results.date = stringDate;
+
+            console.log("RESULTS!!", results)
+
+
+
+            fetch('https://quiz-app-api-georgedobrin.c9users.io/api/finished_tests', {
+                method: 'post',
+                body: JSON.stringify(results),
+                headers:{
+                    'Content-Type': 'application/json'
+                  }
+            })
+            .then(response => console.log('Success:', JSON.stringify(response)))
+            .catch(error => console.error('Error:', error));
+        }
 
     }
 
@@ -321,7 +395,7 @@ class NewTest extends Component{
                             this.state.iteration <= this.state.maxIteration 
                             ? 
                                 <Button type="submit" onClick = {() => this.navigate(this)}>
-                                    <Button.Content visible>Next</Button.Content>
+                                    <Button.Content visible>{this.state.iteration == this.state.maxIteration? <p>Finish</p> : <p>Next</p> }</Button.Content>
                                 </Button>
                             : 
                                 <div></div>

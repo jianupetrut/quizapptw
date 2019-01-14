@@ -18,10 +18,17 @@ class ProfileInfo extends Component{
 
   componentDidMount(){
     //fetch data
-    const userInfo = MockedData.data.users[4];
-    this.setState({
-      userData: userInfo
-    })
+
+    fetch('https://quiz-app-api-georgedobrin.c9users.io/api/users/2')
+    .then(res=>res.json()
+    .then(userInfo=>{
+      // const userInfo = MockedData.data.users[4];
+      this.setState({
+        userData: userInfo
+      })
+    })) 
+
+
   }
     
 
@@ -32,7 +39,7 @@ class ProfileInfo extends Component{
                 <Image src={ myImage } size='small' centered circular />
                 <h2>Welcome, Professor {this.state.userData.name}!</h2>
                 <h4>Please select an item from the left side vertical menu</h4>
-                <StatisticProfile></StatisticProfile>
+                {/* <StatisticProfile></StatisticProfile> */}
             </div>
         )
     }
