@@ -73,15 +73,15 @@ public class StudentMain extends AppCompatActivity
         adapter.notifyDataSetChanged();
         assignmentHistoryListView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-//        List<Test> tests=new ArrayList<>();
-//        WorkerRetrieveTest_All workerRetrieveTest=new WorkerRetrieveTest_All(getApplicationContext());
-//        try {
-//            tests.add(workerRetrieveTest.execute(tests).get().get(0));
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        } catch (ExecutionException e) {
-//            e.printStackTrace();
-//        }
+        List<Test> tests=new ArrayList<>();
+        WorkerRetrieveTest_All workerRetrieveTest=new WorkerRetrieveTest_All(getApplicationContext());
+        try {
+            tests.add(workerRetrieveTest.execute(tests).get().get(0));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

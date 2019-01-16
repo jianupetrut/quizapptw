@@ -12,6 +12,8 @@ import android.widget.Switch;
 import java.util.HashSet;
 import java.util.Set;
 
+import ro.ase.codinquiz.quizapplication.Main.APIFunctionsAndWorkers.WorkerCategory_Post;
+import ro.ase.codinquiz.quizapplication.Main.Entities.Category;
 import ro.ase.codinquiz.quizapplication.Main.Student.JoinTestActivity;
 import ro.ase.codinquiz.quizapplication.Main.Student.StudentMain;
 import ro.ase.codinquiz.quizapplication.Main.Teacher.TeacherSeeStatistics;
@@ -31,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
         if(name != null) {
             et.setText(name);
         }
+
     }
 
     public void joinTest(View view){

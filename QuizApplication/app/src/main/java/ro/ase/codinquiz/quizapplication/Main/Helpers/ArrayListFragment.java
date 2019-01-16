@@ -70,6 +70,6 @@ public class ArrayListFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         //add what does final answer recieve
-        //finalAnswer=
+        //finalAnswer=l.getSelectedItem();
     }
 }

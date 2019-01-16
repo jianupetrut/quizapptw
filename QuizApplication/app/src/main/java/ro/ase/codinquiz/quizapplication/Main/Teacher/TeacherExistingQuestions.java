@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -121,10 +122,15 @@ public class TeacherExistingQuestions extends AppCompatActivity
                 R.layout.support_simple_spinner_dropdown_item,
                 stringArrayList);
         spinner.setAdapter(spinnerAdapter);
+        int selectedItemId=0;
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 testSelected=true;
+                existingQuestionsListView.setSelection(existingQuestionsListView.getSelectedItemPosition());
+                existingQuestionsListView.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
+                existingQuestionsListView.setSelector(android.R.color.holo_blue_light);
+
             }
 
             @Override
@@ -209,7 +215,7 @@ public class TeacherExistingQuestions extends AppCompatActivity
     }
     public void onAddClick(View view){
 
-        if(testSelected){
+        if(testSelected&&questionSelected){
             for (Question q: questionArrayList) {
                 if (q.getId()==SelectedQuestionId[0]){
                     for (Test t:testArrayList

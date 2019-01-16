@@ -1,6 +1,7 @@
 package ro.ase.codinquiz.quizapplication.Main.APIFunctionsAndWorkers;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,8 +12,10 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -35,6 +38,12 @@ public class APIFunctions {
     private static final String finishedTestAddress="https://quiz-app-api-georgedobrin.c9users.io/api/finished_tests/owner_id/%d";
     private static final String finishedTestAddress_byUsername="https://quiz-app-api-georgedobrin.c9users.io/api/finished_tests/username/%s";
    // private static final String answerAddress="https://quiz-app-api-georgedobrin.c9users.io/api/answers/%d";
+    private static final String answerPostAdress="https://quiz-app-api-georgedobrin.c9users.io/api/answers";
+    private static final String questionPostAddress="https://quiz-app-api-georgedobrin.c9users.io/api/questions";
+    private static final String finishedTestPostAddress="https://quiz-app-api-georgedobrin.c9users.io/api/finished_tests";
+    private static final String testPostAddress="https://quiz-app-api-georgedobrin.c9users.io/api/tests";
+    private static final String userPostAddress="https://quiz-app-api-georgedobrin.c9users.io/api/users";
+
     private static final String getAnswer_byQuestionIdAddress="https://quiz-app-api-georgedobrin.c9users.io/api/answers/question_id/%d";
     private static final String testAddress="https://quiz-app-api-georgedobrin.c9users.io/api/tests/owner_id/%d";
     private static final String userAddress="https://quiz-app-api-georgedobrin.c9users.io/api/users/username/%s";
@@ -161,6 +170,53 @@ public class APIFunctions {
 
 
     }
+    public void postAnswers(Answer answer){
+        try{
+
+
+            URL url = new URL(answerPostAdress);
+            connection=(HttpURLConnection)url.openConnection();
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+            try {
+                connection.setRequestMethod("POST");
+            }catch (ProtocolException e){
+
+            }
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Accept","application/json");
+            //     connection.setChunkedStreamingMode(0);
+            JSONObject jsonObject=new JSONObject();
+
+            jsonObject.put("answer",answer.getText());
+            jsonObject.put("isCorrect",answer.isCorrect());
+            jsonObject.put("question_id",answer.getQuestionId());
+
+
+
+            String string=jsonObject.toString();
+            DataOutputStream os=new DataOutputStream(connection.getOutputStream());
+
+            os.writeBytes(jsonObject.toString());
+
+            os.flush();
+
+            connection.connect();
+            connection.getContent();
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+        }
+
+    }
     public void postQuestion(Question question){
 
     }
@@ -208,25 +264,30 @@ public class APIFunctions {
             URL url = new URL(categoryPostAddress);
             connection=(HttpURLConnection)url.openConnection();
             connection.setDoOutput(true);
-            connection.setRequestMethod("POST");
+            connection.setDoInput(true);
+            try {
+                connection.setRequestMethod("POST");
+            }catch (ProtocolException e){
+
+            }
             connection.setRequestProperty("Content-Type", "application/json");
             connection.setRequestProperty("Accept","application/json");
-            connection.setChunkedStreamingMode(0);
+       //     connection.setChunkedStreamingMode(0);
             JSONObject jsonObject=new JSONObject();
 
             jsonObject.put("category",category.getName());
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
-            String date=sdf.format(Calendar.getInstance().getTimeInMillis()).toString();
-            jsonObject.put("createdAt", date);
-            jsonObject.put("updatedAt", date);
+
+
 
             String string=jsonObject.toString();
             DataOutputStream os=new DataOutputStream(connection.getOutputStream());
 
-            os.writeBytes(string);
+            os.writeBytes(jsonObject.toString());
 
-            os.close();
+            os.flush();
 
+            connection.connect();
+            connection.getContent();
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -284,8 +345,14 @@ public class APIFunctions {
         try{
             JSONObject jsonObject=(JSONObject)jsonArray.get(jsonArrayPosition);
 
-            String questionIdsString=jsonObject.getString("questions_id").replaceAll("\\D+","");
-            String[] separated=questionIdsString.split("(?!^)");
+            String questionIdsString=jsonObject.getString("questions_id").replaceAll("\"","").replaceAll("\\[", "").replaceAll("\\]","");;
+            questionIdsString.replaceAll("[\\[\\]]", "").replace("[","").replace("]","");
+            questionIdsString.replace("[","").replace("]","");
+            questionIdsString.replace("\\[\\", "");
+            questionIdsString.replaceAll("]","");
+           // String[] separated=questionIdsString.split("(?!^)");
+
+            String[] separated=questionIdsString.split(",");
 
             int[] questionIds=new int[separated.length];
             ArrayList<Question> questions=new ArrayList<>();
@@ -325,11 +392,8 @@ public class APIFunctions {
 
         } catch (JSONException e) {
             e.printStackTrace();
-        }finally {
-            if (connection != null) {
-                connection.disconnect();
-            }
         }
+
         return test;
     }
     public List<FinishedTest> retrieveFinishedTest_All(String username){
