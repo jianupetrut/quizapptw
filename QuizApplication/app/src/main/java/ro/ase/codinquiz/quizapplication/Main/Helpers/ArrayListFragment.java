@@ -82,9 +82,9 @@ public class ArrayListFragment extends ListFragment {
                 Toast.LENGTH_SHORT).show();
 
         if(TESTS[0].getQuestionList().get(qNumber[0]).getAnswerList().get(position).getText().equals(object.toString())){
-            StudentTestActivity.setISCORRECT(position,Boolean.TRUE);
+            StudentTestActivity.setISCORRECT(qNumber[0],Boolean.TRUE);
         }else
-            StudentTestActivity.setISCORRECT(position,Boolean.FALSE);
+            StudentTestActivity.setISCORRECT(qNumber[0],Boolean.FALSE);
 
     }
 }
