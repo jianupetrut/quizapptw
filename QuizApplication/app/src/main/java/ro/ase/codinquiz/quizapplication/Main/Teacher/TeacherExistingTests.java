@@ -21,7 +21,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
+import ro.ase.codinquiz.quizapplication.Main.APIFunctionsAndWorkers.WorkerRetrieveTest_All;
 import ro.ase.codinquiz.quizapplication.Main.Entities.Answer;
 import ro.ase.codinquiz.quizapplication.Main.Entities.Question;
 import ro.ase.codinquiz.quizapplication.Main.Entities.Test;
@@ -110,7 +112,15 @@ public class TeacherExistingTests extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         //mockup data
-        testArrayList=createExistingTests();
+        WorkerRetrieveTest_All workerRetrieveTestAll=new WorkerRetrieveTest_All(getApplicationContext());
+
+        try {
+            testArrayList=workerRetrieveTestAll.execute(testArrayList).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         //slider
         mSlideViewPager=(ViewPager)findViewById(R.id.slideViewPager);

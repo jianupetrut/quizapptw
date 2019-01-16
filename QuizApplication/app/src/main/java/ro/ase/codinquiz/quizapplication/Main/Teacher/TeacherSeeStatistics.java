@@ -40,7 +40,10 @@ import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
+import ro.ase.codinquiz.quizapplication.Main.APIFunctionsAndWorkers.WorkerRetrieveFinishedTest_All;
 import ro.ase.codinquiz.quizapplication.Main.Entities.FinishedTest;
 import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity2;
 import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity4;
@@ -51,8 +54,8 @@ public class TeacherSeeStatistics extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private BarChart barChart;
-    private ArrayList<String> tests;
-    private  ArrayList<FinishedTest> finishedTests;
+    private List<String> tests;
+    private List<FinishedTest> finishedTests;
 
 
 
@@ -109,11 +112,14 @@ public class TeacherSeeStatistics extends AppCompatActivity
 
 
         finishedTests = new ArrayList<FinishedTest>();
-        finishedTests.add(finishedTest1);
-        finishedTests.add(finishedTest2);
-        finishedTests.add(finishedTest3);
-        finishedTests.add(finishedTest4);
-        finishedTests.add(finishedTest5);
+        WorkerRetrieveFinishedTest_All worker=new WorkerRetrieveFinishedTest_All(getApplicationContext());
+        try {
+            finishedTests=worker.execute(finishedTests).get();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
 
         FinishedTestListAdapter adapter = new FinishedTestListAdapter(this, R.layout.listview_average_grade_per_group,finishedTests);
         adapter.notifyDataSetChanged();

@@ -23,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import ro.ase.codinquiz.quizapplication.Main.Entities.Answer;
@@ -35,6 +36,7 @@ import ro.ase.codinquiz.quizapplication.Main.Entities.User;
 public class APIFunctions {
     private static final String questionsAddress="https://quiz-app-georgedobrin.c9users.io/api/questions/%d";
     private static final String categoryAddress="https://quiz-app-georgedobrin.c9users.io/api/question_categories/%d";
+    private static final String categoryAddressForAll="https://quiz-app-georgedobrin.c9users.io/api/question_categories";
     private static final String categoryPostAddress="https://quiz-app-georgedobrin.c9users.io/api/question_categories";
     private static final String finishedTestAddress="https://quiz-app-georgedobrin.c9users.io/api/finished_tests/owner_id/%d";
     private static final String finishedTestAddress_byUsername="https://quiz-app-georgedobrin.c9users.io/api/finished_tests/username/%s";
@@ -54,7 +56,7 @@ public class APIFunctions {
         List<Category> categories=new ArrayList<>();
         try{
 
-            URL url = new URL(categoryAddress);
+            URL url = new URL(categoryAddressForAll);
             connection=(HttpURLConnection)url.openConnection();
             InputStream inputStream=connection.getInputStream();
             BufferedReader reader=new BufferedReader(new InputStreamReader(inputStream));
@@ -71,6 +73,7 @@ public class APIFunctions {
                 int id = jsonObject.getInt("id");
                 String text = jsonObject.getString("category");
                 Category category = new Category(id, text);
+                categories.add(category);
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -147,6 +150,62 @@ public class APIFunctions {
 
 
         return answerList;
+    }
+    public void retrieveQuestion_All(ArrayList<Question> questionArrayList){
+        Question question=null;
+        List<Answer> answerList;
+
+        try{
+            String address=String.format(questionPostAddress);
+            URL url = new URL(address);
+            connection=(HttpURLConnection)url.openConnection();
+            InputStream inputStream=connection.getInputStream();
+            BufferedReader reader=new BufferedReader(new InputStreamReader(inputStream));
+            StringBuilder stringBuilder=new StringBuilder();
+            String line=null;
+            while((line=reader.readLine())!=null){
+                stringBuilder.append(line);
+            }
+            String result=stringBuilder.toString();
+            JSONArray jsonArray=new JSONArray(result);
+            for(int i=0;i<jsonArray.length();i++) {
+
+                JSONObject jsonObject=(JSONObject)jsonArray.get(i);
+                int question_id = jsonObject.getInt("id");
+                Category category = retrieveCategory(jsonObject.getInt("question_category_id"));
+
+                String text = jsonObject.getString("question");
+                String image = null;
+                String imageFromJson = jsonObject.getString("image");
+                if (imageFromJson.equals("") || imageFromJson == null) {
+
+                } else {
+                    image = imageFromJson;
+                }
+
+                answerList = retrieveAnswers_byQuestionId(question_id);
+
+                question = new Question(category.getName(), text, answerList, image);
+
+                question.setId(question_id);
+
+                questionArrayList.add(question);
+            }
+
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+
+
+        }
     }
     public void retrieveQuestion(int QuestionId,ArrayList<Question> questionArrayList){
         Question question=null;
@@ -367,51 +426,61 @@ public class APIFunctions {
         }
     }
     public void postQuestion(Question question){
-        try{
-
-
-            URL url = new URL(answerPostAdress);
-            connection=(HttpURLConnection)url.openConnection();
-            connection.setDoOutput(true);
-            connection.setDoInput(true);
-            try {
-                connection.setRequestMethod("POST");
-            }catch (ProtocolException e){
+        List<Category> categoriesList=retrieveCategories_All();
+        Category correctCategory=null;
+        for (Category c :
+                categoriesList) {
+            if (c.getName().equals(question.getCategory())) {
+                correctCategory=c;
+            }
 
             }
-            connection.setRequestProperty("Content-Type", "application/json");
-            connection.setRequestProperty("Accept","application/json");
-            //     connection.setChunkedStreamingMode(0);
-            JSONObject jsonObject=new JSONObject();
+
+            if(correctCategory!=null) {
+                try {
 
 
-            jsonObject.put("question_category_id",question.getCategory());//MODIFY THE QUESTION CATEGORY!!!
-            jsonObject.put("question",question.getText());
-            jsonObject.put("image",question.getImage());
+                    URL url = new URL(questionPostAddress);
+                    connection = (HttpURLConnection) url.openConnection();
+                    connection.setDoOutput(true);
+                    connection.setDoInput(true);
+                    try {
+                        connection.setRequestMethod("POST");
+                    } catch (ProtocolException e) {
+
+                    }
+                    connection.setRequestProperty("Content-Type", "application/json");
+                    connection.setRequestProperty("Accept", "application/json");
+                    //     connection.setChunkedStreamingMode(0);
+                    JSONObject jsonObject = new JSONObject();
 
 
+                    jsonObject.put("question_category_id", correctCategory.getId());//MODIFY THE QUESTION CATEGORY!!!
+                    jsonObject.put("question", question.getText());
+                    jsonObject.put("image", question.getImage());
 
 
-            DataOutputStream os=new DataOutputStream(connection.getOutputStream());
+                    DataOutputStream os = new DataOutputStream(connection.getOutputStream());
 
-            os.writeBytes(jsonObject.toString());
+                    os.writeBytes(jsonObject.toString());
 
-            os.flush();
+                    os.flush();
 
-            connection.connect();
-            connection.getContent();
+                    connection.connect();
+                    connection.getContent();
 
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }finally {
-            if (connection != null) {
-                connection.disconnect();
+                } catch (MalformedURLException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (connection != null) {
+                        connection.disconnect();
+                    }
+                }
             }
-        }
 
         postAnswers(question.getAnswerList());
     }
@@ -638,6 +707,7 @@ public class APIFunctions {
 
 
 
+
             JSONObject testObject=(JSONObject)jsonArray.get(jsonArrayPosition);
             finishedTest.setId(Integer.parseInt(testObject.getString("id")));
             finishedTest.setTest_id(Integer.parseInt(testObject.getString("test_id")));
@@ -699,6 +769,8 @@ public class APIFunctions {
             }
 
 
+            DateFormat sdf=new SimpleDateFormat("dd.MM.yyyy");
+            String s=sdf.format(Calendar.getInstance().getTime());
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
