@@ -6,15 +6,18 @@ import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import ro.ase.codinquiz.quizapplication.Main.Entities.Answer;
 import ro.ase.codinquiz.quizapplication.Main.Entities.Question;
 import ro.ase.codinquiz.quizapplication.Main.Entities.Test;
+import ro.ase.codinquiz.quizapplication.Main.Student.StudentTestActivity;
 import ro.ase.codinquiz.quizapplication.R;
 
 public class ArrayListFragment extends ListFragment {
@@ -22,6 +25,8 @@ public class ArrayListFragment extends ListFragment {
     final static String[] finalAnswer=new String[1];
     final static ArrayList<String> arr= new ArrayList<String>();
     final static int[] qNumber = new int[1];
+    final static Test[] TESTS =new Test[1];
+
    public static ArrayListFragment init(int val, Test test) {
         ArrayListFragment truitonList = new ArrayListFragment();
 
@@ -29,6 +34,7 @@ public class ArrayListFragment extends ListFragment {
         Bundle args = new Bundle();
         args.putInt("val", val);
         args.putStringArrayList("questions",(ArrayList)test.getQuestionList());
+        TESTS[0]=test;
         truitonList.setArguments(args);
         int index=0;
         if(arr.isEmpty()){
@@ -69,7 +75,16 @@ public class ArrayListFragment extends ListFragment {
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        //add what does final answer recieve
-        //finalAnswer=l.getSelectedItem();
+        l.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
+        l.setSelector(android.R.color.background_light);
+        Object object = (Object) l.getItemAtPosition(position);
+        Toast.makeText(this.getContext(), "item"+object.toString(),
+                Toast.LENGTH_SHORT).show();
+
+        if(TESTS[0].getQuestionList().get(qNumber[0]).getAnswerList().get(position).getText().equals(object.toString())){
+            StudentTestActivity.setISCORRECT(position,Boolean.TRUE);
+        }else
+            StudentTestActivity.setISCORRECT(position,Boolean.FALSE);
+
     }
 }

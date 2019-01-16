@@ -55,10 +55,10 @@ public class StudentStartTestActivity extends AppCompatActivity {
         Answer ansList3answer2=new Answer(6,"Answer 2",true,3);
         Answer ansList3answer3=new Answer(7,"Answer 3",true,3);
         Answer ansList3answer4=new Answer(8,"Answer 4",false,3);
-        ansList2.add(ansList3answer1);
-        ansList2.add(ansList3answer2);
-        ansList2.add(ansList3answer3);
-        ansList2.add(ansList3answer4);
+        ansList3.add(ansList3answer1);
+        ansList3.add(ansList3answer2);
+        ansList3.add(ansList3answer3);
+        ansList3.add(ansList3answer4);
         Question q1=new Question("Cat1","Text for question 1",ansList1,null);
         Question q2=new Question("Cat1","text for question2",ansList2,null);
         Question q3=new Question("Cat1","text for question3",ansList3,null);
