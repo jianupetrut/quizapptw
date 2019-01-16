@@ -105,7 +105,8 @@
     <string name="selectMaxTime">Select maximum time(min)</string>
     <string name="seeQuestions">See questions</string>
     <string name="selectTest">Select test</string>
-
+<string name="switchLogin">Teacher?</string>
+    <string name="takeTestCode">...or take test with a code</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add_question_to_test">Add Question to Test</string>

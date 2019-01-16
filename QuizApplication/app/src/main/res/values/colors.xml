@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#676f73</color>
-    <color name="colorPrimaryDark">#28313B</color>
+    <color name="colorPrimary">#8f969c</color>
+    <color name="colorPrimaryDark">#159db7</color>
     <color name="colorAccent">#d4de8c</color>
     <color name="CodinBlue">#18afcc</color>
     <color name="background_material_light">#4f5060</color>
-    <color name="accent_material_dark">#aebd38</color>
-    <color name="background_material_dark_1">#4c4b4b</color>
+    <color name="accent_material_dark">#18afcc</color>
+    <color name="background_material_dark_1">#1f2d3a</color>
+    <color name="secondary_text_material_light">#7d466179</color>
+    <color name="primary_material_dark">#111a22</color>
 
 </resources>

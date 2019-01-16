@@ -17,12 +17,12 @@
         android:layout_marginEnd="8dp"
         android:contentDescription="@string/codinlogo"
         android:cropToPadding="true"
-        android:src="@drawable/codin500"
+        android:src="@drawable/codinblue500"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/codin500" />
+        app:srcCompat="@drawable/codinblue500" />
 
     <EditText
         android:id="@+id/inputEmail"
@@ -31,6 +31,7 @@
         android:layout_marginTop="32dp"
         android:layout_marginEnd="56dp"
         android:ems="10"
+        android:fontFamily="sans-serif"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView4" />
@@ -43,7 +44,9 @@
         android:layout_marginTop="36dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif"
         android:text="@string/e_mail"
+        android:textColor="@color/common_google_signin_btn_text_dark_pressed"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/inputEmail"
         app:layout_constraintEnd_toStartOf="@+id/inputEmail"
@@ -61,6 +64,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="48dp"
         android:text="@string/password"
+        android:textColor="@color/common_google_signin_btn_text_dark_pressed"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toStartOf="@+id/inputPassword"
@@ -86,9 +90,10 @@
         android:layout_marginStart="140dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="140dp"
-        android:background="@color/colorPrimary"
+        android:background="@color/secondary_text_material_light"
         android:onClick="loginChecker"
         android:text="@string/login"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,8 +108,10 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
+        android:background="@color/secondary_text_material_light"
         android:onClick="joinTest"
-        android:text="or take a test with a code"
+        android:text="@string/takeTestCode"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -119,7 +126,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:checked="false"
-        android:text="Prof?"
+        android:text="@string/switchLogin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -8,12 +8,17 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
+import ro.ase.codinquiz.quizapplication.Main.Entities.FinishedTest;
 import ro.ase.codinquiz.quizapplication.Main.Entities.Test;
 import ro.ase.codinquiz.quizapplication.Main.Helpers.ArrayListFragment;
 import ro.ase.codinquiz.quizapplication.Main.Helpers.ImageFragment;
@@ -65,6 +70,24 @@ public class StudentTestActivity extends AppCompatActivity {
 
     public Test getTest() {
         return Test[0];
+    }
+
+    public void submit(View view){
+        int score=0;
+        for(int i=0;i<ISCORRECT.length;i++){
+            if(ISCORRECT[i]==Boolean.TRUE){
+                score++;
+            }
+        }
+        score=score/ITEMS[0];
+        FinishedTest finishedTest=new FinishedTest();
+        finishedTest.setScore(score);
+        DateFormat sdf=new SimpleDateFormat("dd.MM.yyyy");
+        finishedTest.setDate(Calendar.getInstance().getTime());
+        finishedTest.setTestName(this.getTest().getTestName());
+        finishedTest.setUsername("user0");
+        
+        finishActivity(0);
     }
 
     public static class MyAdapter extends FragmentStatePagerAdapter {
