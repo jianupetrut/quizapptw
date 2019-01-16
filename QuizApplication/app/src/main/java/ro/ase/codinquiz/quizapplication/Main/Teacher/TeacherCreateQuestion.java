@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import ro.ase.codinquiz.quizapplication.Main.APIFunctionsAndWorkers.WorkerCategory_Post;
 import ro.ase.codinquiz.quizapplication.Main.APIFunctionsAndWorkers.WorkerQuestion_Post;
 import ro.ase.codinquiz.quizapplication.Main.APIFunctionsAndWorkers.WorkerRetrieveCategories_All;
 import ro.ase.codinquiz.quizapplication.Main.Entities.Answer;
@@ -45,7 +46,8 @@ public class TeacherCreateQuestion extends AppCompatActivity
     Spinner QuestionCategorySpinner = null;
     List<String> categories=null;
     private static int RESULT_LOAD_IMAGE = 1;
-    private List<Category> categoryList;
+    private List<Category> categoryList=new ArrayList<>();
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +69,7 @@ public class TeacherCreateQuestion extends AppCompatActivity
         //Display hint text "Question categories" for spinner
         WorkerRetrieveCategories_All workerRetrieveCategoriesAll=new WorkerRetrieveCategories_All(getApplicationContext());
         try {
-            categoryList.add(workerRetrieveCategoriesAll.execute().get().get(0));
+            categoryList=workerRetrieveCategoriesAll.execute(categoryList).get();
         }catch (ExecutionException e){
 
         }catch (InterruptedException e){
@@ -80,7 +82,7 @@ public class TeacherCreateQuestion extends AppCompatActivity
         }
 
 
-        ArrayAdapter<String> adapter=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,categories);
+        adapter=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,categories);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         QuestionCategorySpinner.setAdapter(adapter);
       //  SpinnerHintAdapter adapter = new SpinnerHintAdapter(this, objects, android.R.layout.simple_spinner_item);
@@ -109,7 +111,7 @@ public class TeacherCreateQuestion extends AppCompatActivity
     }
 
     public void saveQuestion(View view) {
-        List<Answer> answerList=null;
+        List<Answer> answerList=new ArrayList<>();
         TextView answer1TW=findViewById(R.id.textAnswer1);
         TextView answer2TW=findViewById(R.id.textAnswer2);
         TextView answer3TW=findViewById(R.id.textAnswer3);
@@ -154,8 +156,8 @@ public class TeacherCreateQuestion extends AppCompatActivity
 
         TextView questionTW=findViewById(R.id.textQuestion);
         TextView cat=findViewById(R.id.etCategory);
-        if("".equals(cat.getText().toString())) {
-            Question question = new Question(QuestionCategorySpinner.getSelectedItem().toString(),questionTW.getText().toString(), answerList, img_str);
+        if("".equals(cat.getText().toString())) {//the question is not posting the image yet,under development
+            Question question = new Question(QuestionCategorySpinner.getSelectedItem().toString(),questionTW.getText().toString(), answerList, null);
 
             WorkerQuestion_Post workerQuestionPost=new WorkerQuestion_Post(getApplicationContext());
             workerQuestionPost.execute(question);
@@ -163,9 +165,13 @@ public class TeacherCreateQuestion extends AppCompatActivity
         else
         {
             categories.add(cat.getText().toString());
-            //post cat here
-            Question question = new Question(cat.getText().toString(), questionTW.getText().toString(),answerList, img_str);
-            //post here
+            Category newCategory=new Category(999,cat.getText().toString());
+            adapter.notifyDataSetChanged();
+            WorkerCategory_Post workerCategory_post=new WorkerCategory_Post(getApplicationContext());
+            workerCategory_post.execute(newCategory);
+            Question question = new Question(cat.getText().toString(), questionTW.getText().toString(),answerList, null);
+            WorkerQuestion_Post workerQuestionPost=new WorkerQuestion_Post(getApplicationContext());
+            workerQuestionPost.execute(question);
         }
     }
 

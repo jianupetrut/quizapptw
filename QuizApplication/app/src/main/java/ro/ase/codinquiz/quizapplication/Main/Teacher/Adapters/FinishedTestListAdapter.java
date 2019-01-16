@@ -12,6 +12,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,7 +22,7 @@ import ro.ase.codinquiz.quizapplication.R;
 public class FinishedTestListAdapter extends ArrayAdapter<FinishedTest> {
     private Context context;
     private int resource;
-    public FinishedTestListAdapter(@NonNull Context context, int resource, @NonNull ArrayList<FinishedTest> objects) {
+    public FinishedTestListAdapter(@NonNull Context context, int resource, @NonNull List<FinishedTest> objects) {
         super(context, resource, objects);
         this.context=context;
         this.resource=resource;
