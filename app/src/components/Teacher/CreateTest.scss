@@ -4,6 +4,7 @@
     padding: 3em;
     padding-left: 15rem !important;
     text-align: center;
+    min-height: 100vh;
 
     .test-name{
         margin-bottom: 1em;
@@ -28,5 +29,24 @@
 
     button{
         margin-top: 2em !important;
+    }
+
+    label {
+        padding: 1em;
+        background-color: #1f2d3a;
+        color: #ECEBE4 !important;
+        border-radius: 10px;
+    }
+
+    .ui.toggle.checkbox{
+        label{
+            background-color: #ECEBE4;
+            color: #1f2d3a !important;
+        }
+    }
+
+    button.ui.animated.button{
+        background-color: #1f2d3a;
+        color: #ECEBE4 !important;
     }
 }

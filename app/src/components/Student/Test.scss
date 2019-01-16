@@ -1,0 +1,35 @@
+.test-info{
+    .ui.progress{
+        .bar{
+            background-color: #1f2d3a;
+        }
+    }
+
+    .ui.segment{
+        background-color: #ECEBE4;
+        margin-top: 3em;
+        margin-bottom: 3em;
+        width: 40em;
+
+        h3{
+            margin:0;
+        }
+    }
+
+    form.ui.form .field{
+        text-align: left;
+        margin-top: 2em;
+        margin-bottom: 2em;
+        padding: 1.3em;
+        border-radius: 8px;
+        background-color: #1f2d3a;
+        
+        label{
+            color: #ECEBE4 !important;
+        }
+    }
+
+    button.ui.button{
+        margin-top:2em;
+    }
+}

@@ -18,7 +18,7 @@ class RadioGroup extends Component {
           <Form.Field>
             <Input placeholder='Answer 1...' onChange={(evt)=>{this.props.elementChanged('answer1', evt.target.value)}}/>
             <Radio
-              label="Check if above answer is correct"
+              label="Correct answer"
               name='radioGroup'
               value='1'
               checked={this.state.value === '1'}
@@ -28,7 +28,7 @@ class RadioGroup extends Component {
           <Form.Field>
             <Input placeholder='Answer 2...' onChange={(evt)=>{this.props.elementChanged('answer2', evt.target.value)}}/>
             <Radio
-              label="Check if above answer is correct"
+              label="Correct answer"
               name='radioGroup'
               value='2'
               checked={this.state.value === '2'}
@@ -38,7 +38,7 @@ class RadioGroup extends Component {
           <Form.Field>
             <Input placeholder='Answer 3...' onChange={(evt)=>{this.props.elementChanged('answer3', evt.target.value)}}/>
             <Radio
-              label="Check if above answer is correct"
+              label="Correct answer"
               name='radioGroup'
               value='3'
               checked={this.state.value === '3'}
@@ -48,7 +48,7 @@ class RadioGroup extends Component {
           <Form.Field>
             <Input placeholder='Answer 4...' onChange={(evt)=>{this.props.elementChanged('answer4', evt.target.value)}}/>
             <Radio
-              label="Check if above answer is correct"
+              label="Correct answer"
               name='radioGroup'
               value='4'
               checked={this.state.value === '4'}

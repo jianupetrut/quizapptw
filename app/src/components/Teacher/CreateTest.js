@@ -298,8 +298,8 @@ class TestInfo extends Component{
                     ?                     
                     <Message
                         success
-                        header='Your user new question category submission was successful'
-                        content='You may now add questions to this category'
+                        header='Your user new test submission was successful'
+                        content='You may now activate this test'
                     />
                     : <div></div>
                 }

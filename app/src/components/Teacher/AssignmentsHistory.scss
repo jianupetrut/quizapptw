@@ -3,6 +3,7 @@
     padding: 3em;
     padding-left: 15rem !important;
     text-align: center;
+    min-height: 100vh;
 
     .ui.card{
         display: inline-block;
@@ -12,5 +13,8 @@
 
     div.header{
         margin-top: 0.45em !important;
+        margin-bottom: 0.8em;
     }
+
+
 }

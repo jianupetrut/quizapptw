@@ -3,9 +3,19 @@
     padding: 3em;
     padding-left: 15rem !important;
     text-align: center;
+    min-height: 100vh;
 
     h4{
         margin-top: 5em;
     }
 
+    .ui.input{
+        display:table; 
+    }
+
+    button.ui.animated.button{
+        margin-top: 2em;
+        background-color: #1f2d3a;
+        color: #ECEBE4;
+    }
 }

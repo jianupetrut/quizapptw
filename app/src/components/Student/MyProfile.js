@@ -53,7 +53,7 @@ import {MockedData} from '../../api/mocks/mockedData'
             <Table.Row>
               <Table.HeaderCell
                 sorted={column === 'test_id' ? direction : null}
-                onClick={this.handleSort('test_id')}
+                
               >
                 Test ID
               </Table.HeaderCell>
@@ -66,7 +66,7 @@ import {MockedData} from '../../api/mocks/mockedData'
             
             <Table.HeaderCell
                 sorted={column === 'score' ? direction : null}
-                onClick={this.handleSort('score')}
+                
                 >
                 Score
             </Table.HeaderCell>

@@ -3,6 +3,7 @@
     padding: 3em;
     padding-left: 15rem !important;
     text-align: center;
+    min-height: 100vh;
 
     textarea{
         margin-bottom: 3em !important;
@@ -15,6 +16,7 @@
     }
 
     .ui.fluid.dropdown{
+        margin-top: 3em;
         margin-bottom: 3em;
     }
 
@@ -22,5 +24,25 @@
         width:67%;
     }
 
-    text-align: center;
+    button.ui.animated.button{
+        background-color: #1f2d3a;
+        color: #ECEBE4;
+    }
+
+    label{
+        padding:1em;
+        background-color:#1f2d3a;
+        color: #ECEBE4 !important;
+        border-radius: 10px;
+        margin-top: 1em;
+    }
+
+    .ui.form{
+        .field{
+            padding: 1em;
+            border-radius: 10px;
+            
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    }
 }

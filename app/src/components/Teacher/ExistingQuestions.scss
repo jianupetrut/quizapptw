@@ -3,6 +3,7 @@
     padding: 3em;
     padding-left: 15rem !important;
     text-align: center;
+    min-height: 100vh;
 
     
     .ui.fluid.selection.dropdown{
@@ -25,5 +26,10 @@
 
     .ui.header{
         margin-bottom: 2em;
+    }
+
+    .ui.right.pointing.label{
+        background-color: #1f2d3a;
+        color: #ECEBE4 !important;
     }
 }

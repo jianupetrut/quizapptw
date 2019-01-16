@@ -1,8 +1,13 @@
+.row{
+    background-color:#ECEBE4 !important;
+}
+
 .test-info{
     margin: auto;
     padding: 3em;
     padding-left: 15rem !important;
     text-align: center;
+    min-height: 100vh;
 
     
     .ui.header{
@@ -16,6 +21,16 @@
     
     button.ui.button.start-btn{
         margin-top: 2em;
+    }
+
+    button.ui.button{
+        background-color: #1f2d3a;
+        color:#ECEBE4 !important;
+    }
+
+    .ui.label{
+        background-color: #1f2d3a;
+        color:#ECEBE4 !important;
     }
 }
 
