@@ -26,8 +26,12 @@ import android.widget.TextView;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
+import ro.ase.codinquiz.quizapplication.Main.APIFunctionsAndWorkers.WorkerQuestion_Post;
+import ro.ase.codinquiz.quizapplication.Main.APIFunctionsAndWorkers.WorkerRetrieveCategories_All;
 import ro.ase.codinquiz.quizapplication.Main.Entities.Answer;
+import ro.ase.codinquiz.quizapplication.Main.Entities.Category;
 import ro.ase.codinquiz.quizapplication.Main.Entities.Question;
 import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity2;
 import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity3;
@@ -41,6 +45,7 @@ public class TeacherCreateQuestion extends AppCompatActivity
     Spinner QuestionCategorySpinner = null;
     List<String> categories=null;
     private static int RESULT_LOAD_IMAGE = 1;
+    private List<Category> categoryList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +65,20 @@ public class TeacherCreateQuestion extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         //Display hint text "Question categories" for spinner
+        WorkerRetrieveCategories_All workerRetrieveCategoriesAll=new WorkerRetrieveCategories_All(getApplicationContext());
+        try {
+            categoryList.add(workerRetrieveCategoriesAll.execute().get().get(0));
+        }catch (ExecutionException e){
+
+        }catch (InterruptedException e){
+
+        }
          categories = new ArrayList<String>();
-        categories.add("Category 2");
-        categories.add("Category 3");
-        categories.add("Question Category");  // add hint as last item
+        for (Category c :
+                categoryList) {
+            categories.add(c.getName());
+        }
+
 
         ArrayAdapter<String> adapter=new ArrayAdapter<>(this,R.layout.support_simple_spinner_dropdown_item,categories);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -141,11 +156,16 @@ public class TeacherCreateQuestion extends AppCompatActivity
         TextView cat=findViewById(R.id.etCategory);
         if("".equals(cat.getText().toString())) {
             Question question = new Question(QuestionCategorySpinner.getSelectedItem().toString(),questionTW.getText().toString(), answerList, img_str);
+
+            WorkerQuestion_Post workerQuestionPost=new WorkerQuestion_Post(getApplicationContext());
+            workerQuestionPost.execute(question);
         }
         else
         {
             categories.add(cat.getText().toString());
+            //post cat here
             Question question = new Question(cat.getText().toString(), questionTW.getText().toString(),answerList, img_str);
+            //post here
         }
     }
 

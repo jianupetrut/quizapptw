@@ -21,6 +21,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.List;
 
@@ -32,23 +33,58 @@ import ro.ase.codinquiz.quizapplication.Main.Entities.Test;
 import ro.ase.codinquiz.quizapplication.Main.Entities.User;
 
 public class APIFunctions {
-    private static final String questionsAddress="https://quiz-app-api-georgedobrin.c9users.io/api/questions/%d";
-    private static final String categoryAddress="https://quiz-app-api-georgedobrin.c9users.io/api/question_categories/%d";
-    private static final String categoryPostAddress="https://quiz-app-api-georgedobrin.c9users.io/api/question_categories";
-    private static final String finishedTestAddress="https://quiz-app-api-georgedobrin.c9users.io/api/finished_tests/owner_id/%d";
-    private static final String finishedTestAddress_byUsername="https://quiz-app-api-georgedobrin.c9users.io/api/finished_tests/username/%s";
-   // private static final String answerAddress="https://quiz-app-api-georgedobrin.c9users.io/api/answers/%d";
-    private static final String answerPostAdress="https://quiz-app-api-georgedobrin.c9users.io/api/answers";
-    private static final String questionPostAddress="https://quiz-app-api-georgedobrin.c9users.io/api/questions";
-    private static final String finishedTestPostAddress="https://quiz-app-api-georgedobrin.c9users.io/api/finished_tests";
-    private static final String testPostAddress="https://quiz-app-api-georgedobrin.c9users.io/api/tests";
-    private static final String userPostAddress="https://quiz-app-api-georgedobrin.c9users.io/api/users";
+    private static final String questionsAddress="https://quiz-app-georgedobrin.c9users.io/api/questions/%d";
+    private static final String categoryAddress="https://quiz-app-georgedobrin.c9users.io/api/question_categories/%d";
+    private static final String categoryPostAddress="https://quiz-app-georgedobrin.c9users.io/api/question_categories";
+    private static final String finishedTestAddress="https://quiz-app-georgedobrin.c9users.io/api/finished_tests/owner_id/%d";
+    private static final String finishedTestAddress_byUsername="https://quiz-app-georgedobrin.c9users.io/api/finished_tests/username/%s";
+   // private static final String answerAddress="https://quiz-app-georgedobrin.c9users.io/api/answers/%d";
+    private static final String answerPostAdress="https://quiz-app-georgedobrin.c9users.io/api/answers";
+    private static final String questionPostAddress="https://quiz-app-georgedobrin.c9users.io/api/questions";
+    private static final String finishedTestPostAddress="https://quiz-app-georgedobrin.c9users.io/api/finished_tests";
+    private static final String testPostAddress="https://quiz-app-georgedobrin.c9users.io/api/tests";
+    private static final String userPostAddress="https://quiz-app-georgedobrin.c9users.io/api/users";
 
-    private static final String getAnswer_byQuestionIdAddress="https://quiz-app-api-georgedobrin.c9users.io/api/answers/question_id/%d";
-    private static final String testAddress="https://quiz-app-api-georgedobrin.c9users.io/api/tests/owner_id/%d";
-    private static final String userAddress="https://quiz-app-api-georgedobrin.c9users.io/api/users/username/%s";
+    private static final String getAnswer_byQuestionIdAddress="https://quiz-app-georgedobrin.c9users.io/api/answers/question_id/%d";
+    private static final String testAddress="https://quiz-app-georgedobrin.c9users.io/api/tests/owner_id/%d";
+    private static final String userAddress="https://quiz-app-georgedobrin.c9users.io/api/users/username/%s";
     HttpURLConnection connection=null;
 
+    public List<Category> retrieveCategories_All(){
+        List<Category> categories=new ArrayList<>();
+        try{
+
+            URL url = new URL(categoryAddress);
+            connection=(HttpURLConnection)url.openConnection();
+            InputStream inputStream=connection.getInputStream();
+            BufferedReader reader=new BufferedReader(new InputStreamReader(inputStream));
+            StringBuilder stringBuilder=new StringBuilder();
+            String line=null;
+            while((line=reader.readLine())!=null){
+                stringBuilder.append(line);
+            }
+            String result=stringBuilder.toString();
+            JSONArray jsonArray=new JSONArray(result);
+
+            for(int i=0;i<jsonArray.length();i++) {
+                JSONObject jsonObject=(JSONObject)jsonArray.get(i);
+                int id = jsonObject.getInt("id");
+                String text = jsonObject.getString("category");
+                Category category = new Category(id, text);
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+        }
+        return categories;
+    }
     public Answer retrieveAnswer(JSONArray jsonArray,int jsonArrayPosition){
 
         Answer answer=null;
@@ -170,7 +206,167 @@ public class APIFunctions {
 
 
     }
-    public void postAnswers(Answer answer){
+    public void postAnswers(List<Answer> answers){
+        try{
+
+
+            URL url = new URL(answerPostAdress);
+            connection=(HttpURLConnection)url.openConnection();
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+            try {
+                connection.setRequestMethod("POST");
+            }catch (ProtocolException e){
+
+            }
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Accept","application/json");
+            //     connection.setChunkedStreamingMode(0);
+            JSONObject mainObject=new JSONObject();
+
+            JSONArray jsonArray=new JSONArray();
+            for (Answer a :
+                    answers) {
+                JSONObject jsonObject=new JSONObject();
+
+                jsonObject.put("answer",a.getText());
+                jsonObject.put("isCorrect",a.isCorrect());
+                jsonObject.put("question_id",a.getQuestionId());
+                jsonArray.put(jsonObject);
+            }
+
+
+            mainObject.put("answers",jsonArray);
+
+
+
+            DataOutputStream os=new DataOutputStream(connection.getOutputStream());
+
+            os.writeBytes(mainObject.toString());
+
+            os.flush();
+
+            connection.connect();
+            connection.getContent();
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+        }
+
+    }
+    public void postTest(Test test){
+        try{
+
+
+            URL url = new URL(testPostAddress);
+            connection=(HttpURLConnection)url.openConnection();
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+            try {
+                connection.setRequestMethod("POST");
+            }catch (ProtocolException e){
+
+            }
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Accept","application/json");
+            //     connection.setChunkedStreamingMode(0);
+            JSONObject jsonObject=new JSONObject();
+
+
+            //questions_id , test (name),shuffle,one_way,feedback,showResult,isActive,retrieves,time,owner_id
+            int[] questions_id=new int[test.getQuestionList().size()];
+            jsonObject.put("questions_id",questions_id);
+            jsonObject.put("test",test.getTestName());
+            jsonObject.put("shuffle",test.isShuffle());
+            jsonObject.put("one_way",test.isOneWay());
+            jsonObject.put("feedback",test.isFeedback());
+            jsonObject.put("showResult",test.getResult());
+            jsonObject.put("isActive",test.isActive());
+            jsonObject.put("retrieves",test.getRetries());
+            jsonObject.put("time",test.getTime());
+            jsonObject.put("owner_id",test.getOwner_id());
+
+
+
+
+
+            DataOutputStream os=new DataOutputStream(connection.getOutputStream());
+
+            os.writeBytes(jsonObject.toString());
+
+            os.flush();
+
+            connection.connect();
+            connection.getContent();
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+        }
+    }
+    public void postFinishedTest(FinishedTest finishedTest){
+        try{
+
+
+            URL url = new URL(finishedTestPostAddress);
+            connection=(HttpURLConnection)url.openConnection();
+            connection.setDoOutput(true);
+            connection.setDoInput(true);
+            try {
+                connection.setRequestMethod("POST");
+            }catch (ProtocolException e){
+
+            }
+            connection.setRequestProperty("Content-Type", "application/json");
+            connection.setRequestProperty("Accept","application/json");
+            //     connection.setChunkedStreamingMode(0);
+            JSONObject jsonObject=new JSONObject();
+
+            jsonObject.put("test_id",finishedTest.getTest_id());
+            jsonObject.put("username",finishedTest.getUsername());
+            jsonObject.put("name",finishedTest.getTestName());
+            jsonObject.put("date",finishedTest.getDate().toString());
+
+
+
+
+            DataOutputStream os=new DataOutputStream(connection.getOutputStream());
+
+            os.writeBytes(jsonObject.toString());
+
+            os.flush();
+
+            connection.connect();
+            connection.getContent();
+
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }finally {
+            if (connection != null) {
+                connection.disconnect();
+            }
+        }
+    }
+    public void postQuestion(Question question){
         try{
 
 
@@ -188,13 +384,14 @@ public class APIFunctions {
             //     connection.setChunkedStreamingMode(0);
             JSONObject jsonObject=new JSONObject();
 
-            jsonObject.put("answer",answer.getText());
-            jsonObject.put("isCorrect",answer.isCorrect());
-            jsonObject.put("question_id",answer.getQuestionId());
+
+            jsonObject.put("question_category_id",question.getCategory());//MODIFY THE QUESTION CATEGORY!!!
+            jsonObject.put("question",question.getText());
+            jsonObject.put("image",question.getImage());
 
 
 
-            String string=jsonObject.toString();
+
             DataOutputStream os=new DataOutputStream(connection.getOutputStream());
 
             os.writeBytes(jsonObject.toString());
@@ -216,9 +413,7 @@ public class APIFunctions {
             }
         }
 
-    }
-    public void postQuestion(Question question){
-
+        postAnswers(question.getAnswerList());
     }
 
     public Category retrieveCategory(int CategoryID){//done
