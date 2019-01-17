@@ -30,10 +30,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
-        mapFragment.getMapAsync(this::onMapReady);
 
         Intent intent = getIntent();
         location = intent.getStringExtra("location");
+        mapFragment.getMapAsync(this::onMapReady);
 
     }
 
@@ -59,7 +59,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     Address address = result.get(0);
                     LatLng latLng = new LatLng(address.getLatitude(),address.getLongitude());
                     map.addMarker(new MarkerOptions().position(latLng).title(location).snippet("cOdin Headquarters"));
-                    map.setMinZoomPreference(6);
+                    map.setMinZoomPreference(8);
                     map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
                 }
             } catch (IOException e) {

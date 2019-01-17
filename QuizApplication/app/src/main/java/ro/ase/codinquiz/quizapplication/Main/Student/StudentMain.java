@@ -126,7 +126,7 @@ public class StudentMain extends AppCompatActivity
             Intent intent =new Intent(this,StudentMain.class);
             startActivity(intent);
         } else if (id == R.id.nav_new_assignment) {
-            Intent intent =new Intent(this,StudentStartTestActivity.class);
+            Intent intent =new Intent(this,JoinTestActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_leave_feedback) {
             Intent intent =new Intent(this,StudentFeedbackActivity.class);

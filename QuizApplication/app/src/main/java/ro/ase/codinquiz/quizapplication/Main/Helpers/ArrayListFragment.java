@@ -82,8 +82,7 @@ public class ArrayListFragment extends ListFragment {
         l.setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
         l.setSelector(android.R.color.background_light);
         Object object = (Object) l.getItemAtPosition(position);
-        Toast.makeText(this.getContext(), "item"+object.toString(),
-                Toast.LENGTH_SHORT).show();
+
 
         Answer correctAnswer=null;
         int indexCorrectPosition=0;

@@ -90,6 +90,8 @@ public class StudentTestActivity extends AppCompatActivity {
         finishedTest.setTest_id(1);
         WorkerFinishedTest_Post workerFinishedTestPost=new WorkerFinishedTest_Post(getApplicationContext());
         workerFinishedTestPost.execute(finishedTest);
+        Toast.makeText(this, "Test finished. Your score:"+score+"%",
+                Toast.LENGTH_LONG).show();
         onBackPressed();
     }
 
