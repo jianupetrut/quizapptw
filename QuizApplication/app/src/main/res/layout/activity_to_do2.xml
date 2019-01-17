@@ -56,7 +56,7 @@
     <TextView
         android:id="@+id/textView25"
         android:layout_width="119dp"
-        android:layout_height="46dp"
+        android:layout_height="63dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="228dp"
         android:text="@string/rating2"
@@ -66,7 +66,7 @@
     <TextView
         android:id="@+id/textView26"
         android:layout_width="119dp"
-        android:layout_height="46dp"
+        android:layout_height="57dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="352dp"
         android:text="@string/rating3"

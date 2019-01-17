@@ -19,7 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
-import android.widget.NumberPicker;
+
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -27,7 +27,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
+import ro.ase.codinquiz.quizapplication.Main.APIFunctionsAndWorkers.WorkerRetrieveCategories_All;
+import ro.ase.codinquiz.quizapplication.Main.Entities.Category;
 import ro.ase.codinquiz.quizapplication.Main.Entities.Test;
 import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity2;
 import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity4;
@@ -63,10 +66,7 @@ public class TeacherCreateTest extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        NumberPicker numberPicker = findViewById(R.id.numberPicker);
 
-        numberPicker.setMinValue(0);
-        numberPicker.setMaxValue(90);
 
         questionsList = new ArrayList<>();
 
@@ -75,12 +75,23 @@ public class TeacherCreateTest extends AppCompatActivity
         questionsList.add(q1);
         questionsList.add(q2);
 
+        List<Category> categoryList=new ArrayList<>();
         //Display hint text "Question categories" for spinner
+
+
+        WorkerRetrieveCategories_All workerRetrieveCategoriesAll=new WorkerRetrieveCategories_All(getApplicationContext());
+        try {
+            categoryList=workerRetrieveCategoriesAll.execute(categoryList).get();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         List<String> objects = new ArrayList<String>();
-        objects.add("Category 1");
-        objects.add("Category 2");
-        objects.add("Category 3");
-        objects.add("Question Category");  // add hint as last item
+        for (Category c :
+                categoryList) {
+            objects.add(c.getName());
+        }
 
         //SpinnerHintAdapter adapter = new SpinnerHintAdapter(this, objects, android.R.layout.simple_spinner_item);
         //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -160,7 +171,7 @@ public class TeacherCreateTest extends AppCompatActivity
         Switch shuffleSw = findViewById(R.id.switchShuffle);
         Switch feedbackSW = findViewById(R.id.switchFeedback);
         Switch resultSw = findViewById(R.id.switchResult);
-        NumberPicker numberPicker = findViewById(R.id.numberPicker);
+
 
         Boolean shuffle = shuffleSw.isChecked();
         Boolean feedback = feedbackSW.isChecked();
@@ -176,7 +187,7 @@ public class TeacherCreateTest extends AppCompatActivity
             }
         }
 
-        int time = numberPicker.getValue();
+        int time =30;
         //Test test = new Test(id generat din baza de date, "Test no. id", questionList, shuffle,  feedback, result,  time, oneWay)
             //push test to db
 

@@ -120,5 +120,6 @@
     <string name="textview1">TextView1</string>
     <string name="textview3">TextView3</string>
     <string name="buttonSaveGrades">Save Data</string>
+    <string name="codin_quiz_app">cOdin Quiz App</string>
 
 </resources>

@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import ro.ase.codinquiz.quizapplication.Main.APIFunctionsAndWorkers.WorkerFinishedTest_Post;
 import ro.ase.codinquiz.quizapplication.Main.Entities.FinishedTest;
 import ro.ase.codinquiz.quizapplication.Main.Entities.Test;
 import ro.ase.codinquiz.quizapplication.Main.Helpers.ArrayListFragment;
@@ -79,15 +80,17 @@ public class StudentTestActivity extends AppCompatActivity {
                 score++;
             }
         }
-        score=score/ITEMS[0];
+        score=score*100/ITEMS[0];
         FinishedTest finishedTest=new FinishedTest();
         finishedTest.setScore(score);
         DateFormat sdf=new SimpleDateFormat("dd.MM.yyyy");
         finishedTest.setDate(Calendar.getInstance().getTime());
         finishedTest.setTestName(this.getTest().getTestName());
         finishedTest.setUsername("user0");
-        
-        finishActivity(0);
+        finishedTest.setTest_id(1);
+        WorkerFinishedTest_Post workerFinishedTestPost=new WorkerFinishedTest_Post(getApplicationContext());
+        workerFinishedTestPost.execute(finishedTest);
+        onBackPressed();
     }
 
     public static class MyAdapter extends FragmentStatePagerAdapter {
@@ -111,7 +114,9 @@ public class StudentTestActivity extends AppCompatActivity {
                 return ImageFragment.init(position);
 
             }else{
-                return ArrayListFragment.init(position, Test[0]);
+                ArrayListFragment fragment=new ArrayListFragment();
+                return fragment.init(position,Test[0]);
+              //  return ArrayListFragment.init(position, Test[0]);
             }
         }
 
