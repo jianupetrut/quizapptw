@@ -1,13 +1,30 @@
 package ro.ase.codinquiz.quizapplication.Main.Entities;
 
-public class Answer  {
+import java.io.Serializable;
+
+public class Answer implements Serializable {
 
     private int id;
     private String text;
     private boolean isCorrect;
     private int questionId;
 
+    public Answer() {
+    };
+
+    public Answer(String text) {
+        this.text = text;
+    }
+
+    public Answer(int id, String text, boolean isCorrect, int questionId) {
+        this.id = id;
+        this.text = text;
+        this.isCorrect = isCorrect;
+        this.questionId = questionId;
+    }
+
     public int getId() {
+
         return id;
     }
 

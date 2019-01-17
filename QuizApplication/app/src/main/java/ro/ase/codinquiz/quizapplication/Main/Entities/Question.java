@@ -1,24 +1,20 @@
 package ro.ase.codinquiz.quizapplication.Main.Entities;
 
-import android.media.Image;
-
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
-public class Question {
+public class Question implements Serializable {
     private int id;
-    private String text;
     private String category;
-    private ArrayList<Answer> answerList;
-    private Image image;
+    private String text;
+    private List<Answer> answerList;
+    private String image;
 
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public Question(String category, String text, List<Answer> answerList, String image) {
+        this.category = category;
+        this.answerList = answerList;
+        this.image = image;
+        this.text=text;
     }
 
     public String getText() {
@@ -27,6 +23,22 @@ public class Question {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCategory() {
@@ -41,7 +53,7 @@ public class Question {
         return answerList;
     }
 
-    public void setAnswerList(ArrayList<Answer> answerList) {
+    public void setAnswerList(List<Answer> answerList) {
         this.answerList = answerList;
     }
 }

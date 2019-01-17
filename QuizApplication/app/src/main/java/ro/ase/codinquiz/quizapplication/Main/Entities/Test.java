@@ -1,8 +1,9 @@
 package ro.ase.codinquiz.quizapplication.Main.Entities;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Test {
+public class Test implements Serializable {
     private int id;
     private String testName;
     private List<Question> questionList;
@@ -11,8 +12,47 @@ public class Test {
     private boolean result;
     private boolean oneWay;
     private int time;
-    private int retrieve;
+    private int retries;
     private boolean active;
+    private int owner_id;
+
+    public Test(int id, String testName, List<Question> questionList, boolean shuffle, boolean feedback, boolean result, int time, boolean oneWay) {
+        this.id = id;
+        this.testName = testName;
+        this.questionList = questionList;
+        this.shuffle = shuffle;
+        this.feedback = feedback;
+        this.result = result;
+        this.time = time;
+        this.oneWay = oneWay;
+    }
+
+    public Test() {
+    }
+
+    public Test(int id, String testName, List<Question> questionList, boolean shuffle, boolean feedback, boolean result, boolean oneWay, int time, int retries, boolean active, int owner_id) {
+
+        this.id = id;
+        this.testName = testName;
+        this.questionList = questionList;
+        this.shuffle = shuffle;
+        this.feedback = feedback;
+        this.result = result;
+        this.oneWay = oneWay;
+        this.time = time;
+        this.retries = retries;
+        this.active = active;
+        this.owner_id = owner_id;
+    }
+
+    public int getOwner_id() {
+
+        return owner_id;
+    }
+
+    public void setOwner_id(int owner_id) {
+        this.owner_id = owner_id;
+    }
 
     public int getId() {
         return id;
@@ -54,7 +94,7 @@ public class Test {
         this.feedback = feedback;
     }
 
-    public boolean isResult() {
+    public boolean getResult() {
         return result;
     }
 
@@ -78,12 +118,12 @@ public class Test {
         this.time = time;
     }
 
-    public int getRetrieve() {
-        return retrieve;
+    public int getRetries() {
+        return retries;
     }
 
-    public void setRetrieve(int retrieve) {
-        this.retrieve = retrieve;
+    public void setRetries(int retries) {
+        this.retries = retries;
     }
 
     public boolean isActive() {
@@ -104,7 +144,7 @@ public class Test {
         this.result = result;
         this.oneWay = oneWay;
         this.time = time;
-        this.retrieve = retrieve;
+        this.retries = retrieve;
         this.active = active;
     }
 }

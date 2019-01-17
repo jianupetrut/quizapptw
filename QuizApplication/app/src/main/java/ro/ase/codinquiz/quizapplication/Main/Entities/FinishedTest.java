@@ -4,9 +4,45 @@ import java.util.Date;
 
 public class FinishedTest {
     private int id;
-    private int testId;
-    private float score;
+    private int test_id;
+    private int score;
+    private String username;
+    private String testName;
     private Date date;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getTestName() {
+        return testName;
+    }
+
+    public void setTestName(String testName) {
+        this.testName = testName;
+    }
+
+
+
+    public FinishedTest(int id, int test_id, int score, String username, String testName, Date date) {
+
+
+
+        this.id = id;
+        this.test_id = test_id;
+        this.score = score;
+        this.username = username;
+        this.testName = testName;
+        this.date = date;
+
+    }
+
+    public FinishedTest() {
+    }
 
     public int getId() {
         return id;
@@ -16,19 +52,19 @@ public class FinishedTest {
         this.id = id;
     }
 
-    public int getTestId() {
-        return testId;
+    public int getTest_id() {
+        return test_id;
     }
 
-    public void setTestId(int testId) {
-        this.testId = testId;
+    public void setTest_id(int name) {
+        this.test_id = name;
     }
 
-    public float getScore() {
+    public int getScore() {
         return score;
     }
 
-    public void setScore(float score) {
+    public void setScore(int score) {
         this.score = score;
     }
 
@@ -39,4 +75,6 @@ public class FinishedTest {
     public void setDate(Date date) {
         this.date = date;
     }
+
+
 }

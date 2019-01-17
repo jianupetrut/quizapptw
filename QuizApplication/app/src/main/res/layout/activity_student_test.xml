@@ -4,6 +4,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Main.Student.StudentTestActivity">
+    tools:context=".Main.Student.StudentTestActivity"
+    tools:layout_editor_absoluteY="25dp">
 
+    <!--<TextView-->
+        <!--android:id="@+id/textView_test_questionText"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="TextView"-->
+        <!--app:layout_constraintBottom_toTopOf="@+id/checkBox_test_Answer1"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.5"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--<CheckBox-->
+        <!--android:id="@+id/checkBox_test_Answer1"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="CheckBox"-->
+        <!--app:layout_constraintBottom_toTopOf="@+id/checkBox_test_Answer2"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.5"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/textView_test_questionText" />-->
+
+    <!--<CheckBox-->
+        <!--android:id="@+id/checkBox_test_Answer2"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="CheckBox"-->
+        <!--app:layout_constraintBottom_toTopOf="@+id/checkBox_test_Answer3"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.5"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/checkBox_test_Answer1" />-->
+
+    <!--<CheckBox-->
+        <!--android:id="@+id/checkBox_test_Answer3"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="CheckBox"-->
+        <!--app:layout_constraintBottom_toTopOf="@+id/checkBox_test_Answer4"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.5"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/checkBox_test_Answer2" />-->
+
+    <!--<CheckBox-->
+        <!--android:id="@+id/checkBox_test_Answer4"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="CheckBox"-->
+        <!--app:layout_constraintBottom_toTopOf="@+id/button_test_NextQuestion"-->
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintHorizontal_bias="0.5"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/checkBox_test_Answer3" />-->
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="392dp"
+        android:layout_height="382dp"
+        app:layout_constraintBottom_toTopOf="@id/button_test_NextQuestion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></android.support.v4.view.ViewPager>
+
+    <TextView
+        android:id="@+id/textSwipe"
+        android:layout_width="297dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/swipe_right_or_left_to_see_questions"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/pager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button_test_NextQuestion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="submit"
+        android:text="@string/submit_answer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pager" />
 </android.support.constraint.ConstraintLayout>

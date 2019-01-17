@@ -8,6 +8,9 @@ public class User {
     private int group;
     private boolean isStudent;
 
+    public User() {
+    }
+
     public int getId() {
         return id;
     }

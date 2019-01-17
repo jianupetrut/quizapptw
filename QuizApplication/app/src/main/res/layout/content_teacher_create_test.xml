@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="224dp"
+        android:layout_marginTop="208dp"
         android:layout_marginEnd="8dp"
         android:text="@string/sw_shuffle"
         android:textSize="18sp"
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="8dp"
         android:text="@string/sw_feedback"
         android:textSize="18sp"
@@ -42,7 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:text="@string/sw_result"
         android:textSize="18sp"
@@ -62,30 +62,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <NumberPicker
-        android:id="@+id/numberPicker"
-        android:layout_width="40dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        app:layout_constraintHorizontal_bias="0.17"
-        app:layout_constraintStart_toEndOf="@+id/npLabel"
-        app:layout_constraintTop_toBottomOf="@+id/switchResult"></NumberPicker>
-
     <TextView
         android:id="@+id/npLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="45dp"
-        android:labelFor="@id/numberPicker"
-        android:text="Select maximum time(min)"
-        android:textColor="@android:color/background_dark"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="10dp"
+        android:labelFor="@id/editText_CreateTest_Time"
+        android:text="@string/selectMaxTime"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         android:textSize="18sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/editText_CreateTest_Time"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switchResult" />
 
@@ -102,21 +91,48 @@
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.23" />
+        app:layout_constraintVertical_bias="0.163" />
 
     <ListView
         android:id="@+id/lvQuestions"
         android:layout_width="309dp"
-        android:layout_height="147dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="137dp"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/editText_CreateTest_Time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btnCreateTest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:scrollbars="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/switchShuffle"
+        android:text="@string/create_new_test"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spQuestionCategory"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/npLabel" />
+
+    <EditText
+        android:id="@+id/editText_CreateTest_Time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="101dp"
+        android:ems="10"
+        android:inputType="number"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/npLabel"
+        app:layout_constraintTop_toBottomOf="@+id/lvQuestions" />
 
 </android.support.constraint.ConstraintLayout>

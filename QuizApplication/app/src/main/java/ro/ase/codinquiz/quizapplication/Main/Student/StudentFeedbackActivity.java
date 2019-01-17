@@ -13,7 +13,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity2;
+import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity3;
+import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity4;
 import ro.ase.codinquiz.quizapplication.R;
 
 public class StudentFeedbackActivity extends AppCompatActivity
@@ -35,6 +39,10 @@ public class StudentFeedbackActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    public void sendFeedback(View view){
+        Toast.makeText(this,"Feedback sent",Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -84,11 +92,20 @@ public class StudentFeedbackActivity extends AppCompatActivity
             Intent intent =new Intent(this,StudentMain.class);
             startActivity(intent);
         } else if (id == R.id.nav_new_assignment) {
-
             Intent intent =new Intent(this,JoinTestActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_leave_feedback) {
-            goToFeedback();
+            Intent intent =new Intent(this,StudentFeedbackActivity.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_see_school_week) {
+            Intent intent =new Intent(this,ToDoActivity3.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_rate_app) {
+            Intent intent =new Intent(this,ToDoActivity2.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_contact_us) {
+            Intent intent =new Intent(this,ToDoActivity4.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

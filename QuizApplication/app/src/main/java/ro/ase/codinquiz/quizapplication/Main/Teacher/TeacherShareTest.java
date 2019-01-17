@@ -13,11 +13,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
+import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity2;
+import ro.ase.codinquiz.quizapplication.Main.OtherActivities.ToDoActivity4;
 import ro.ase.codinquiz.quizapplication.R;
 
 public class TeacherShareTest extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    Button bt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,25 @@ public class TeacherShareTest extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        bt=(Button)findViewById(R.id.buttonShareViaEmail);
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              Intent intent=new Intent(Intent.ACTION_SEND);
+              intent.setType(("text/plain"));
+              startActivity(Intent.createChooser(intent,"Share via:"));
+        }
+        });
+
+
+    }
+
+    public void shareTest(View view){
+        EditText et = findViewById(R.id.etEmail);
+        String email = et.getText().toString();
+        // post to db test with id of user with email from above
+
+        Toast.makeText(this,"Test shared with "+email,Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -81,7 +106,8 @@ public class TeacherShareTest extends AppCompatActivity
             Intent intent =new Intent(this,TeacherCreateTest.class);
             startActivity(intent);
         } else if (id == R.id.nav_existing_tests) {
-
+            Intent intent =new Intent(this,TeacherExistingTests.class);
+            startActivity(intent);
         } else if (id == R.id.nav_create_new_question) {
             Intent intent =new Intent(this,TeacherCreateQuestion.class);
             startActivity(intent);
@@ -94,7 +120,20 @@ public class TeacherShareTest extends AppCompatActivity
         } else if (id == R.id.nav_leave_feedback) {
             Intent intent =new Intent(this,TeacherFeedbackActivity.class);
             startActivity(intent);
+        }else if (id == R.id.nav_share) {
+            Intent intent = new Intent(this, TeacherShareTest.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_see_statistics) {
+            Intent intent = new Intent(this, TeacherSeeStatistics.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_rate_app) {
+            Intent intent = new Intent(this, ToDoActivity2.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_contact_us) {
+            Intent intent = new Intent(this, ToDoActivity4.class);
+            startActivity(intent);
         }
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
