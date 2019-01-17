@@ -212,7 +212,10 @@ public class TeacherExistingQuestions extends AppCompatActivity
         } else if (id == R.id.nav_assignment_history) {
             Intent intent =new Intent(this,TeacherSeeHistory.class);
             startActivity(intent);
-        } else if (id == R.id.nav_leave_feedback) {
+        }else if (id == R.id.nav_see_statistics) {
+            Intent intent = new Intent(this, TeacherSeeStatistics.class);
+            startActivity(intent);
+        }else if (id == R.id.nav_leave_feedback) {
             Intent intent =new Intent(this,TeacherFeedbackActivity.class);
             startActivity(intent);
         }else if (id == R.id.nav_share) {

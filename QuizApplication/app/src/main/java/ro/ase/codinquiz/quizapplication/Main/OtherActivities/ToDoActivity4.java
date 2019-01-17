@@ -36,7 +36,7 @@ public class ToDoActivity4 extends AppCompatActivity {
                 new Intent(ToDoActivity4.this,
                         MapsActivity.class);
             intent.putExtra("location",
-                    "Academia de Studii Economice din Bucuresti");
+                    "Academia de Studii Economice, Clădirea Virgil Madgearu, Calea Dorobanți 15-17, București 010552");
         startActivity(intent);
     }
 

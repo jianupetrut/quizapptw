@@ -43,11 +43,11 @@ public class JoinTestActivity extends AppCompatActivity {
         if(name != null) {
             code=et.getText().toString();
             et2.setVisibility(View.INVISIBLE);
-            Choice c = new Choice("Test", true);
+
 
             Intent i = new Intent(this, StudentStartTestActivity.class);
             i.putExtra("CODE", code);
-            i.putExtra("CHOICE", c);
+
             i.putExtra("studentName", name);
             startActivity(i);
         }

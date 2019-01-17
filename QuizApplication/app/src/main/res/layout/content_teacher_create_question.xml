@@ -30,10 +30,10 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.857"
+            app:layout_constraintHorizontal_bias="0.571"
             app:layout_constraintStart_toEndOf="@+id/ivAddedImage"
             app:layout_constraintTop_toBottomOf="@+id/etCategory"
-            app:layout_constraintVertical_bias="0.017" />
+            app:layout_constraintVertical_bias="0.01" />
 
         <EditText
             android:id="@+id/etCategory"
@@ -71,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="28dp"
             android:layout_marginStart="36dp"
-            android:layout_marginTop="44dp"
+            android:layout_marginTop="20dp"
             android:text="@string/select_category"
             android:textColor="@color/common_google_signin_btn_text_dark_default"
             android:textSize="18sp"
@@ -84,7 +84,7 @@
             android:layout_width="168dp"
             android:layout_height="32dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.65"
@@ -94,35 +94,35 @@
         <EditText
             android:id="@+id/textQuestion"
             android:layout_width="wrap_content"
-            android:layout_height="37dp"
+            android:layout_height="46dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="68dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
             android:inputType="textMultiLine"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintHorizontal_bias="0.187"
             app:layout_constraintStart_toEndOf="@+id/lblQuestion"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/textAnswer4"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="45dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="252dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:ems="10"
             android:inputType="textMultiLine"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.25"
+            app:layout_constraintHorizontal_bias="0.187"
             app:layout_constraintStart_toEndOf="@+id/lblQuestion"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/textAnswer3" />
 
         <EditText
             android:id="@+id/textAnswer2"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="49dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -136,7 +136,7 @@
         <EditText
             android:id="@+id/textAnswer1"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="48dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -150,7 +150,7 @@
         <EditText
             android:id="@+id/textAnswer3"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="56dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -201,7 +201,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="11dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:text="@string/answer_1"
             android:textStyle="bold"
@@ -216,12 +216,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="28dp"
             android:layout_marginEnd="8dp"
             android:text="@string/answer_4"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@+id/textAnswer4"
-            app:layout_constraintHorizontal_bias="0.707"
+            app:layout_constraintHorizontal_bias="0.7"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/checkBoxAnswer3" />
@@ -257,12 +257,12 @@
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/checkBoxAnswer2"
-            app:layout_constraintVertical_bias="0.8" />
+            app:layout_constraintVertical_bias="0.75" />
 
         <ImageView
             android:id="@+id/ivAddedImage"
             android:layout_width="86dp"
-            android:layout_height="142dp"
+            android:layout_height="96dp"
             android:layout_marginStart="148dp"
             android:layout_marginBottom="2844dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -286,9 +286,10 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/ivAddedImage"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView12"
-            app:layout_constraintVertical_bias="0.018" />
+            app:layout_constraintVertical_bias="0.01" />
 
 
     </android.support.constraint.ConstraintLayout>

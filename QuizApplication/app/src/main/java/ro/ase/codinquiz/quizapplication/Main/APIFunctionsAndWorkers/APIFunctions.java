@@ -49,6 +49,7 @@ public class APIFunctions {
 
     private static final String getAnswer_byQuestionIdAddress="https://quiz-app-georgedobrin.c9users.io/api/answers/question_id/%d";
     private static final String testAddress="https://quiz-app-georgedobrin.c9users.io/api/tests/owner_id/%d";
+    private static final String testAddressById="https://quiz-app-georgedobrin.c9users.io/api/tests/%d";
     private static final String userAddress="https://quiz-app-georgedobrin.c9users.io/api/users/username/%s";
     HttpURLConnection connection=null;
 
@@ -87,6 +88,83 @@ public class APIFunctions {
             }
         }
         return categories;
+    }
+    public Test retrieveTestByID(int TestID){
+        Test test=new Test();
+
+        try{
+            String address=String.format(testAddressById,TestID);
+            URL url = new URL(address);
+            connection=(HttpURLConnection)url.openConnection();
+            InputStream inputStream=connection.getInputStream();
+            BufferedReader reader=new BufferedReader(new InputStreamReader(inputStream));
+            StringBuilder stringBuilder=new StringBuilder();
+            String line=null;
+            while((line=reader.readLine())!=null){
+                stringBuilder.append(line);
+            }
+            String result=stringBuilder.toString();
+
+
+
+
+            JSONObject jsonObject=new JSONObject(result);
+
+            String questionIdsString=jsonObject.getString("questions_id").replaceAll("\"","").replaceAll("\\[", "").replaceAll("\\]","");;
+            questionIdsString.replaceAll("[\\[\\]]", "").replace("[","").replace("]","");
+            questionIdsString.replace("[","").replace("]","");
+            questionIdsString.replace("\\[\\", "");
+            questionIdsString.replaceAll("]","");
+            // String[] separated=questionIdsString.split("(?!^)");
+
+            String[] separated=questionIdsString.split(",");
+
+            int[] questionIds=new int[separated.length];
+            ArrayList<Question> questions=new ArrayList<>();
+
+            for(int i=0;i<separated.length;i++){
+                questionIds[i]=Integer.parseInt(separated[i]);
+
+            }
+            for (int questionId: questionIds
+                    ) {
+
+                retrieveQuestion(questionId,questions);
+
+            }
+            int id=Integer.parseInt(jsonObject.getString("id"));
+            String name=jsonObject.getString("test");
+            boolean shuffle=jsonObject.getBoolean("shuffle");
+            boolean one_way=jsonObject.getBoolean("one_way");
+            boolean isActive=jsonObject.getBoolean("isActive");
+            boolean showResult=jsonObject.getBoolean("showResult");
+            boolean feedback=jsonObject.getBoolean("feedback");
+            int retries=jsonObject.getInt("retrieves");
+            int time=jsonObject.getInt("time");
+            int owner_id=jsonObject.getInt("owner_id");
+            test.setActive(isActive);
+            test.setFeedback(feedback);
+            test.setId(id);
+            test.setOneWay(one_way);
+            test.setOwner_id(owner_id);
+            test.setQuestionList(questions);
+            test.setShuffle(shuffle);
+            test.setResult(showResult);
+            test.setRetries(retries);
+            test.setTime(time);
+            test.setTestName(name);
+
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return test;
     }
     public Answer retrieveAnswer(JSONArray jsonArray,int jsonArrayPosition){
 
@@ -396,10 +474,12 @@ public class APIFunctions {
             //     connection.setChunkedStreamingMode(0);
             JSONObject jsonObject=new JSONObject();
 
+
             jsonObject.put("test_id",finishedTest.getTest_id());
             jsonObject.put("username",finishedTest.getUsername());
             jsonObject.put("name",finishedTest.getTestName());
             jsonObject.put("date",finishedTest.getDate().toString());
+            jsonObject.put("score",finishedTest.getScore());
 
 
 
